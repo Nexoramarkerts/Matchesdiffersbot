@@ -2,287 +2,172 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Deriv Paired Trader</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>PAIRTRADE — Deriv</title>
 
 <style>
 :root{
-  --bg:#090510;
-  --card:#160d22;
-  --line:#3a2152;
-  --purple:#8d3fd1;
-  --purple2:#b768ef;
-  --text:#f8f3ff;
-  --muted:#9d8baa;
-  --green:#32e77b;
-  --red:#ff5577;
-  --yellow:#ffd45c;
+  --bg:#10091b;
+  --card:#1b1029;
+  --card2:#241337;
+  --purple:#8b5cf6;
+  --purple2:#6d28d9;
+  --text:#f7f2ff;
+  --muted:#aa9bbd;
+  --green:#22c55e;
+  --red:#ef4444;
+  --yellow:#f59e0b;
+  --line:#35204a;
 }
 
 *{box-sizing:border-box}
 
 body{
   margin:0;
-  background:
-    radial-gradient(circle at top right,#32164b 0,transparent 35%),
-    linear-gradient(160deg,#090510,#100719 55%,#090510);
+  background:linear-gradient(160deg,#0e0717,#190d28 55%,#10091b);
   color:var(--text);
-  font-family:Inter,Arial,sans-serif;
+  font-family:Arial,system-ui,sans-serif;
 }
 
 .app{
-  width:100%;
-  max-width:950px;
+  max-width:900px;
   margin:auto;
-  padding:14px;
+  padding:12px;
 }
 
-header{
+.top{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-bottom:14px;
+  padding:7px 3px 12px;
 }
 
-.logo{
+.brand{
   font-weight:900;
-  letter-spacing:.5px;
   font-size:20px;
 }
 
-.logo span{
-  color:var(--purple2);
+.brand span{
+  color:#a78bfa;
 }
 
-.connection{
+.status{
   display:flex;
   align-items:center;
-  gap:6px;
+  gap:7px;
+  background:#1b1029;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:7px 11px;
   font-size:12px;
   color:var(--muted);
 }
 
 .dot{
-  width:9px;
-  height:9px;
+  width:8px;
+  height:8px;
   border-radius:50%;
   background:#777;
 }
 
-.connected .dot{
+.dot.green{
   background:var(--green);
-  box-shadow:0 0 10px var(--green);
+  box-shadow:0 0 9px var(--green);
+}
+
+.dot.yellow{
+  background:var(--yellow);
+}
+
+.dot.red{
+  background:var(--red);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
 }
 
 .card{
-  background:rgba(22,13,34,.94);
+  background:rgba(27,16,41,.96);
   border:1px solid var(--line);
-  border-radius:17px;
-  padding:14px;
-  margin-bottom:12px;
-  box-shadow:0 12px 35px rgba(0,0,0,.25);
+  border-radius:14px;
+  padding:11px;
 }
 
-.balance-card{
-  background:
-    radial-gradient(circle at 90% 0,#7131a044,transparent 45%),
-    var(--card);
+.full{
+  grid-column:1/-1;
 }
 
-.label{
-  color:var(--muted);
-  font-size:10px;
-  text-transform:uppercase;
-  letter-spacing:1px;
-}
-
-.balance{
-  font-size:30px;
-  font-weight:900;
-  margin-top:4px;
-}
-
-.balance-row{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  margin-top:14px;
-}
-
-.mini-stat{
-  background:#0e0816;
-  border:1px solid #2d1b40;
-  border-radius:11px;
-  padding:9px;
-}
-
-.mini-stat b{
+label{
   display:block;
-  margin-top:4px;
-  font-size:15px;
-}
-
-.green{color:var(--green)}
-.red{color:var(--red)}
-.yellow{color:var(--yellow)}
-
-.section-title{
   font-size:11px;
-  color:#cbb8d8;
-  text-transform:uppercase;
-  letter-spacing:1px;
-  margin-bottom:10px;
-}
-
-.market-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.live{
   color:var(--muted);
-  font-size:10px;
-  font-weight:bold;
-}
-
-.live.on{
-  color:var(--green);
-}
-
-.price{
-  font-size:25px;
-  font-weight:800;
-  margin-top:5px;
-}
-
-.market-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:12px;
-}
-
-.market-box{
-  background:#0e0816;
-  border:1px solid #2d1b40;
-  border-radius:11px;
-  padding:10px;
-}
-
-.market-box b{
-  display:block;
-  font-size:17px;
-  margin-top:4px;
-}
-
-.signal{
-  margin-top:10px;
-  padding:12px;
-  border-radius:12px;
-  background:linear-gradient(90deg,#30164a,#1a0e29);
-  border:1px solid #583078;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.signal b{
-  color:var(--purple2);
-}
-
-.controls{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
-}
-
-.field label{
-  display:block;
-  color:var(--muted);
-  font-size:10px;
   margin-bottom:5px;
 }
 
-select,
-input{
+input,
+select{
   width:100%;
-  height:36px;
+  background:#120a1d;
+  border:1px solid #3a2451;
+  color:var(--text);
   border-radius:9px;
-  border:1px solid #44265e;
-  background:#0e0816;
-  color:white;
-  padding:0 9px;
+  padding:10px;
   outline:none;
 }
 
-select:focus,
-input:focus{
-  border-color:var(--purple2);
+input:focus,
+select:focus{
+  border-color:var(--purple);
+}
+
+h3{
+  font-size:12px;
+  margin:0 0 9px;
+  color:#d9c8ed;
 }
 
 .pair{
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
-  gap:8px;
-  align-items:center;
-}
-
-.contract{
-  padding:13px;
-  background:#0e0816;
-  border:1px solid #30203f;
-  border-radius:12px;
-}
-
-.contract-title{
-  font-size:10px;
-  color:var(--muted);
-}
-
-.contract-name{
-  font-weight:800;
-  margin-top:4px;
-}
-
-.contract-status{
-  font-size:11px;
-  margin-top:8px;
-}
-
-.vs{
-  color:var(--purple2);
+  font-size:18px;
   font-weight:900;
+  text-align:center;
+  padding:13px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#29134a,#1a0e2a);
+  border:1px solid #4b2b70;
+  color:#d9c8ff;
 }
 
 .actions{
   display:grid;
-  grid-template-columns:2fr 1fr;
+  grid-template-columns:1fr 1fr;
   gap:8px;
+  margin-top:10px;
 }
 
-button{
-  height:42px;
-  border:0;
-  border-radius:11px;
+.btn{
+  padding:11px;
+  border-radius:10px;
+  font-weight:800;
+}
+
+.primary{
+  background:linear-gradient(135deg,var(--purple),var(--purple2));
   color:white;
-  font-weight:900;
-  cursor:pointer;
 }
 
-.start{
-  background:linear-gradient(135deg,#762bb1,#a14ee0);
-  box-shadow:0 8px 20px #7d35b744;
+.ghost{
+  background:#21112f;
+  color:#d9c8ed;
+  border:1px solid #41275a;
 }
 
-.stop{
-  background:#3b1828;
-  border:1px solid #71283f;
-  color:#ff7190;
-}
-
-button:disabled{
-  opacity:.45;
+.danger{
+  background:#351421;
+  color:#ffb6c1;
+  border:1px solid #6b2434;
 }
 
 .stats{
@@ -292,145 +177,149 @@ button:disabled{
 }
 
 .stat{
-  background:#0e0816;
-  border:1px solid #2d1b40;
+  background:#130b20;
+  border:1px solid var(--line);
   border-radius:10px;
   padding:9px;
   text-align:center;
-}
-
-.stat small{
-  color:var(--muted);
-  display:block;
-  font-size:9px;
 }
 
 .stat b{
   display:block;
-  margin-top:5px;
   font-size:15px;
 }
 
-.history{
-  max-height:240px;
-  overflow:auto;
-}
-
-.trade{
-  display:grid;
-  grid-template-columns:.5fr 1.4fr 1fr .8fr;
-  gap:5px;
-  padding:9px 3px;
-  border-bottom:1px solid #281735;
-  font-size:11px;
-}
-
-.history-head{
+.stat small{
   color:var(--muted);
   font-size:9px;
-  text-transform:uppercase;
+}
+
+.balance{
+  font-size:22px;
+  font-weight:900;
+}
+
+.live{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+.tick{
+  font-size:18px;
+  font-weight:800;
 }
 
 .log{
-  height:150px;
+  height:125px;
   overflow:auto;
-  background:#08040d;
+  background:#0b0610;
   border-radius:10px;
-  padding:9px;
+  padding:8px;
   font:10px monospace;
-  color:#bcaec8;
+  color:#cdbfe0;
 }
 
 .log div{
-  padding:3px 0;
-}
-
-.footer{
-  color:#796b84;
-  font-size:9px;
-  line-height:1.5;
-  text-align:center;
-  margin:10px;
+  padding:2px 0;
+  border-bottom:1px solid #160d20;
 }
 
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.75);
+  background:rgba(4,2,8,.82);
   display:none;
   align-items:center;
   justify-content:center;
-  padding:18px;
-  z-index:1000;
+  padding:16px;
+  z-index:10;
 }
 
 .modal.show{
   display:flex;
 }
 
-.modal-box{
-  width:100%;
-  max-width:420px;
-  background:#160d22;
-  border:1px solid #583078;
-  border-radius:17px;
-  padding:18px;
-  box-shadow:0 20px 60px #000;
+.modalbox{
+  width:min(430px,100%);
+  background:#1a0e28;
+  border:1px solid #4b2b70;
+  border-radius:18px;
+  padding:17px;
+  box-shadow:0 20px 70px #000;
 }
 
-.modal-box h3{
-  margin-top:0;
+.modalbox h2{
+  margin:0 0 5px;
+  font-size:19px;
 }
 
-.modal-box input{
-  margin-bottom:10px;
+.modalbox p{
+  margin:0 0 14px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.5;
 }
 
-.modal-actions{
+.finds{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:8px;
+  margin-top:9px;
 }
 
-.small-note{
-  font-size:10px;
+.accounts{
+  margin-top:10px;
+  display:grid;
+  gap:7px;
+}
+
+.account{
+  padding:10px;
+  border:1px solid #39234e;
+  background:#120a1d;
+  border-radius:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+}
+
+.account small{
   color:var(--muted);
-  line-height:1.5;
-  margin-bottom:12px;
 }
 
-@media(max-width:700px){
+.mini{
+  padding:7px 9px;
+  border-radius:8px;
+  background:var(--purple);
+  color:white;
+  font-weight:800;
+  font-size:11px;
+}
 
-  .app{
-    padding:10px;
-  }
+.note{
+  font-size:10px;
+  color:#9888aa;
+  margin-top:8px;
+  line-height:1.4;
+}
 
-  .balance{
-    font-size:27px;
-  }
+.hidden{
+  display:none!important;
+}
 
-  .controls{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .stats{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .pair{
+@media(max-width:560px){
+  .grid{
     grid-template-columns:1fr;
   }
 
-  .vs{
-    text-align:center;
+  .full{
+    grid-column:auto;
   }
 
-  .actions{
-    grid-template-columns:2fr 1fr;
-  }
-
-  .trade{
-    grid-template-columns:.4fr 1.3fr .8fr .7fr;
+  .stats{
+    grid-template-columns:repeat(2,1fr);
   }
 }
 </style>
@@ -440,458 +329,488 @@ button:disabled{
 
 <div class="app">
 
-<header>
-  <div class="logo">DERIV <span>PAIRED</span></div>
+  <div class="top">
 
-  <div id="connection" class="connection">
-    <span class="dot"></span>
-    <span id="connectionText">OFFLINE</span>
-  </div>
-</header>
-
-<div class="card balance-card">
-
-  <div class="label">Account Balance</div>
-
-  <div id="balance" class="balance">
-    $0.00
-  </div>
-
-  <div class="balance-row">
-
-    <div class="mini-stat">
-      <div class="label">Session P/L</div>
-      <b id="pnl">$0.00</b>
+    <div class="brand">
+      PAIR<span>TRADE</span>
     </div>
 
-    <div class="mini-stat">
-      <div class="label">Runs</div>
-      <b id="runs">0 / 20</b>
-    </div>
-
-    <div class="mini-stat">
-      <div class="label">Mode</div>
-      <b id="mode">OFFLINE</b>
+    <div class="status">
+      <i id="dot" class="dot red"></i>
+      <span id="statusText">OFFLINE</span>
     </div>
 
   </div>
 
-</div>
 
-<div class="card">
+  <div class="grid">
 
-  <div class="market-top">
+    <!-- MARKET -->
+    <div class="card">
 
-    <div>
+      <label>MARKET TYPE</label>
 
-      <div class="section-title">Volatilities</div>
+      <select id="market">
 
-      <select id="symbol" style="width:220px">
+        <option value="vol">
+          Volatility Indices
+        </option>
 
-        <option value="1HZ10V">Volatility 10 (1s)</option>
-        <option value="1HZ25V">Volatility 25 (1s)</option>
-        <option value="1HZ50V" selected>Volatility 50 (1s)</option>
-        <option value="1HZ75V">Volatility 75 (1s)</option>
-        <option value="1HZ100V">Volatility 100 (1s)</option>
-
-        <option value="R_10">Volatility 10</option>
-        <option value="R_25">Volatility 25</option>
-        <option value="R_50">Volatility 50</option>
-        <option value="R_75">Volatility 75</option>
-        <option value="R_100">Volatility 100</option>
+        <option value="1s">
+          Volatility 1s
+        </option>
 
       </select>
 
     </div>
 
-    <div id="liveTicks" class="live">
-      ● WAITING
+
+    <!-- SYMBOL -->
+    <div class="card">
+
+      <label>VOLATILITY</label>
+
+      <select id="symbol">
+
+        <option>
+          Connect first...
+        </option>
+
+      </select>
+
     </div>
 
-  </div>
 
-  <div class="price" id="price">--</div>
+    <!-- TRADE TYPE -->
+    <div class="card">
 
-  <div class="market-grid">
-
-    <div class="market-box">
-      <div class="label">Last Digit</div>
-      <b id="digit">--</b>
-    </div>
-
-    <div class="market-box">
-      <div class="label">Entry</div>
-      <b id="entry">WAIT</b>
-    </div>
-
-  </div>
-
-  <div class="signal">
-
-    <span>
-      <div class="label">Current Signal</div>
-      <b id="signal">WAITING</b>
-    </span>
-
-    <span id="countdown">--</span>
-
-  </div>
-
-</div>
-
-<div class="card">
-
-  <div class="section-title">Trading Controls</div>
-
-  <div class="controls">
-
-    <div class="field">
-
-      <label>Trade Type</label>
+      <label>TRADE TYPE</label>
 
       <select id="tradeType">
 
-        <option value="MD">Matches + Differs</option>
-        <option value="EO">Even + Odd</option>
-        <option value="OU">Over + Under</option>
-        <option value="HL">Higher + Lower</option>
-        <option value="UD">Up + Down</option>
+        <option value="digits">
+          Digits
+        </option>
+
+        <option value="updown">
+          Up / Down
+        </option>
 
       </select>
 
     </div>
 
-    <div class="field">
 
-      <label>Duration</label>
+    <!-- CONTRACT -->
+    <div class="card">
 
-      <select id="duration">
+      <label>CONTRACT PAIR</label>
 
-        <option value="1">1 Tick</option>
-        <option value="5">5 Ticks</option>
-        <option value="10">10 Ticks</option>
+      <select id="pair">
+
+        <option value="md">
+          Matches / Differs
+        </option>
+
+        <option value="eo">
+          Even / Odd
+        </option>
+
+        <option value="ou">
+          Over / Under
+        </option>
 
       </select>
 
     </div>
 
-    <div class="field">
 
-      <label>Stake / Leg</label>
+    <!-- BARRIER -->
+    <div class="card" id="barrierCard">
 
-      <input
-        id="stake"
-        type="number"
-        value="0.50"
-        min="0.35"
-        step="0.01">
-    </div>
-
-    <div class="field" id="barrierField">
-
-      <label>Barrier / Digit</label>
+      <label id="barrierLabel">
+        PREDICTION / BARRIER
+      </label>
 
       <input
         id="barrier"
         type="number"
-        value="5"
         min="0"
-        max="9">
+        max="9"
+        step="1"
+        value="5"
+      >
+
     </div>
 
-    <div class="field">
 
-      <label>Stop Loss</label>
+    <!-- DURATION -->
+    <div class="card">
+
+      <label>DURATION (TICKS)</label>
 
       <input
-        id="stopLoss"
+        id="duration"
         type="number"
-        value="5"
-        min="0"
-        step="0.01">
+        min="1"
+        max="10"
+        value="1"
+      >
+
     </div>
 
-    <div class="field">
 
-      <label>Take Profit</label>
+    <!-- STAKE -->
+    <div class="card">
+
+      <label>STAKE PER LEG</label>
 
       <input
-        id="takeProfit"
+        id="stake"
         type="number"
-        value="5"
-        min="0"
-        step="0.01">
+        min="0.35"
+        step="0.01"
+        value="0.50"
+      >
+
     </div>
 
-    <div class="field">
 
-      <label>Max Runs</label>
+    <!-- RUNS -->
+    <div class="card">
+
+      <label>NUMBER OF RUNS</label>
 
       <input
-        id="maxRuns"
+        id="runs"
         type="number"
-        value="20"
-        min="1">
-    </div>
-
-    <div class="field">
-
-      <label>Cooldown</label>
-
-      <select id="cooldown">
-
-        <option value="1">1 sec</option>
-        <option value="3">3 sec</option>
-        <option value="5">5 sec</option>
-        <option value="10">10 sec</option>
-
-      </select>
+        min="1"
+        value="10"
+      >
 
     </div>
 
-  </div>
 
-</div>
+    <!-- PAIR -->
+    <div class="card full">
 
-<div class="card">
-
-  <div class="section-title">
-    <span id="pairTitle">MATCHES VS DIFFERS</span>
-  </div>
-
-  <div class="pair">
-
-    <div class="contract">
-
-      <div class="contract-title">
-        CONTRACT A
+      <div
+        class="pair"
+        id="pairTitle"
+      >
+        MATCHES VS DIFFERS
       </div>
 
-      <div id="contractA" class="contract-name">
-        MATCH
-      </div>
+      <div class="actions">
 
-      <div id="statusA" class="contract-status">
-        READY
+        <button
+          class="btn primary"
+          id="start"
+        >
+          START PAIR
+        </button>
+
+        <button
+          class="btn danger"
+          id="stop"
+        >
+          STOP
+        </button>
+
       </div>
 
     </div>
 
-    <div class="vs">
-      VS
-    </div>
 
-    <div class="contract">
+    <!-- BALANCE -->
+    <div class="card">
 
-      <div class="contract-title">
-        CONTRACT B
+      <h3>
+        ACCOUNT BALANCE
+      </h3>
+
+      <div
+        class="balance"
+        id="balance"
+      >
+        —
       </div>
 
-      <div id="contractB" class="contract-name">
-        DIFFER
+      <div
+        class="live"
+        id="account"
+      >
+        Not connected
       </div>
 
-      <div id="statusB" class="contract-status">
-        READY
+    </div>
+
+
+    <!-- TICKS -->
+    <div class="card">
+
+      <h3>
+        LIVE TICKS
+      </h3>
+
+      <div
+        class="tick"
+        id="tick"
+      >
+        —
+      </div>
+
+      <div
+        class="live"
+        id="tickState"
+      >
+        Waiting for connection
       </div>
 
     </div>
 
-  </div>
 
-</div>
+    <!-- STATS -->
+    <div class="card full">
 
-<div class="card">
+      <div class="stats">
 
-  <div class="actions">
+        <div class="stat">
+          <b id="runCount">0</b>
+          <small>RUNS</small>
+        </div>
 
-    <button id="startButton" class="start">
-      ▶ START TRADING
-    </button>
+        <div class="stat">
+          <b id="wins">0</b>
+          <small>WINS</small>
+        </div>
 
-    <button id="stopButton" class="stop">
-      ■ STOP
-    </button>
+        <div class="stat">
+          <b id="losses">0</b>
+          <small>LOSSES</small>
+        </div>
 
-  </div>
+        <div class="stat">
+          <b id="winrate">0%</b>
+          <small>WIN RATE</small>
+        </div>
 
-</div>
+      </div>
 
-<div class="card">
-
-  <div class="section-title">
-    Session Statistics
-  </div>
-
-  <div class="stats">
-
-    <div class="stat">
-      <small>Wins</small>
-      <b id="wins" class="green">0</b>
     </div>
 
-    <div class="stat">
-      <small>Losses</small>
-      <b id="losses" class="red">0</b>
-    </div>
 
-    <div class="stat">
-      <small>Win Rate</small>
-      <b id="winRate">0%</b>
-    </div>
+    <!-- LOG -->
+    <div class="card full">
 
-    <div class="stat">
-      <small>Open Pairs</small>
-      <b id="openPairs">0</b>
+      <h3>
+        ACTIVITY
+      </h3>
+
+      <div
+        class="log"
+        id="log"
+      ></div>
+
     </div>
 
   </div>
 
 </div>
 
-<div class="card">
-
-  <div class="section-title">
-    Recent Trades
-  </div>
-
-  <div class="history">
-
-    <div class="trade history-head">
-      <span>#</span>
-      <span>PAIR</span>
-      <span>RESULT</span>
-      <span>P/L</span>
-    </div>
-
-    <div id="history"></div>
-
-  </div>
-
-</div>
-
-<div class="card">
-
-  <div class="section-title">
-    Activity
-  </div>
-
-  <div id="log" class="log"></div>
-
-</div>
-
-<div class="footer">
-  Use a demo account while testing. Never share your PAT.
-</div>
-
-</div>
 
 <!-- CONNECTION MODAL -->
 
-<div id="authModal" class="modal">
+<div
+  class="modal show"
+  id="connectModal"
+>
 
-  <div class="modal-box">
+  <div class="modalbox">
 
-    <h3>Connect to Deriv</h3>
+    <h2>
+      Connect to Deriv
+    </h2>
 
-    <div class="small-note">
-      Enter your own App ID and PAT. Your PAT stays in this browser session
-      and is not displayed in the activity log.
+    <p>
+      Enter your Deriv App ID and Personal Access Token.
+      Your PAT is kept only in this page's memory.
+    </p>
+
+
+    <label>
+      APP ID
+    </label>
+
+    <input
+      id="appId"
+      placeholder="Your Deriv App ID"
+      autocomplete="off"
+    >
+
+
+    <label style="margin-top:9px">
+      PERSONAL ACCESS TOKEN
+    </label>
+
+    <input
+      id="pat"
+      type="password"
+      placeholder="Your PAT"
+      autocomplete="off"
+    >
+
+
+    <div class="finds">
+
+      <button
+        class="btn primary"
+        id="findDemo"
+      >
+        FIND DEMO
+      </button>
+
+      <button
+        class="btn ghost"
+        id="findReal"
+      >
+        FIND REAL
+      </button>
+
     </div>
 
-    <input
-      id="appIdInput"
-      type="text"
-      placeholder="Deriv App ID">
 
-    <input
-      id="patInput"
-      type="password"
-      placeholder="Deriv PAT">
+    <div
+      class="accounts"
+      id="accounts"
+    ></div>
 
-    <div class="modal-actions">
 
-      <button
-        id="cancelConnect"
-        class="stop">
-        CANCEL
-      </button>
-
-      <button
-        id="confirmConnect"
-        class="start">
-        CONNECT
-      </button>
-
+    <div class="note">
+      Find Demo / Find Real discovers the account first and then
+      requests its authenticated WebSocket connection.
     </div>
 
   </div>
 
 </div>
 
+
 <script>
 
-/* =========================================================
-   DERIV PAIRED TRADER
-   ========================================================= */
+/* =========================================
+   DERIV CONNECTION
+========================================= */
 
-let socket = null;
+const API =
+  "https://api.derivws.com";
 
 let APP_ID = "";
 let PAT = "";
 
-let authorized = false;
-let running = false;
-let liveTickReceived = false;
+let socket = null;
 
-let balance = 0;
-let startingBalance = 0;
-let currency = "USD";
+let connected = false;
+let live = false;
+
+let selectedAccount = null;
+
+let activeSymbols = [];
+
+let requestId = 0;
+
+let running = false;
 
 let runCount = 0;
 let wins = 0;
 let losses = 0;
 
-let lastPrice = null;
-let lastDigit = null;
-
-let pair = {
-  contracts: [],
-  profits: [],
-  settled: 0,
-  totalProfit: 0
-};
-
-let proposalCounter = 1;
-let requestCounter = 1;
-
-let countdownTimer = null;
-let cooldownTimer = null;
+let pending = {};
 
 
-/* =========================================================
-   HELPERS
-   ========================================================= */
+/* =========================================
+   SHORTCUT
+========================================= */
 
-function $(id){
-  return document.getElementById(id);
+const $ = id =>
+  document.getElementById(id);
+
+
+/* =========================================
+   LOG
+========================================= */
+
+function log(message){
+
+  const div =
+    document.createElement("div");
+
+  div.textContent =
+    new Date().toLocaleTimeString()
+    + "  "
+    + message;
+
+  $("log").prepend(div);
 }
 
 
-function log(message,type=""){
+/* =========================================
+   STATUS
+========================================= */
 
-  const item = document.createElement("div");
+function status(state){
 
-  item.className = type;
+  $("statusText").textContent =
+    state;
 
-  item.textContent =
-    new Date().toLocaleTimeString() +
-    "  " +
-    message;
+  const dot =
+    $("dot");
 
-  $("log").prepend(item);
+  dot.className =
+    "dot";
+
+  if(
+    state === "CONNECTED" ||
+    state === "LIVE TICKS"
+  ){
+
+    dot.classList.add("green");
+
+  }
+
+  else if(
+    state === "CONNECTING"
+  ){
+
+    dot.classList.add("yellow");
+
+  }
+
+  else{
+
+    dot.classList.add("red");
+
+  }
+
 }
 
+
+/* =========================================
+   REQUEST ID
+========================================= */
+
+function nextRequest(){
+
+  requestId++;
+
+  return requestId;
+
+}
+
+
+/* =========================================
+   SEND
+========================================= */
 
 function send(data){
 
@@ -900,1174 +819,532 @@ function send(data){
     socket.readyState === WebSocket.OPEN
   ){
 
-    if(!data.req_id){
-      data.req_id = requestCounter++;
-    }
-
     socket.send(
       JSON.stringify(data)
     );
 
-    return true;
   }
-
-  log(
-    "Cannot send: WebSocket is not open.",
-    "red"
-  );
-
-  return false;
-}
-
-
-function setConnection(state){
-
-  const box = $("connection");
-  const text = $("connectionText");
-
-  box.classList.remove("connected");
-
-  if(state === "CONNECTED"){
-
-    box.classList.add("connected");
-
-    text.textContent =
-      "CONNECTED";
-
-  }
-  else if(state === "CONNECTING"){
-
-    text.textContent =
-      "CONNECTING";
-
-  }
-  else{
-
-    text.textContent =
-      "OFFLINE";
-
-  }
-}
-
-
-function setLiveTicks(on){
-
-  liveTickReceived = on;
-
-  const el = $("liveTicks");
-
-  if(on){
-
-    el.classList.add("on");
-
-    el.textContent =
-      "● LIVE TICKS";
-
-  }else{
-
-    el.classList.remove("on");
-
-    el.textContent =
-      "● WAITING";
-
-  }
-}
-
-
-/* =========================================================
-   AUTH MODAL
-   ========================================================= */
-
-function openAuth(){
-
-  $("authModal").classList.add("show");
-
-  $("appIdInput").focus();
 
 }
 
 
-$("cancelConnect").onclick =
-function(){
+/* =========================================
+   FIND ACCOUNT
+========================================= */
 
-  $("authModal").classList.remove("show");
+async function findAccounts(type){
 
-};
+  APP_ID =
+    $("appId").value.trim();
 
-
-$("confirmConnect").onclick =
-function(){
-
-  const appId =
-    $("appIdInput").value.trim();
-
-  const pat =
-    $("patInput").value.trim();
-
-  if(!appId){
-
-    alert("Enter your Deriv App ID.");
-
-    return;
-
-  }
-
-  if(!pat){
-
-    alert("Enter your Deriv PAT.");
-
-    return;
-
-  }
-
-  APP_ID = appId;
-  PAT = pat;
-
-  $("authModal").classList.remove("show");
-
-  connectDeriv();
-
-};
+  PAT =
+    $("pat").value.trim();
 
 
-/* =========================================================
-   CONNECTION
-   ========================================================= */
-
-function connectDeriv(){
-
-  if(socket){
-
-    try{
-      socket.close();
-    }catch(e){}
-
-  }
-
-  authorized = false;
-
-  setLiveTicks(false);
-
-  setConnection("CONNECTING");
-
-  $("mode").textContent =
-    "CONNECTING";
-
-  log(
-    "Opening Deriv WebSocket..."
-  );
-
-  const url =
-    "wss://ws.derivws.com/websockets/v3?app_id=" +
-    encodeURIComponent(APP_ID);
-
-  socket =
-    new WebSocket(url);
-
-
-  socket.onopen =
-  function(){
+  if(!APP_ID || !PAT){
 
     log(
-      "WebSocket opened. Authorizing..."
+      "Enter App ID and PAT first."
     );
 
-    send({
-      authorize:PAT
+    return;
+
+  }
+
+
+  $("accounts").innerHTML =
+    "<div class='note'>Finding "
+    + type
+    + " account...</div>";
+
+
+  try{
+
+    const response =
+      await fetch(
+        API +
+        "/trading/v1/options/accounts",
+        {
+          method:"GET",
+
+          headers:{
+            "Authorization":
+              "Bearer " + PAT,
+
+            "Deriv-App-ID":
+              APP_ID
+          }
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    if(!response.ok){
+
+      throw new Error(
+        data?.errors?.[0]?.message ||
+        "HTTP " + response.status
+      );
+
+    }
+
+
+    let accounts =
+      data?.data;
+
+
+    if(
+      !Array.isArray(accounts)
+    ){
+
+      accounts =
+        accounts?.accounts || [];
+
+    }
+
+
+    const wanted =
+      type.toLowerCase();
+
+
+    const matches =
+      accounts.filter(
+        account =>
+          String(
+            account.account_type ||
+            account.type ||
+            ""
+          ).toLowerCase() === wanted
+      );
+
+
+    if(!matches.length){
+
+      $("accounts").innerHTML =
+        "<div class='note'>No "
+        + type
+        + " account was returned.</div>";
+
+      log(
+        "No " +
+        type +
+        " account found."
+      );
+
+      return;
+
+    }
+
+
+    $("accounts").innerHTML = "";
+
+
+    matches.forEach(account => {
+
+      const id =
+        account.account_id ||
+        account.id ||
+        account.loginid;
+
+
+      const div =
+        document.createElement("div");
+
+
+      div.className =
+        "account";
+
+
+      div.innerHTML = `
+
+        <div>
+
+          <b>
+            ${escapeHTML(id || "Unknown")}
+          </b>
+
+          <br>
+
+          <small>
+            ${escapeHTML(
+              account.currency || "USD"
+            )}
+            •
+            ${escapeHTML(
+              account.account_type || type
+            )}
+            • Balance:
+            ${escapeHTML(
+              account.balance ?? "—"
+            )}
+          </small>
+
+        </div>
+
+        <button
+          class="mini"
+        >
+          CONNECT
+        </button>
+
+      `;
+
+
+      div
+        .querySelector("button")
+        .onclick =
+          () => connectAccount(account);
+
+
+      $("accounts")
+        .appendChild(div);
+
     });
 
-  };
+
+    log(
+      "Found " +
+      matches.length +
+      " " +
+      type +
+      " account(s)."
+    );
+
+  }
+
+  catch(error){
+
+    $("accounts").innerHTML =
+      "<div class='note'>ERROR: "
+      + escapeHTML(error.message)
+      + "</div>";
+
+    log(
+      "Account search error: "
+      + error.message
+    );
+
+  }
+
+}
 
 
-  socket.onmessage =
-  function(event){
+/* =========================================
+   CONNECT ACCOUNT
+========================================= */
 
-    let data;
+async function connectAccount(account){
 
-    try{
+  selectedAccount =
+    account;
 
-      data =
-        JSON.parse(event.data);
 
-    }catch(error){
+  const accountId =
+    account.account_id ||
+    account.id ||
+    account.loginid;
 
-      log(
-        "Invalid JSON received.",
-        "red"
+
+  if(!accountId){
+
+    log(
+      "Account ID missing."
+    );
+
+    return;
+
+  }
+
+
+  status("CONNECTING");
+
+
+  $("accounts").innerHTML =
+    "<div class='note'>Connecting...</div>";
+
+
+  try{
+
+    const response =
+      await fetch(
+
+        API +
+        "/trading/v1/options/accounts/" +
+        encodeURIComponent(accountId) +
+        "/otp",
+
+        {
+
+          method:"POST",
+
+          headers:{
+
+            "Authorization":
+              "Bearer " + PAT,
+
+            "Deriv-App-ID":
+              APP_ID
+
+          }
+
+        }
+
       );
 
-      return;
+
+    const data =
+      await response.json();
+
+
+    if(!response.ok){
+
+      throw new Error(
+        data?.errors?.[0]?.message ||
+        "OTP HTTP " +
+        response.status
+      );
 
     }
 
 
-    /* API ERROR */
+    const wsURL =
+      data?.data?.url;
 
-    if(data.error){
 
-      log(
-        "API ERROR: " +
-        data.error.code +
-        " - " +
-        data.error.message,
-        "red"
+    if(!wsURL){
+
+      throw new Error(
+        "Deriv did not return a WebSocket URL."
       );
 
-      if(
-        data.error.code ===
-        "AuthorizationRequired" ||
-        data.error.code ===
-        "InvalidToken"
-      ){
+    }
 
-        authorized = false;
 
-        setConnection(
-          "OFFLINE"
+    if(socket){
+
+      try{
+        socket.close();
+      }
+      catch(e){}
+
+    }
+
+
+    socket =
+      new WebSocket(wsURL);
+
+
+    socket.onopen = () => {
+
+      connected = true;
+      live = false;
+
+      status("CONNECTED");
+
+
+      $("connectModal")
+        .classList
+        .remove("show");
+
+
+      $("account").textContent =
+        accountId +
+        " • " +
+        (
+          account.currency ||
+          "USD"
         );
 
-        $("mode").textContent =
-          "AUTH ERROR";
+
+      if(account.balance != null){
+
+        $("balance").textContent =
+          Number(
+            account.balance
+          ).toFixed(2);
 
       }
 
-      return;
 
-    }
+      $("tickState").textContent =
+        "Connected • waiting for first tick";
 
-
-    /* AUTHORIZED */
-
-    if(
-      data.msg_type ===
-      "authorize"
-    ){
-
-      authorized = true;
-
-      currency =
-        data.authorize.currency ||
-        "USD";
-
-      setConnection(
-        "CONNECTED"
-      );
-
-      $("mode").textContent =
-        "READY";
 
       log(
-        "Authorized: " +
-        (
-          data.authorize.loginid ||
-          "Deriv account"
-        ),
-        "green"
+        "Connected successfully."
       );
 
-      /* Balance subscription */
 
-      send({
-        balance:1,
-        subscribe:1
-      });
+      requestSymbols();
 
-      /* Tick subscription */
+      subscribeBalance();
 
-      subscribeTicks();
+      subscribeTick();
 
-      return;
-
-    }
+    };
 
 
-    /* BALANCE */
+    socket.onmessage =
+      event => {
 
-    if(
-      data.msg_type ===
-      "balance"
-    ){
+        try{
 
-      if(
-        data.balance &&
-        data.balance.balance !== undefined
-      ){
-
-        balance =
-          Number(
-            data.balance.balance
+          handleMessage(
+            JSON.parse(
+              event.data
+            )
           );
-
-        if(
-          startingBalance === 0 &&
-          !running
-        ){
-
-          startingBalance =
-            balance;
 
         }
 
-        updateBalance();
+        catch(error){
 
-      }
-
-      return;
-
-    }
-
-
-    /* TICK */
-
-    if(
-      data.msg_type ===
-      "tick"
-    ){
-
-      if(
-        data.tick &&
-        data.tick.quote !== undefined
-      ){
-
-        lastPrice =
-          Number(
-            data.tick.quote
+          log(
+            "Message parsing error."
           );
-
-        lastDigit =
-          getLastDigit(
-            data.tick.quote
-          );
-
-        $("price").textContent =
-          data.tick.quote;
-
-        $("digit").textContent =
-          lastDigit;
-
-        setLiveTicks(true);
-
-        if(
-          running &&
-          pair.contracts.length === 0 &&
-          !countdownTimer
-        ){
-
-          $("signal").textContent =
-            "ENTRY READY";
-
-          $("entry").textContent =
-            "OPEN";
-
-          startCountdown();
 
         }
 
-      }
-
-      return;
-
-    }
+      };
 
 
-    /* PROPOSAL */
+    socket.onerror = () => {
 
-    if(
-      data.msg_type ===
-      "proposal"
-    ){
-
-      handleProposal(
-        data
+      log(
+        "WebSocket error."
       );
 
-      return;
+      status("OFFLINE");
 
-    }
+    };
 
 
-    /* BUY */
+    socket.onclose = () => {
 
-    if(
-      data.msg_type ===
-      "buy"
-    ){
+      connected = false;
+      live = false;
 
-      handleBuy(
-        data
+      status("OFFLINE");
+
+      $("tickState").textContent =
+        "Disconnected";
+
+      log(
+        "WebSocket closed."
       );
 
-      return;
+    };
 
-    }
+  }
 
+  catch(error){
 
-    /* OPEN CONTRACT */
-
-    if(
-      data.msg_type ===
-      "proposal_open_contract"
-    ){
-
-      handleContractUpdate(
-        data
-      );
-
-      return;
-
-    }
-
-  };
-
-
-  socket.onerror =
-  function(){
+    status("OFFLINE");
 
     log(
-      "WebSocket error. Check App ID, internet connection and PAT.",
-      "red"
+      "Connection error: "
+      + error.message
     );
 
-  };
+    $("accounts").innerHTML =
+      "<div class='note'>ERROR: "
+      + escapeHTML(error.message)
+      + "</div>";
 
-
-  socket.onclose =
-  function(){
-
-    authorized = false;
-
-    setConnection(
-      "OFFLINE"
-    );
-
-    setLiveTicks(false);
-
-    $("mode").textContent =
-      "OFFLINE";
-
-    log(
-      "Deriv connection closed.",
-      "red"
-    );
-
-  };
+  }
 
 }
 
 
-/* =========================================================
-   TICKS
-   ========================================================= */
+/* =========================================
+   SYMBOL REQUEST
+========================================= */
 
-function subscribeTicks(){
-
-  if(!authorized)
-    return;
+function requestSymbols(){
 
   send({
-    forget_all:"ticks"
+
+    active_symbols:
+      "brief",
+
+    req_id:
+      nextRequest()
+
   });
+
+}
+
+
+/* =========================================
+   BALANCE
+========================================= */
+
+function subscribeBalance(){
 
   send({
-    ticks:$("symbol").value,
-    subscribe:1
-  });
 
-  log(
-    "Subscribing to " +
-    $("symbol").value +
-    " ticks..."
-  );
-
-}
-
-
-$("symbol").addEventListener(
-  "change",
-  function(){
-
-    if(authorized){
-
-      setLiveTicks(false);
-
-      subscribeTicks();
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   LAST DIGIT
-   ========================================================= */
-
-function getLastDigit(value){
-
-  const text =
-    String(value);
-
-  const digits =
-    text.replace(
-      /\D/g,
-      ""
-    );
-
-  if(!digits)
-    return "--";
-
-  return Number(
-    digits.slice(-1)
-  );
-
-}
-
-
-/* =========================================================
-   CONTRACT CONFIGURATION
-   ========================================================= */
-
-function getContracts(){
-
-  const type =
-    $("tradeType").value;
-
-  const barrier =
-    String(
-      $("barrier").value
-    );
-
-
-  /* MATCH / DIFFER */
-
-  if(type === "MD"){
-
-    return [
-
-      {
-        type:"DIGITMATCH",
-        barrier:barrier,
-        name:"MATCH"
-      },
-
-      {
-        type:"DIGITDIFF",
-        barrier:barrier,
-        name:"DIFFER"
-      }
-
-    ];
-
-  }
-
-
-  /* EVEN / ODD */
-
-  if(type === "EO"){
-
-    return [
-
-      {
-        type:"DIGITEVEN",
-        name:"EVEN"
-      },
-
-      {
-        type:"DIGITODD",
-        name:"ODD"
-      }
-
-    ];
-
-  }
-
-
-  /* OVER / UNDER */
-
-  if(type === "OU"){
-
-    return [
-
-      {
-        type:"DIGITOVER",
-        barrier:barrier,
-        name:"OVER"
-      },
-
-      {
-        type:"DIGITUNDER",
-        barrier:barrier,
-        name:"UNDER"
-      }
-
-    ];
-
-  }
-
-
-  /* HIGHER / LOWER */
-
-  if(type === "HL"){
-
-    return [
-
-      {
-        type:"HIGHER",
-        name:"HIGHER"
-      },
-
-      {
-        type:"LOWER",
-        name:"LOWER"
-      }
-
-    ];
-
-  }
-
-
-  /* UP / DOWN */
-
-  if(type === "UD"){
-
-    return [
-
-      {
-        type:"CALL",
-        name:"UP"
-      },
-
-      {
-        type:"PUT",
-        name:"DOWN"
-      }
-
-    ];
-
-  }
-
-  return [];
-
-}
-
-
-/* =========================================================
-   UPDATE CONTRACT UI
-   ========================================================= */
-
-function updateContractUI(){
-
-  const type =
-    $("tradeType").value;
-
-  const contracts =
-    getContracts();
-
-  if(!contracts.length)
-    return;
-
-
-  $("contractA").textContent =
-    contracts[0].name;
-
-  $("contractB").textContent =
-    contracts[1].name;
-
-
-  if(type === "MD"){
-
-    $("pairTitle").textContent =
-      "MATCHES VS DIFFERS";
-
-  }
-  else if(type === "EO"){
-
-    $("pairTitle").textContent =
-      "EVEN VS ODD";
-
-  }
-  else if(type === "OU"){
-
-    $("pairTitle").textContent =
-      "OVER VS UNDER";
-
-  }
-  else if(type === "HL"){
-
-    $("pairTitle").textContent =
-      "HIGHER VS LOWER";
-
-  }
-  else if(type === "UD"){
-
-    $("pairTitle").textContent =
-      "UP VS DOWN";
-
-  }
-
-
-  /*
-     Barrier only for digit contracts
-  */
-
-  if(
-    type === "MD" ||
-    type === "OU"
-  ){
-
-    $("barrierField").style.display =
-      "";
-
-  }
-  else{
-
-    $("barrierField").style.display =
-      "none";
-
-  }
-
-}
-
-
-$("tradeType").addEventListener(
-  "change",
-  updateContractUI
-);
-
-updateContractUI();
-
-
-/* =========================================================
-   START
-   ========================================================= */
-
-$("startButton").onclick =
-function(){
-
-  if(!authorized){
-
-    log(
-      "Connect to Deriv first.",
-      "red"
-    );
-
-    openAuth();
-
-    return;
-
-  }
-
-
-  if(!liveTickReceived){
-
-    log(
-      "Waiting for live ticks before starting.",
-      "yellow"
-    );
-
-    return;
-
-  }
-
-
-  running = true;
-
-  runCount = 0;
-  wins = 0;
-  losses = 0;
-
-  pair = {
-    contracts:[],
-    profits:[],
-    settled:0,
-    totalProfit:0
-  };
-
-  startingBalance =
-    balance;
-
-  $("mode").textContent =
-    "RUNNING";
-
-  $("signal").textContent =
-    "WAITING";
-
-  $("entry").textContent =
-    "WAIT";
-
-  updateStatistics();
-
-  log(
-    "Paired trading started.",
-    "green"
-  );
-
-};
-
-
-/* =========================================================
-   STOP
-   ========================================================= */
-
-$("stopButton").onclick =
-function(){
-
-  stopTrading(
-    "Trading stopped manually."
-  );
-
-};
-
-
-function stopTrading(reason){
-
-  running = false;
-
-  clearInterval(
-    countdownTimer
-  );
-
-  countdownTimer = null;
-
-  clearTimeout(
-    cooldownTimer
-  );
-
-  cooldownTimer = null;
-
-  $("mode").textContent =
-    "STOPPED";
-
-  $("signal").textContent =
-    "STOPPED";
-
-  $("entry").textContent =
-    "WAIT";
-
-  $("countdown").textContent =
-    "--";
-
-  log(reason);
-
-}
-
-
-/* =========================================================
-   COUNTDOWN
-   ========================================================= */
-
-function startCountdown(){
-
-  if(countdownTimer)
-    return;
-
-  let seconds = 5;
-
-  $("countdown").textContent =
-    "Entry in " +
-    seconds +
-    " secs";
-
-
-  countdownTimer =
-    setInterval(
-      function(){
-
-        if(!running){
-
-          clearInterval(
-            countdownTimer
-          );
-
-          countdownTimer = null;
-
-          $("countdown").textContent =
-            "--";
-
-          return;
-
-        }
-
-
-        seconds--;
-
-
-        if(seconds <= 0){
-
-          clearInterval(
-            countdownTimer
-          );
-
-          countdownTimer = null;
-
-          $("countdown").textContent =
-            "ENTRY";
-
-          purchasePair();
-
-          return;
-
-        }
-
-
-        $("countdown").textContent =
-          "Entry in " +
-          seconds +
-          " secs";
-
-      },
-      1000
-    );
-
-}
-
-
-/* =========================================================
-   PURCHASE PAIR
-   ========================================================= */
-
-function purchasePair(){
-
-  if(
-    !running ||
-    !authorized ||
-    !liveTickReceived
-  ){
-
-    return;
-
-  }
-
-
-  if(
-    pair.contracts.length > 0
-  ){
-
-    return;
-
-  }
-
-
-  const maxRuns =
-    Number(
-      $("maxRuns").value
-    );
-
-
-  if(runCount >= maxRuns){
-
-    stopTrading(
-      "Maximum runs reached."
-    );
-
-    return;
-
-  }
-
-
-  const contracts =
-    getContracts();
-
-
-  if(contracts.length !== 2){
-
-    log(
-      "Invalid contract pair.",
-      "red"
-    );
-
-    return;
-
-  }
-
-
-  const stake =
-    Number(
-      $("stake").value
-    );
-
-
-  const duration =
-    Number(
-      $("duration").value
-    );
-
-
-  if(
-    !stake ||
-    stake <= 0
-  ){
-
-    log(
-      "Invalid stake.",
-      "red"
-    );
-
-    return;
-
-  }
-
-
-  runCount++;
-
-
-  $("runs").textContent =
-    runCount +
-    " / " +
-    maxRuns;
-
-
-  $("contractA").textContent =
-    contracts[0].name;
-
-  $("contractB").textContent =
-    contracts[1].name;
-
-  $("statusA").textContent =
-    "PROPOSAL";
-
-  $("statusB").textContent =
-    "PROPOSAL";
-
-
-  pair = {
-
-    contracts:[],
-
-    profits:[],
-
-    settled:0,
-
-    totalProfit:0
-
-  };
-
-
-  log(
-    "Pair #" +
-    runCount +
-    " requesting 2 proposals..."
-  );
-
-
-  contracts.forEach(
-    function(contract,index){
-
-      requestProposal(
-        contract,
-        stake,
-        duration,
-        index
-      );
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   REQUEST PROPOSAL
-   ========================================================= */
-
-function requestProposal(
-  contract,
-  stake,
-  duration,
-  index
-){
-
-  const proposal = {
-
-    proposal:1,
-
-    amount:stake,
-
-    basis:"stake",
-
-    contract_type:
-      contract.type,
-
-    currency:currency,
-
-    duration:duration,
-
-    duration_unit:"t",
-
-    underlying_symbol:
-      $("symbol").value,
+    balance:1,
 
     subscribe:1,
 
     req_id:
-      proposalCounter++
+      nextRequest()
 
-  };
-
-
-  /*
-     Only contracts requiring
-     a barrier receive one.
-  */
-
-  if(
-    contract.barrier !== undefined
-  ){
-
-    proposal.barrier =
-      contract.barrier;
-
-  }
-
-
-  proposal._pairIndex =
-    index;
-
-
-  send(proposal);
+  });
 
 }
 
 
-/* =========================================================
-   HANDLE PROPOSAL
-   ========================================================= */
+/* =========================================
+   TICKS
+========================================= */
 
-function handleProposal(data){
+function subscribeTick(){
 
-  const proposal =
-    data.proposal;
+  const symbol =
+    $("symbol").value;
 
-
-  if(!proposal)
-    return;
-
-
-  /*
-     The request ID tells us which
-     side of the pair this proposal
-     belongs to.
-  */
-
-  const reqId =
-    data.req_id;
-
-
-  /*
-     Deriv legacy responses don't
-     necessarily return our internal
-     pair index, so use the order of
-     proposal responses while the pair
-     is waiting.
-  */
 
   if(
-    proposal.id === undefined
+    symbol &&
+    symbol !== "Connect first..." &&
+    !symbol.startsWith("No ")
   ){
 
+    send({
+
+      ticks:
+        symbol,
+
+      subscribe:1,
+
+      req_id:
+        nextRequest()
+
+    });
+
+  }
+
+}
+
+
+/* =========================================
+   HANDLE MESSAGE
+========================================= */
+
+function handleMessage(data){
+
+  if(data.error){
+
     log(
-      "Proposal returned without ID.",
-      "red"
+      "DERIV ERROR: " +
+      (
+        data.error.message ||
+        "Unknown error"
+      )
     );
 
     return;
@@ -2075,89 +1352,678 @@ function handleProposal(data){
   }
 
 
-  const side =
-    pair.profits.length +
-    pair.contracts.length;
-
-
-  log(
-    "Proposal received: " +
-    proposal.id
-  );
-
-
-  /*
-     Immediately purchase the
-     returned proposal.
-  */
-
-  send({
-
-    buy:proposal.id,
-
-    price:Number(
-      proposal.ask_price
-    )
-
-  });
-
-}
-
-
-/* =========================================================
-   HANDLE BUY
-   ========================================================= */
-
-function handleBuy(data){
+  /* ACTIVE SYMBOLS */
 
   if(
-    !data.buy ||
-    !data.buy.contract_id
+    data.msg_type ===
+    "active_symbols"
   ){
+
+    activeSymbols =
+      data.active_symbols ||
+      [];
+
+    populateSymbols();
 
     return;
 
   }
 
 
-  const contractId =
-    data.buy.contract_id;
+  /* BALANCE */
+
+  if(
+    data.msg_type ===
+    "balance"
+  ){
+
+    const balance =
+      data.balance?.balance;
 
 
-  pair.contracts.push(
-    contractId
-  );
+    if(balance != null){
 
+      $("balance").textContent =
+        Number(
+          balance
+        ).toFixed(2)
+        +
+        " " +
+        (
+          data.balance.currency ||
+          selectedAccount?.currency ||
+          "USD"
+        );
 
-  $("openPairs").textContent =
-    pair.contracts.length;
+    }
 
-
-  const index =
-    pair.contracts.length;
-
-
-  if(index === 1){
-
-    $("statusA").textContent =
-      "OPEN";
+    return;
 
   }
 
-  if(index === 2){
 
-    $("statusB").textContent =
-      "OPEN";
+  /* TICK */
+
+  if(
+    data.msg_type ===
+    "tick"
+  ){
+
+    const quote =
+      data.tick?.quote;
+
+
+    if(quote != null){
+
+      $("tick").textContent =
+        quote;
+
+
+      if(!live){
+
+        live = true;
+
+        status(
+          "LIVE TICKS"
+        );
+
+        $("tickState").textContent =
+          "Receiving live ticks";
+
+      }
+
+
+      if(running){
+
+        maybeRun();
+
+      }
+
+    }
+
+    return;
 
   }
 
 
-  log(
-    "Contract purchased: " +
-    contractId,
-    "green"
+  /* PROPOSAL */
+
+  if(
+    data.msg_type ===
+    "proposal"
+  ){
+
+    const key =
+      data.echo_req?.pair_leg;
+
+
+    if(
+      key &&
+      pending[key]
+    ){
+
+      pending[key].proposal =
+        data.proposal;
+
+      buyProposal(key);
+
+    }
+
+    return;
+
+  }
+
+
+  /* BUY */
+
+  if(
+    data.msg_type ===
+    "buy"
+  ){
+
+    const key =
+      data.echo_req?.pair_leg;
+
+
+    log(
+      "Purchased contract " +
+      (
+        data.buy?.contract_id ||
+        "unknown"
+      )
+    );
+
+
+    if(
+      key &&
+      pending[key]
+    ){
+
+      pending[key].contractId =
+        data.buy.contract_id;
+
+
+      watchContract(
+        key,
+        data.buy.contract_id
+      );
+
+    }
+
+    return;
+
+  }
+
+
+  /* CONTRACT UPDATE */
+
+  if(
+    data.msg_type ===
+    "proposal_open_contract"
+  ){
+
+    const contract =
+      data.proposal_open_contract;
+
+
+    if(
+      contract &&
+      contract.is_sold
+    ){
+
+      const key =
+        contract
+          ?.passthrough
+          ?.pair_leg;
+
+
+      if(
+        key &&
+        pending[key]
+      ){
+
+        pending[key].done =
+          true;
+
+        pending[key].profit =
+          Number(
+            contract.profit || 0
+          );
+
+        finishIfPairDone(
+          key
+        );
+
+      }
+
+    }
+
+  }
+
+}
+
+
+/* =========================================
+   POPULATE VOLATILITY
+========================================= */
+
+function populateSymbols(){
+
+  const oneSecond =
+    $("market").value ===
+    "1s";
+
+
+  const filtered =
+    activeSymbols.filter(
+      item => {
+
+        const name =
+          String(
+            item.underlying_symbol_name ||
+            ""
+          ).toLowerCase();
+
+
+        const symbol =
+          String(
+            item.underlying_symbol ||
+            ""
+          ).toUpperCase();
+
+
+        const market =
+          String(
+            item.market ||
+            ""
+          ).toLowerCase();
+
+
+        const isSynthetic =
+          market ===
+          "synthetic_index";
+
+
+        const isVolatility =
+          name.includes(
+            "volatility"
+          ) ||
+          symbol.includes("V");
+
+
+        if(
+          !isSynthetic ||
+          !isVolatility
+        ){
+
+          return false;
+
+        }
+
+
+        if(oneSecond){
+
+          return (
+            name.includes("1s") ||
+            symbol.includes("1HZ")
+          );
+
+        }
+
+
+        return (
+          !name.includes("1s") &&
+          !symbol.includes("1HZ")
+        );
+
+      }
+    );
+
+
+  const unique =
+    [];
+
+
+  const seen =
+    new Set();
+
+
+  filtered.forEach(
+    item => {
+
+      const key =
+        item.underlying_symbol;
+
+
+      if(!seen.has(key)){
+
+        seen.add(key);
+
+        unique.push(item);
+
+      }
+
+    }
   );
 
+
+  if(!unique.length){
+
+    $("symbol").innerHTML =
+      "<option>No matching volatility indices</option>";
+
+    return;
+
+  }
+
+
+  $("symbol").innerHTML =
+    unique
+      .map(
+        item =>
+          "<option value='" +
+          escapeHTML(
+            item.underlying_symbol
+          ) +
+          "'>" +
+          escapeHTML(
+            item.underlying_symbol_name ||
+            item.underlying_symbol
+          ) +
+          "</option>"
+      )
+      .join("");
+
+
+  subscribeTick();
+
+}
+
+
+/* =========================================
+   UI CHANGES
+========================================= */
+
+$("market").onchange =
+  () => {
+
+    populateSymbols();
+
+  };
+
+
+$("symbol").onchange =
+  () => {
+
+    subscribeTick();
+
+  };
+
+
+$("tradeType").onchange =
+  () => {
+
+    const upDown =
+      $("tradeType").value ===
+      "updown";
+
+
+    if(upDown){
+
+      $("pair").innerHTML =
+        `
+        <option value="ud">
+          Up / Down
+        </option>
+        `;
+
+    }
+
+    else{
+
+      $("pair").innerHTML =
+        `
+        <option value="md">
+          Matches / Differs
+        </option>
+
+        <option value="eo">
+          Even / Odd
+        </option>
+
+        <option value="ou">
+          Over / Under
+        </option>
+        `;
+
+    }
+
+
+    updateUI();
+
+  };
+
+
+$("pair").onchange =
+  updateUI;
+
+
+/* =========================================
+   DYNAMIC UI
+========================================= */
+
+function updateUI(){
+
+  const type =
+    $("tradeType").value;
+
+  const pair =
+    $("pair").value;
+
+
+  if(type === "updown"){
+
+    $("pairTitle").textContent =
+      "UP VS DOWN";
+
+    $("barrierCard")
+      .classList
+      .add("hidden");
+
+    return;
+
+  }
+
+
+  const settings = {
+
+    md:[
+      "MATCHES VS DIFFERS",
+      true,
+      "PREDICTION DIGIT"
+    ],
+
+    eo:[
+      "EVEN VS ODD",
+      false,
+      ""
+    ],
+
+    ou:[
+      "OVER VS UNDER",
+      true,
+      "BARRIER"
+    ]
+
+  };
+
+
+  const current =
+    settings[pair];
+
+
+  $("pairTitle").textContent =
+    current[0];
+
+
+  $("barrierCard")
+    .classList
+    .toggle(
+      "hidden",
+      !current[1]
+    );
+
+
+  $("barrierLabel").textContent =
+    current[2];
+
+}
+
+
+/* =========================================
+   CONTRACT TYPE
+========================================= */
+
+function contractFor(leg){
+
+  const type =
+    $("tradeType").value;
+
+  const pair =
+    $("pair").value;
+
+
+  if(type === "updown"){
+
+    return leg === "a"
+      ? "CALL"
+      : "PUT";
+
+  }
+
+
+  const contracts = {
+
+    md:
+      leg === "a"
+        ? "DIGITMATCH"
+        : "DIGITDIFF",
+
+    eo:
+      leg === "a"
+        ? "DIGITEVEN"
+        : "DIGITODD",
+
+    ou:
+      leg === "a"
+        ? "DIGITOVER"
+        : "DIGITUNDER"
+
+  };
+
+
+  return contracts[pair];
+
+}
+
+
+/* =========================================
+   BARRIER
+========================================= */
+
+function barrierNeeded(){
+
+  return (
+    $("tradeType").value ===
+    "digits" &&
+    $("pair").value !== "eo"
+  );
+
+}
+
+
+/* =========================================
+   PROPOSAL
+========================================= */
+
+function proposalPayload(leg){
+
+  const symbol =
+    $("symbol").value;
+
+
+  const payload = {
+
+    proposal:1,
+
+    amount:
+      Number(
+        $("stake").value
+      ),
+
+    basis:"stake",
+
+    contract_type:
+      contractFor(leg),
+
+    currency:
+      selectedAccount?.currency ||
+      "USD",
+
+    duration:
+      Number(
+        $("duration").value
+      ),
+
+    duration_unit:"t",
+
+    underlying_symbol:
+      symbol,
+
+    req_id:
+      nextRequest(),
+
+    pair_leg:
+      leg
+
+  };
+
+
+  if(barrierNeeded()){
+
+    payload.barrier =
+      String(
+        Math.max(
+          0,
+          Math.min(
+            9,
+            Number(
+              $("barrier").value
+            )
+          )
+        )
+      );
+
+  }
+
+
+  return payload;
+
+}
+
+
+/* =========================================
+   BUY
+========================================= */
+
+function buyProposal(key){
+
+  const proposal =
+    pending[key]?.proposal;
+
+
+  if(!proposal){
+
+    return;
+
+  }
+
+
+  const price =
+    Number(
+      proposal.ask_price ||
+      $("stake").value
+    );
+
+
+  send({
+
+    buy:
+      proposal.id,
+
+    price:
+
+      price,
+
+    req_id:
+      nextRequest(),
+
+    pair_leg:
+      key
+
+  });
+
+}
+
+
+/* =========================================
+   WATCH CONTRACT
+========================================= */
+
+function watchContract(
+  key,
+  contractId
+){
 
   send({
 
@@ -2166,47 +2032,30 @@ function handleBuy(data){
     contract_id:
       contractId,
 
-    subscribe:1
+    subscribe:1,
+
+    req_id:
+      nextRequest(),
+
+    passthrough:{
+      pair_leg:key
+    }
 
   });
 
-
-  /*
-     If one side is bought first,
-     the second continues immediately.
-  */
-
-  if(
-    pair.contracts.length === 2
-  ){
-
-    $("signal").textContent =
-      "PAIR OPEN";
-
-    $("entry").textContent =
-      "OPEN";
-
-  }
-
 }
 
 
-/* =========================================================
-   CONTRACT UPDATE
-   ========================================================= */
+/* =========================================
+   RUN PAIR
+========================================= */
 
-function handleContractUpdate(data){
-
-  const contract =
-    data.proposal_open_contract;
-
-
-  if(!contract)
-    return;
-
+function maybeRun(){
 
   if(
-    !contract.is_sold
+    !running ||
+    !connected ||
+    !live
   ){
 
     return;
@@ -2214,300 +2063,11 @@ function handleContractUpdate(data){
   }
 
 
-  const id =
-    contract.contract_id;
-
-
-  const profit =
-    Number(
-      contract.profit || 0
-    );
-
-
-  /*
-     Ignore duplicate settlement
-     messages.
-  */
-
   if(
-    pair.profits.some(
-      x => x.id === id
-    )
+    Object.keys(
+      pending
+    ).length
   ){
-
-    return;
-
-  }
-
-
-  pair.profits.push({
-
-    id:id,
-
-    profit:profit
-
-  });
-
-
-  pair.totalProfit +=
-    profit;
-
-  pair.settled++;
-
-
-  if(
-    pair.settled === 1
-  ){
-
-    $("statusA").textContent =
-      "SETTLED";
-
-  }
-
-
-  if(
-    pair.settled === 2
-  ){
-
-    $("statusB").textContent =
-      "SETTLED";
-
-  }
-
-
-  log(
-    "Contract " +
-    id +
-    " settled: " +
-    formatMoney(profit),
-    profit >= 0
-      ? "green"
-      : "red"
-  );
-
-
-  if(
-    pair.settled >= 2
-  ){
-
-    settlePair();
-
-  }
-
-}
-
-
-/* =========================================================
-   SETTLE PAIR
-   ========================================================= */
-
-function settlePair(){
-
-  $("openPairs").textContent =
-    "0";
-
-
-  const pairProfit =
-    pair.totalProfit;
-
-
-  if(pairProfit >= 0){
-
-    wins++;
-
-  }else{
-
-    losses++;
-
-  }
-
-
-  $("pnl").textContent =
-    (
-      pairProfit >= 0
-        ? "+"
-        : ""
-    ) +
-    currency +
-    " " +
-    pairProfit.toFixed(2);
-
-
-  const row =
-    document.createElement(
-      "div"
-    );
-
-
-  row.className =
-    "trade";
-
-
-  const result =
-    pairProfit >= 0
-      ? "WIN"
-      : "LOSS";
-
-
-  row.innerHTML =
-
-    "<span>" +
-    runCount +
-    "</span>" +
-
-    "<span>" +
-    getPairName() +
-    "</span>" +
-
-    "<span class='" +
-    (
-      result === "WIN"
-        ? "green"
-        : "red"
-    ) +
-    "'>" +
-    result +
-    "</span>" +
-
-    "<span>" +
-    (
-      pairProfit >= 0
-        ? "+"
-        : ""
-    ) +
-    pairProfit.toFixed(2) +
-    "</span>";
-
-
-  $("history")
-    .prepend(row);
-
-
-  updateStatistics();
-
-
-  log(
-    "PAIR #" +
-    runCount +
-    " SETTLED: " +
-    result +
-    " " +
-    formatMoney(pairProfit),
-    result === "WIN"
-      ? "green"
-      : "red"
-  );
-
-
-  /*
-     Wait for actual balance
-     subscription to update.
-  */
-
-  updateBalance();
-
-
-  checkLimits();
-
-
-  if(
-    running &&
-    pair.settled >= 2
-  ){
-
-    const seconds =
-      Number(
-        $("cooldown").value
-      );
-
-
-    $("signal").textContent =
-      "COOLDOWN";
-
-    $("entry").textContent =
-      "WAIT";
-
-
-    cooldownTimer =
-      setTimeout(
-        function(){
-
-          cooldownTimer = null;
-
-          if(running){
-
-            $("signal").textContent =
-              "ENTRY READY";
-
-          }
-
-        },
-        seconds * 1000
-      );
-
-  }
-
-
-  pair = {
-
-    contracts:[],
-
-    profits:[],
-
-    settled:0,
-
-    totalProfit:0
-
-  };
-
-}
-
-
-/* =========================================================
-   LIMITS
-   ========================================================= */
-
-function checkLimits(){
-
-  const pnl =
-    balance -
-    startingBalance;
-
-
-  const tp =
-    Number(
-      $("takeProfit").value
-    );
-
-
-  const sl =
-    Number(
-      $("stopLoss").value
-    );
-
-
-  if(
-    tp > 0 &&
-    pnl >= tp
-  ){
-
-    stopTrading(
-      "Take Profit reached."
-    );
-
-    return;
-
-  }
-
-
-  if(
-    sl > 0 &&
-    pnl <= -sl
-  ){
-
-    stopTrading(
-      "Stop Loss reached."
-    );
 
     return;
 
@@ -2517,12 +2077,194 @@ function checkLimits(){
   if(
     runCount >=
     Number(
-      $("maxRuns").value
+      $("runs").value
     )
   ){
 
-    stopTrading(
-      "Maximum runs reached."
+    running = false;
+
+    log(
+      "Run limit reached."
+    );
+
+    return;
+
+  }
+
+
+  const symbol =
+    $("symbol").value;
+
+
+  if(
+    !symbol ||
+    symbol.startsWith("No ")
+  ){
+
+    log(
+      "No volatility symbol selected."
+    );
+
+    return;
+
+  }
+
+
+  runCount++;
+
+  updateStats();
+
+
+  const pairId =
+    "pair_" +
+    Date.now();
+
+
+  const keyA =
+    pairId + "_a";
+
+  const keyB =
+    pairId + "_b";
+
+
+  pending[keyA] = {
+    pairId:pairId
+  };
+
+
+  pending[keyB] = {
+    pairId:pairId
+  };
+
+
+  /*
+    Both proposal requests are sent
+    immediately one after another.
+  */
+
+  send(
+    proposalPayload("a")
+  );
+
+
+  send(
+    proposalPayload("b")
+  );
+
+
+  log(
+    "Pair #" +
+    runCount +
+    " requested: " +
+    $("pairTitle").textContent
+  );
+
+}
+
+
+/* =========================================
+   PAIR SETTLEMENT
+========================================= */
+
+function finishIfPairDone(key){
+
+  const pairId =
+    pending[key]?.pairId;
+
+
+  if(!pairId){
+
+    return;
+
+  }
+
+
+  const keyA =
+    pairId + "_a";
+
+  const keyB =
+    pairId + "_b";
+
+
+  if(
+    !pending[keyA]?.done ||
+    !pending[keyB]?.done
+  ){
+
+    return;
+
+  }
+
+
+  const total =
+    (
+      pending[keyA].profit ||
+      0
+    )
+    +
+    (
+      pending[keyB].profit ||
+      0
+    );
+
+
+  if(total > 0){
+
+    wins++;
+
+  }
+
+  else{
+
+    losses++;
+
+  }
+
+
+  updateStats();
+
+
+  log(
+    "Pair settled: " +
+    (
+      total >= 0
+        ? "+"
+        : ""
+    ) +
+    total.toFixed(2)
+  );
+
+
+  delete pending[keyA];
+  delete pending[keyB];
+
+
+  if(
+    running &&
+    runCount <
+    Number(
+      $("runs").value
+    )
+  ){
+
+    setTimeout(
+      maybeRun,
+      150
+    );
+
+  }
+
+  else if(
+    runCount >=
+    Number(
+      $("runs").value
+    )
+  ){
+
+    running = false;
+
+    log(
+      "All requested runs completed."
     );
 
   }
@@ -2530,11 +2272,14 @@ function checkLimits(){
 }
 
 
-/* =========================================================
-   STATISTICS
-   ========================================================= */
+/* =========================================
+   STATS
+========================================= */
 
-function updateStatistics(){
+function updateStats(){
+
+  $("runCount").textContent =
+    runCount;
 
   $("wins").textContent =
     wins;
@@ -2547,204 +2292,128 @@ function updateStatistics(){
     wins + losses;
 
 
-  $("winRate").textContent =
-    total
-      ? (
-          wins /
-          total *
-          100
-        ).toFixed(1) +
-        "%"
-      : "0%";
-
-
-  $("runs").textContent =
-    runCount +
-    " / " +
-    $("maxRuns").value;
-
-}
-
-
-/* =========================================================
-   BALANCE
-   ========================================================= */
-
-function updateBalance(){
-
-  $("balance").textContent =
-    currency +
-    " " +
-    balance.toFixed(2);
-
-
-  const pnl =
-    balance -
-    startingBalance;
-
-
-  $("pnl").textContent =
+  $("winrate").textContent =
     (
-      pnl >= 0
-        ? "+"
-        : ""
-    ) +
-    currency +
-    " " +
-    pnl.toFixed(2);
-
-
-  $("pnl").className =
-    pnl >= 0
-      ? "green"
-      : "red";
+      total
+        ? Math.round(
+            wins /
+            total *
+            100
+          )
+        : 0
+    )
+    + "%";
 
 }
 
 
-/* =========================================================
-   PAIR NAME
-   ========================================================= */
+/* =========================================
+   START
+========================================= */
 
-function getPairName(){
+$("start").onclick =
+  () => {
 
-  const value =
-    $("tradeType").value;
+    if(
+      !connected ||
+      !live
+    ){
 
+      log(
+        "Cannot start. Wait for CONNECTED and LIVE TICKS."
+      );
 
-  if(value === "MD")
-    return "MATCH + DIFF";
+      return;
 
-  if(value === "EO")
-    return "EVEN + ODD";
-
-  if(value === "OU")
-    return "OVER + UNDER";
-
-  if(value === "HL")
-    return "HIGHER + LOWER";
-
-  return "UP + DOWN";
-
-}
+    }
 
 
-/* =========================================================
-   MAX RUNS
-   ========================================================= */
+    if(running){
 
-$("maxRuns").addEventListener(
-  "input",
-  updateStatistics
-);
+      return;
+
+    }
 
 
-/* =========================================================
-   INITIAL STATE
-   ========================================================= */
+    runCount = 0;
+    wins = 0;
+    losses = 0;
 
-updateStatistics();
+    pending = {};
 
-updateContractUI();
+    updateStats();
 
-setConnection(
-  "OFFLINE"
-);
+    running = true;
 
-setLiveTicks(false);
+    maybeRun();
 
-log(
-  "Ready. Press CONNECT DERIV."
-);
+  };
 
 
-/* =========================================================
-   CONNECT CONTROL
-   ========================================================= */
+/* =========================================
+   STOP
+========================================= */
 
-const connectButton =
-document.createElement(
-  "button"
-);
+$("stop").onclick =
+  () => {
 
-
-connectButton.textContent =
-"CONNECT DERIV";
-
-
-connectButton.style.position =
-"fixed";
-
-connectButton.style.bottom =
-"15px";
-
-connectButton.style.right =
-"15px";
-
-connectButton.style.zIndex =
-"999";
-
-connectButton.style.padding =
-"10px 15px";
-
-connectButton.style.background =
-"#8d3fd1";
-
-connectButton.style.color =
-"#fff";
-
-connectButton.style.border =
-"0";
-
-connectButton.style.borderRadius =
-"10px";
-
-connectButton.style.fontWeight =
-"800";
-
-
-connectButton.onclick =
-function(){
-
-  if(authorized){
+    running = false;
 
     log(
-      "Already connected.",
-      "green"
+      "Stopped new pair entries. Existing contracts continue."
     );
 
-    return;
-
-  }
-
-  openAuth();
-
-};
+  };
 
 
-document.body.appendChild(
-  connectButton
-);
+/* =========================================
+   FIND BUTTONS
+========================================= */
+
+$("findDemo").onclick =
+  () => findAccounts("demo");
 
 
-/* =========================================================
-   FORMAT MONEY
-   ========================================================= */
+$("findReal").onclick =
+  () => findAccounts("real");
 
-function formatMoney(value){
 
-  return (
-    value >= 0
-      ? "+"
-      : ""
-  ) +
-  currency +
-  " " +
-  Number(value).toFixed(2);
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replace(
+      /[&<>"']/g,
+      character => {
+
+        const map = {
+
+          "&":"&amp;",
+          "<":"&lt;",
+          ">":"&gt;",
+          '"':"&quot;",
+          "'":"&#039;"
+
+        };
+
+        return map[character];
+
+      }
+    );
 
 }
+
+
+/* =========================================
+   INITIAL UI
+========================================= */
+
+updateUI();
 
 </script>
 
 </body>
-  </html>
+</html>
