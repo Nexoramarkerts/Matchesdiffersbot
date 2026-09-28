@@ -1,293 +1,452 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>PAIRTRADE AI</title>
+/* =====================================================
+   DERIV CONFIGURATION
+===================================================== */
 
-<style>
-:root{
---bg:#eef7f1;
---panel:#fff;
---panel2:#f4f7f8;
---green:#43c66b;
---green-dark:#199447;
---blue:#2778d8;
---blue-dark:#1558a7;
---grey:#66727c;
---dark:#26343d;
---red:#e64c4c;
---border:#dce5e2;
---shadow:0 5px 18px rgba(35,65,55,.08)
-}
-*{box-sizing:border-box}
-body{
-margin:0;
-font-family:Arial,Helvetica,sans-serif;
-background:var(--bg);
-color:var(--dark)
-}
-.container{
-width:min(1050px,94%);
-margin:auto;
-padding:15px 0 35px
-}
-.header{
-background:var(--panel);
-border:1px solid var(--border);
-border-radius:18px;
-padding:15px 17px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-box-shadow:var(--shadow);
-margin-bottom:12px
-}
-.brand{display:flex;align-items:center;gap:10px}
-.logo{
-width:43px;height:43px;border-radius:13px;
-background:linear-gradient(135deg,var(--green),var(--blue));
-color:white;display:flex;justify-content:center;
-align-items:center;font-weight:900;font-size:18px
-}
-.brand h1{margin:0;font-size:20px}
-.brand small{color:var(--grey)}
-.connection{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:bold}
-.dot{width:10px;height:10px;border-radius:50%;background:#aaa}
-.dot.connected{background:#20bd55;box-shadow:0 0 8px rgba(32,189,85,.55)}
-.dot.error{background:var(--red)}
-.balance-box{
-background:#e9f8ee;border:1px solid #ccebd5;
-border-radius:12px;padding:8px 12px;text-align:right
-}
-.balance-box small{display:block;color:var(--grey);font-size:10px}
-.balance{font-size:17px;font-weight:900;color:var(--green-dark)}
-.grid{
-display:grid;grid-template-columns:repeat(4,1fr);
-gap:10px;margin-bottom:12px
-}
-.card{
-background:var(--panel);
-border:1px solid var(--border);
-border-radius:16px;padding:14px;
-box-shadow:var(--shadow)
-}
-.stat{text-align:center}
-.stat-label{
-font-size:10px;color:var(--grey);
-font-weight:bold;text-transform:uppercase
-}
-.stat-value{font-size:25px;font-weight:900;margin-top:5px}
-.blue{color:var(--blue)}
-.green{color:var(--green-dark)}
-.red{color:var(--red)}
-.section-title{font-weight:900;font-size:14px;margin-bottom:11px}
-.controls{
-display:grid;grid-template-columns:repeat(4,1fr);gap:9px
-}
-.field label{
-display:block;font-size:10px;color:var(--grey);
-font-weight:bold;margin-bottom:5px
-}
-input,select{
-width:100%;padding:11px;border-radius:10px;
-border:1px solid var(--border);background:#f9fbfb;
-outline:none;color:var(--dark)
-}
-input:focus,select:focus{border-color:var(--blue)}
-button{
-border:0;border-radius:10px;padding:11px 14px;
-font-weight:900;cursor:pointer
-}
-.btn-blue{background:var(--blue);color:white}
-.btn-blue:hover{background:var(--blue-dark)}
-.btn-green{background:var(--green);color:white}
-.btn-grey{background:#69757d;color:white}
-.buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px}
-.checkbox{
-display:flex;align-items:center;gap:7px;
-font-size:12px;font-weight:bold
-}
-.checkbox input{width:auto}
-.live-grid{
-display:grid;grid-template-columns:1fr 1fr;gap:10px
-}
-.market-main{
-display:flex;justify-content:space-between;
-align-items:center;gap:10px
-}
-.market-name{font-size:20px;font-weight:900}
-.badge{
-display:inline-block;padding:5px 8px;border-radius:20px;
-background:#eaf2fc;color:var(--blue);
-font-size:10px;font-weight:900
-}
-.big-digit{
-font-size:58px;line-height:1;font-weight:900;
-color:var(--blue);text-align:center;margin:14px 0
-}
-.quote{text-align:center;color:var(--grey);font-size:12px}
-.strategy-grid{
-display:grid;grid-template-columns:1fr 1fr;gap:10px
-}
-.strategy{position:relative;overflow:hidden}
-.strategy.over{border-top:4px solid var(--blue)}
-.strategy.under{border-top:4px solid var(--green)}
-.strategy-head{
-display:flex;justify-content:space-between;
-align-items:center;font-weight:900;margin-bottom:10px
-}
-.ready{
-padding:5px 8px;border-radius:15px;
-background:#edf1f3;color:var(--grey);font-size:10px
-}
-.ready.good{background:#dff7e6;color:var(--green-dark)}
-.ready.bad{background:#fde4e4;color:var(--red)}
-.digits{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
-.digit-box{
-background:var(--panel2);border:1px solid var(--border);
-border-radius:10px;padding:8px;text-align:center
-}
-.digit-box b{display:block;font-size:16px}
-.digit-box small{display:block;color:var(--grey)}
-.red-digit{border-color:#ed7777;background:#fff0f0}
-.red-digit b{color:var(--red)}
-.no-red{color:var(--green-dark)!important}
-.scanner{
-background:linear-gradient(135deg,#fff,#edf8f1)
-}
-.scan-status{
-display:flex;align-items:center;gap:8px;margin-bottom:10px
-}
-.scan-light{
-width:11px;height:11px;border-radius:50%;background:#aeb8bd
-}
-.scan-light.active{
-background:var(--green);
-box-shadow:0 0 8px rgba(67,198,107,.5)
-}
-.scan-light.found{
-background:var(--blue);
-box-shadow:0 0 8px rgba(39,120,216,.5)
-}
-.scan-text{font-weight:900;font-size:12px}
-.scan-table{
-width:100%;border-collapse:collapse;font-size:11px
-}
-.scan-table th{
-text-align:left;color:var(--grey);
-padding:7px;background:#f2f5f6
-}
-.scan-table td{
-padding:8px 7px;border-bottom:1px solid var(--border)
-}
-.pass{color:var(--green-dark);font-weight:900}
-.fail{color:var(--red);font-weight:900}
-.neutral{color:var(--grey)}
-.progress{
-height:7px;background:#e3e9ea;
-border-radius:10px;overflow:hidden;margin-top:8px
-}
-.progress-bar{
-height:100%;width:0%;
-background:linear-gradient(90deg,var(--green),var(--blue));
-transition:.3s
-}
-.log{
-background:#202b31;color:#dce9e3;height:190px;
-overflow:auto;border-radius:11px;padding:10px;
-font-family:monospace;font-size:11px
-}
-.log-line{margin-bottom:5px}
-.log-time{color:#8db7d9}
-.footer{text-align:center;color:var(--grey);font-size:10px;margin-top:15px}
+const HIDDEN_APP_ID = "34vI680tGB2gqo6WEMsRZ";
 
-@media(max-width:760px){
-.grid{grid-template-columns:repeat(2,1fr)}
-.controls{grid-template-columns:1fr 1fr}
-.live-grid,.strategy-grid{grid-template-columns:1fr}
-}
-@media(max-width:430px){
-.container{width:96%}
-.header{padding:12px}
-.brand h1{font-size:17px}
-.balance-box{padding:6px 8px}
-.controls{grid-template-columns:1fr}
-.stat-value{font-size:22px}
-.big-digit{font-size:52px}
-button{flex:1}
-}
-</style>
-</head>
+const API_BASE =
+  "https://api.derivws.com";
 
-<body>
-
-<div class="container">
-
-<div class="header">
-<div class="brand">
-<div class="logo">P</div>
-<div>
-<h1>PAIRTRADE AI</h1>
-<small>Deep Volatility Scanner</small>
-</div>
-</div>
-
-<div style="display:flex;align-items:center;gap:10px">
-<div class="connection">
-<span id="connectionDot" class="dot"></span>
-<span id="connectionText">OFFLINE</span>
-</div>
-
-<div class="balance-box">
-<small>BALANCE</small>
-<div id="balance" class="balance">$0.00</div>
-</div>
-</div>
-</div>
+const PUBLIC_WS =
+  "wss://api.derivws.com/trading/v1/options/ws/public";
 
 
-<div class="grid">
+/* =====================================================
+   AUTOMATIC OPTIONS ACCOUNT DISCOVERY
+===================================================== */
 
-<div class="card stat">
-<div class="stat-label">Runs</div>
-<div id="runs" class="stat-value blue">0</div>
-</div>
+async function discoverAccount(){
 
-<div class="card stat">
-<div class="stat-label">Won</div>
-<div id="won" class="stat-value green">0</div>
-</div>
+  const pat = $("pat").value.trim();
 
-<div class="card stat">
-<div class="stat-label">Lost</div>
-<div id="lost" class="stat-value red">0</div>
-</div>
+  if(!pat){
+    throw new Error("Enter your Deriv PAT.");
+  }
 
-<div class="card stat">
-<div class="stat-label">Win Rate</div>
-<div id="winrate" class="stat-value blue">0%</div>
-</div>
+  log("Finding your Deriv Options account...");
 
-</div>
+  const response = await fetch(
+    API_BASE +
+    "/trading/v1/options/accounts",
+    {
+      method:"GET",
+      headers:{
+        "Authorization":"Bearer " + pat,
+        "Deriv-App-ID":HIDDEN_APP_ID
+      }
+    }
+  );
+
+  let result;
+
+  try{
+    result = await response.json();
+  }catch(e){
+    throw new Error(
+      "Deriv returned an invalid response."
+    );
+  }
+
+  if(!response.ok){
+
+    const message =
+      result?.errors?.[0]?.message ||
+      result?.error?.message ||
+      "Account discovery failed.";
+
+    throw new Error(
+      message +
+      " (HTTP " +
+      response.status +
+      ")"
+    );
+  }
+
+  /*
+    Deriv may return:
+      data: [...]
+    or:
+      data: {...}
+  */
+
+  let accounts = result?.data;
+
+  if(!Array.isArray(accounts)){
+
+    if(accounts && typeof accounts === "object"){
+      accounts = [accounts];
+    }else{
+      accounts = [];
+    }
+
+  }
+
+  if(!accounts.length){
+
+    throw new Error(
+      "No Options account was found for this PAT."
+    );
+  }
+
+  const requestedType =
+    $("accountType").value.toLowerCase();
+
+  let account =
+    accounts.find(a =>
+      String(a?.account_type || "")
+      .toLowerCase() === requestedType &&
+      String(a?.status || "")
+      .toLowerCase() === "active"
+    );
+
+  if(!account){
+
+    account =
+      accounts.find(a =>
+        String(a?.account_type || "")
+        .toLowerCase() === requestedType
+      );
+  }
+
+  if(!account){
+
+    account =
+      accounts.find(a =>
+        String(a?.status || "")
+        .toLowerCase() === "active"
+      );
+  }
+
+  if(!account){
+    account = accounts[0];
+  }
+
+  if(!account?.account_id){
+
+    throw new Error(
+      "Deriv returned an account without an account ID."
+    );
+  }
+
+  log(
+    "Account detected: " +
+    account.account_id +
+    " • " +
+    String(
+      account.account_type || ""
+    ).toUpperCase()
+  );
+
+  return account;
+}
 
 
-<div class="card" style="margin-bottom:12px">
+/* =====================================================
+   CONNECT TO DERIV
+===================================================== */
 
-<div class="section-title">DERIV CONNECTION</div>
+async function connectDeriv(){
 
-<div class="controls">
+  const pat =
+    $("pat").value.trim();
 
-<div class="field">
-<label>APP ID</label>
-<input id="appId" placeholder="Deriv App ID">
-</div>
+  if(!pat){
 
-<div class="field">
-<label>PAT</label>
-<input id="pat" type="password" placeholder="Personal Access Token">
-</div>
+    alert(
+      "Enter your Deriv PAT."
+    );
 
-<div class="field">
-<label>ACCOUNT ID</label>
-<input id="accountId" placeholder="CR... / VRTC...">
+    return;
+  }
+
+  try{
+
+    $("connectBtn").disabled = true;
+
+    setConnection("offline");
+
+    log(
+      "Starting Deriv authentication..."
+    );
+
+
+    /*
+      STEP 1
+      Automatically find account.
+    */
+
+    const account =
+      await discoverAccount();
+
+    const accountId =
+      account.account_id;
+
+
+    /*
+      STEP 2
+      Request one-time WebSocket URL.
+    */
+
+    log(
+      "Requesting secure trading connection..."
+    );
+
+    const otpResponse =
+      await fetch(
+        API_BASE +
+        "/trading/v1/options/accounts/" +
+        encodeURIComponent(accountId) +
+        "/otp",
+        {
+          method:"POST",
+          headers:{
+            "Authorization":
+              "Bearer " + pat,
+
+            "Deriv-App-ID":
+              HIDDEN_APP_ID,
+
+            "Content-Type":
+              "application/json"
+          },
+          body:"{}"
+        }
+      );
+
+
+    let otpResult;
+
+    try{
+
+      otpResult =
+        await otpResponse.json();
+
+    }catch(e){
+
+      throw new Error(
+        "Invalid authentication response from Deriv."
+      );
+    }
+
+
+    if(!otpResponse.ok){
+
+      const message =
+        otpResult?.errors?.[0]?.message ||
+        otpResult?.error?.message ||
+        "Deriv authentication failed.";
+
+      throw new Error(
+        message +
+        " (HTTP " +
+        otpResponse.status +
+        ")"
+      );
+    }
+
+
+    const authenticatedUrl =
+      otpResult?.data?.url;
+
+
+    if(!authenticatedUrl){
+
+      console.error(
+        "Unexpected OTP response:",
+        otpResult
+      );
+
+      throw new Error(
+        "Deriv did not return the authenticated WebSocket URL."
+      );
+    }
+
+
+    log(
+      "Authenticated WebSocket URL received."
+    );
+
+
+    /*
+      STEP 3
+      Connect immediately because OTP is
+      short-lived and single-use.
+    */
+
+    await new Promise(
+      (resolve,reject)=>{
+
+        let opened = false;
+
+        tradeWs =
+          new WebSocket(
+            authenticatedUrl
+          );
+
+
+        tradeWs.onopen = () => {
+
+          opened = true;
+
+          authenticated = true;
+
+          setConnection(
+            "connected"
+          );
+
+          $("connectBtn").disabled =
+            true;
+
+          $("disconnectBtn").disabled =
+            false;
+
+
+          $("accountDisplay").textContent =
+            account.account_id +
+            " • " +
+            String(
+              account.account_type || ""
+            ).toUpperCase();
+
+
+          log(
+            "CONNECTED TO DERIV ✓"
+          );
+
+
+          requestBalance();
+
+          resolve();
+        };
+
+
+        tradeWs.onmessage =
+          event => {
+
+            try{
+
+              const data =
+                JSON.parse(
+                  event.data
+                );
+
+              handleTradeMessage(
+                data
+              );
+
+            }catch(error){
+
+              console.error(
+                "Trade message error:",
+                error
+              );
+            }
+          };
+
+
+        tradeWs.onerror =
+          error => {
+
+            console.error(
+              "Trading WebSocket error:",
+              error
+            );
+
+            if(!opened){
+
+              reject(
+                new Error(
+                  "Authenticated WebSocket failed to open."
+                )
+              );
+            }
+          };
+
+
+        tradeWs.onclose =
+          event => {
+
+            authenticated =
+              false;
+
+            if(!opened){
+
+              reject(
+                new Error(
+                  "Deriv closed the connection. Code: " +
+                  event.code
+                )
+              );
+
+            }else{
+
+              setConnection(
+                "offline"
+              );
+
+              $("connectBtn").disabled =
+                false;
+
+              $("disconnectBtn").disabled =
+                true;
+
+              log(
+                "Deriv trading connection closed."
+              );
+            }
+          };
+
+      }
+    );
+
+
+    /*
+      STEP 4
+      Connect to public market data.
+    */
+
+    await connectPublic();
+
+
+    log(
+      "DERIV FULL CONNECTION READY ✓"
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "Deriv connection error:",
+      error
+    );
+
+    authenticated = false;
+
+    setConnection(
+      "error"
+    );
+
+    $("connectBtn").disabled =
+      false;
+
+    $("disconnectBtn").disabled =
+      true;
+
+    log(
+      "Connection failed: " +
+      error.message
+    );
+
+
+    if(tradeWs){
+
+      try{
+        tradeWs.close();
+      }catch(e){}
+
+      tradeWs = null;
+    }
+
+  }
+
+}
