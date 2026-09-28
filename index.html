@@ -2,533 +2,220 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>PAIRTRADE AI</title>
 
 <style>
 :root{
-  --bg:#eef7f1;
-  --panel:#ffffff;
-  --panel2:#f4f7f8;
-  --green:#43c66b;
-  --green-dark:#199447;
-  --blue:#2778d8;
-  --blue-dark:#1558a7;
-  --grey:#66727c;
-  --dark:#26343d;
-  --red:#e64c4c;
-  --orange:#e99528;
-  --border:#dce5e2;
-  --shadow:0 5px 18px rgba(35,65,55,.08);
+--bg:#eef7f1;
+--panel:#fff;
+--panel2:#f4f7f8;
+--green:#43c66b;
+--green-dark:#199447;
+--blue:#2778d8;
+--blue-dark:#1558a7;
+--grey:#66727c;
+--dark:#26343d;
+--red:#e64c4c;
+--border:#dce5e2;
+--shadow:0 5px 18px rgba(35,65,55,.08)
 }
-
-*{
-  box-sizing:border-box;
-}
-
+*{box-sizing:border-box}
 body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--bg);
-  color:var(--dark);
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:var(--bg);
+color:var(--dark)
 }
-
 .container{
-  width:min(1050px,94%);
-  margin:auto;
-  padding:15px 0 35px;
+width:min(1050px,94%);
+margin:auto;
+padding:15px 0 35px
 }
-
 .header{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:15px 17px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  box-shadow:var(--shadow);
-  margin-bottom:12px;
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:18px;
+padding:15px 17px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:var(--shadow);
+margin-bottom:12px
 }
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
+.brand{display:flex;align-items:center;gap:10px}
 .logo{
-  width:43px;
-  height:43px;
-  border-radius:13px;
-  background:linear-gradient(135deg,var(--green),var(--blue));
-  color:white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-weight:900;
-  font-size:18px;
+width:43px;height:43px;border-radius:13px;
+background:linear-gradient(135deg,var(--green),var(--blue));
+color:white;display:flex;justify-content:center;
+align-items:center;font-weight:900;font-size:18px
 }
-
-.brand h1{
-  margin:0;
-  font-size:20px;
-}
-
-.brand small{
-  color:var(--grey);
-}
-
-.connection{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  font-size:12px;
-  font-weight:bold;
-}
-
-.dot{
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  background:#aaa;
-}
-
-.dot.connected{
-  background:#20bd55;
-  box-shadow:0 0 8px rgba(32,189,85,.55);
-}
-
-.dot.error{
-  background:var(--red);
-}
-
+.brand h1{margin:0;font-size:20px}
+.brand small{color:var(--grey)}
+.connection{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:bold}
+.dot{width:10px;height:10px;border-radius:50%;background:#aaa}
+.dot.connected{background:#20bd55;box-shadow:0 0 8px rgba(32,189,85,.55)}
+.dot.error{background:var(--red)}
 .balance-box{
-  background:#e9f8ee;
-  border:1px solid #ccebd5;
-  border-radius:12px;
-  padding:8px 12px;
-  text-align:right;
+background:#e9f8ee;border:1px solid #ccebd5;
+border-radius:12px;padding:8px 12px;text-align:right
 }
-
-.balance-box small{
-  display:block;
-  color:var(--grey);
-  font-size:10px;
-}
-
-.balance{
-  font-size:17px;
-  font-weight:900;
-  color:var(--green-dark);
-}
-
+.balance-box small{display:block;color:var(--grey);font-size:10px}
+.balance{font-size:17px;font-weight:900;color:var(--green-dark)}
 .grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-  margin-bottom:12px;
+display:grid;grid-template-columns:repeat(4,1fr);
+gap:10px;margin-bottom:12px
 }
-
 .card{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:14px;
-  box-shadow:var(--shadow);
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:16px;padding:14px;
+box-shadow:var(--shadow)
 }
-
-.stat{
-  text-align:center;
-}
-
+.stat{text-align:center}
 .stat-label{
-  font-size:10px;
-  color:var(--grey);
-  font-weight:bold;
-  text-transform:uppercase;
+font-size:10px;color:var(--grey);
+font-weight:bold;text-transform:uppercase
 }
-
-.stat-value{
-  font-size:25px;
-  font-weight:900;
-  margin-top:5px;
-}
-
-.blue{
-  color:var(--blue);
-}
-
-.green{
-  color:var(--green-dark);
-}
-
-.red{
-  color:var(--red);
-}
-
-.section-title{
-  font-weight:900;
-  font-size:14px;
-  margin-bottom:11px;
-}
-
+.stat-value{font-size:25px;font-weight:900;margin-top:5px}
+.blue{color:var(--blue)}
+.green{color:var(--green-dark)}
+.red{color:var(--red)}
+.section-title{font-weight:900;font-size:14px;margin-bottom:11px}
 .controls{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:9px;
+display:grid;grid-template-columns:repeat(4,1fr);gap:9px
 }
-
 .field label{
-  display:block;
-  font-size:10px;
-  color:var(--grey);
-  font-weight:bold;
-  margin-bottom:5px;
+display:block;font-size:10px;color:var(--grey);
+font-weight:bold;margin-bottom:5px
 }
-
 input,select{
-  width:100%;
-  padding:11px;
-  border-radius:10px;
-  border:1px solid var(--border);
-  background:#f9fbfb;
-  outline:none;
-  color:var(--dark);
+width:100%;padding:11px;border-radius:10px;
+border:1px solid var(--border);background:#f9fbfb;
+outline:none;color:var(--dark)
 }
-
-input:focus,select:focus{
-  border-color:var(--blue);
-}
-
+input:focus,select:focus{border-color:var(--blue)}
 button{
-  border:0;
-  border-radius:10px;
-  padding:11px 14px;
-  font-weight:900;
-  cursor:pointer;
+border:0;border-radius:10px;padding:11px 14px;
+font-weight:900;cursor:pointer
 }
-
-.btn-blue{
-  background:var(--blue);
-  color:white;
-}
-
-.btn-blue:hover{
-  background:var(--blue-dark);
-}
-
-.btn-green{
-  background:var(--green);
-  color:white;
-}
-
-.btn-grey{
-  background:#69757d;
-  color:white;
-}
-
-.btn-red{
-  background:#e75b5b;
-  color:white;
-}
-
-.buttons{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:11px;
-}
-
-.live-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.market-main{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-}
-
-.market-name{
-  font-size:20px;
-  font-weight:900;
-}
-
-.badge{
-  display:inline-block;
-  padding:5px 8px;
-  border-radius:20px;
-  background:#eaf2fc;
-  color:var(--blue);
-  font-size:10px;
-  font-weight:900;
-}
-
-.big-digit{
-  font-size:58px;
-  line-height:1;
-  font-weight:900;
-  color:var(--blue);
-  text-align:center;
-  margin:14px 0;
-}
-
-.quote{
-  text-align:center;
-  color:var(--grey);
-  font-size:12px;
-}
-
-.strategy-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.strategy{
-  position:relative;
-  overflow:hidden;
-}
-
-.strategy.over{
-  border-top:4px solid var(--blue);
-}
-
-.strategy.under{
-  border-top:4px solid var(--green);
-}
-
-.strategy-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-weight:900;
-  margin-bottom:10px;
-}
-
-.ready{
-  padding:5px 8px;
-  border-radius:15px;
-  background:#edf1f3;
-  color:var(--grey);
-  font-size:10px;
-}
-
-.ready.good{
-  background:#dff7e6;
-  color:var(--green-dark);
-}
-
-.ready.bad{
-  background:#fde4e4;
-  color:var(--red);
-}
-
-.digits{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:7px;
-}
-
-.digit-box{
-  background:var(--panel2);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:8px;
-  text-align:center;
-}
-
-.digit-box b{
-  display:block;
-  font-size:16px;
-}
-
-.digit-box small{
-  color:var(--grey);
-}
-
-.red-digit{
-  border-color:#ed7777;
-  background:#fff0f0;
-}
-
-.red-digit b{
-  color:var(--red);
-}
-
-.no-red{
-  color:var(--green-dark);
-}
-
-.scanner{
-  background:linear-gradient(135deg,#ffffff,#edf8f1);
-}
-
-.scan-status{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-bottom:10px;
-}
-
-.scan-light{
-  width:11px;
-  height:11px;
-  border-radius:50%;
-  background:#aeb8bd;
-}
-
-.scan-light.active{
-  background:var(--green);
-  box-shadow:0 0 8px rgba(67,198,107,.5);
-}
-
-.scan-light.found{
-  background:var(--blue);
-  box-shadow:0 0 8px rgba(39,120,216,.5);
-}
-
-.scan-text{
-  font-weight:900;
-  font-size:12px;
-}
-
-.scan-table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:11px;
-}
-
-.scan-table th{
-  text-align:left;
-  color:var(--grey);
-  padding:7px;
-  background:#f2f5f6;
-}
-
-.scan-table td{
-  padding:8px 7px;
-  border-bottom:1px solid var(--border);
-}
-
-.pass{
-  color:var(--green-dark);
-  font-weight:900;
-}
-
-.fail{
-  color:var(--red);
-  font-weight:900;
-}
-
-.neutral{
-  color:var(--grey);
-}
-
-.log{
-  background:#202b31;
-  color:#dce9e3;
-  height:190px;
-  overflow:auto;
-  border-radius:11px;
-  padding:10px;
-  font-family:monospace;
-  font-size:11px;
-}
-
-.log-line{
-  margin-bottom:5px;
-}
-
-.log-time{
-  color:#8db7d9;
-}
-
+.btn-blue{background:var(--blue);color:white}
+.btn-blue:hover{background:var(--blue-dark)}
+.btn-green{background:var(--green);color:white}
+.btn-grey{background:#69757d;color:white}
+.buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px}
 .checkbox{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  font-size:12px;
-  font-weight:bold;
+display:flex;align-items:center;gap:7px;
+font-size:12px;font-weight:bold
 }
-
-.checkbox input{
-  width:auto;
+.checkbox input{width:auto}
+.live-grid{
+display:grid;grid-template-columns:1fr 1fr;gap:10px
 }
-
+.market-main{
+display:flex;justify-content:space-between;
+align-items:center;gap:10px
+}
+.market-name{font-size:20px;font-weight:900}
+.badge{
+display:inline-block;padding:5px 8px;border-radius:20px;
+background:#eaf2fc;color:var(--blue);
+font-size:10px;font-weight:900
+}
+.big-digit{
+font-size:58px;line-height:1;font-weight:900;
+color:var(--blue);text-align:center;margin:14px 0
+}
+.quote{text-align:center;color:var(--grey);font-size:12px}
+.strategy-grid{
+display:grid;grid-template-columns:1fr 1fr;gap:10px
+}
+.strategy{position:relative;overflow:hidden}
+.strategy.over{border-top:4px solid var(--blue)}
+.strategy.under{border-top:4px solid var(--green)}
+.strategy-head{
+display:flex;justify-content:space-between;
+align-items:center;font-weight:900;margin-bottom:10px
+}
+.ready{
+padding:5px 8px;border-radius:15px;
+background:#edf1f3;color:var(--grey);font-size:10px
+}
+.ready.good{background:#dff7e6;color:var(--green-dark)}
+.ready.bad{background:#fde4e4;color:var(--red)}
+.digits{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.digit-box{
+background:var(--panel2);border:1px solid var(--border);
+border-radius:10px;padding:8px;text-align:center
+}
+.digit-box b{display:block;font-size:16px}
+.digit-box small{display:block;color:var(--grey)}
+.red-digit{border-color:#ed7777;background:#fff0f0}
+.red-digit b{color:var(--red)}
+.no-red{color:var(--green-dark)!important}
+.scanner{
+background:linear-gradient(135deg,#fff,#edf8f1)
+}
+.scan-status{
+display:flex;align-items:center;gap:8px;margin-bottom:10px
+}
+.scan-light{
+width:11px;height:11px;border-radius:50%;background:#aeb8bd
+}
+.scan-light.active{
+background:var(--green);
+box-shadow:0 0 8px rgba(67,198,107,.5)
+}
+.scan-light.found{
+background:var(--blue);
+box-shadow:0 0 8px rgba(39,120,216,.5)
+}
+.scan-text{font-weight:900;font-size:12px}
+.scan-table{
+width:100%;border-collapse:collapse;font-size:11px
+}
+.scan-table th{
+text-align:left;color:var(--grey);
+padding:7px;background:#f2f5f6
+}
+.scan-table td{
+padding:8px 7px;border-bottom:1px solid var(--border)
+}
+.pass{color:var(--green-dark);font-weight:900}
+.fail{color:var(--red);font-weight:900}
+.neutral{color:var(--grey)}
 .progress{
-  height:7px;
-  background:#e3e9ea;
-  border-radius:10px;
-  overflow:hidden;
-  margin-top:8px;
+height:7px;background:#e3e9ea;
+border-radius:10px;overflow:hidden;margin-top:8px
 }
-
 .progress-bar{
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,var(--green),var(--blue));
-  transition:.3s;
+height:100%;width:0%;
+background:linear-gradient(90deg,var(--green),var(--blue));
+transition:.3s
 }
-
-.footer{
-  text-align:center;
-  color:var(--grey);
-  font-size:10px;
-  margin-top:15px;
+.log{
+background:#202b31;color:#dce9e3;height:190px;
+overflow:auto;border-radius:11px;padding:10px;
+font-family:monospace;font-size:11px
 }
+.log-line{margin-bottom:5px}
+.log-time{color:#8db7d9}
+.footer{text-align:center;color:var(--grey);font-size:10px;margin-top:15px}
 
 @media(max-width:760px){
-  .grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .controls{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .live-grid,
-  .strategy-grid{
-    grid-template-columns:1fr;
-  }
+.grid{grid-template-columns:repeat(2,1fr)}
+.controls{grid-template-columns:1fr 1fr}
+.live-grid,.strategy-grid{grid-template-columns:1fr}
 }
-
 @media(max-width:430px){
-  .container{
-    width:96%;
-  }
-
-  .header{
-    padding:12px;
-  }
-
-  .brand h1{
-    font-size:17px;
-  }
-
-  .balance-box{
-    padding:6px 8px;
-  }
-
-  .controls{
-    grid-template-columns:1fr;
-  }
-
-  .stat-value{
-    font-size:22px;
-  }
-
-  .big-digit{
-    font-size:52px;
-  }
-
-  button{
-    flex:1;
-  }
+.container{width:96%}
+.header{padding:12px}
+.brand h1{font-size:17px}
+.balance-box{padding:6px 8px}
+.controls{grid-template-columns:1fr}
+.stat-value{font-size:22px}
+.big-digit{font-size:52px}
+button{flex:1}
 }
 </style>
 </head>
@@ -537,2139 +224,70 @@ button{
 
 <div class="container">
 
-  <!-- HEADER -->
-  <div class="header">
-    <div class="brand">
-      <div class="logo">P</div>
-      <div>
-        <h1>PAIRTRADE AI</h1>
-        <small>Deep Volatility Scanner</small>
-      </div>
-    </div>
-
-    <div style="display:flex;align-items:center;gap:10px;">
-      <div class="connection">
-        <span id="connectionDot" class="dot"></span>
-        <span id="connectionText">OFFLINE</span>
-      </div>
-
-      <div class="balance-box">
-        <small>BALANCE</small>
-        <div id="balance" class="balance">$0.00</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- STATS -->
-  <div class="grid">
-
-    <div class="card stat">
-      <div class="stat-label">Runs</div>
-      <div id="runs" class="stat-value blue">0</div>
-    </div>
-
-    <div class="card stat">
-      <div class="stat-label">Won</div>
-      <div id="won" class="stat-value green">0</div>
-    </div>
-
-    <div class="card stat">
-      <div class="stat-label">Lost</div>
-      <div id="lost" class="stat-value red">0</div>
-    </div>
-
-    <div class="card stat">
-      <div class="stat-label">Win Rate</div>
-      <div id="winrate" class="stat-value blue">0%</div>
-    </div>
-
-  </div>
-
-  <!-- CONNECTION -->
-  <div class="card" style="margin-bottom:12px;">
-    <div class="section-title">DERIV CONNECTION</div>
-
-    <div class="controls">
-
-      <div class="field">
-        <label>APP ID</label>
-        <input id="appId" value="" placeholder="Deriv App ID">
-      </div>
-
-      <div class="field">
-        <label>PAT</label>
-        <input id="pat" type="password" placeholder="Personal Access Token">
-      </div>
-
-      <div class="field">
-        <label>ACCOUNT ID</label>
-        <input id="accountId" placeholder="CR... / VRTC...">
-      </div>
-
-      <div class="field">
-        <label>ACCOUNT</label>
-        <select id="accountType">
-          <option value="demo">Demo</option>
-          <option value="real">Real</option>
-        </select>
-      </div>
-
-    </div>
-
-    <div class="buttons">
-      <button id="connectBtn" class="btn-blue">CONNECT DERIV</button>
-      <button id="disconnectBtn" class="btn-grey">DISCONNECT</button>
-    </div>
-  </div>
-
-  <!-- STRATEGY -->
-  <div class="card" style="margin-bottom:12px;">
-    <div class="section-title">STRATEGY SETTINGS</div>
-
-    <div class="controls">
-
-      <div class="field">
-        <label>MODE</label>
-        <select id="mode">
-          <option value="BOTH">BOTH</option>
-          <option value="OVER">OVER 2</option>
-          <option value="UNDER">UNDER 7</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label>STAKE</label>
-        <input id="stake" type="number" min="0.01" step="0.01" value="0.50">
-      </div>
-
-      <div class="field">
-        <label>DURATION</label>
-        <select id="duration">
-          <option value="1">1 Tick</option>
-          <option value="2">2 Ticks</option>
-          <option value="3">3 Ticks</option>
-          <option value="5">5 Ticks</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label>HISTORY</label>
-        <select id="historySize">
-          <option value="250">250 Ticks</option>
-          <option value="500">500 Ticks</option>
-          <option value="1000" selected>1000 Ticks</option>
-        </select>
-      </div>
-
-    </div>
-
-    <div class="buttons">
-
-      <label class="checkbox">
-        <input id="autoTrade" type="checkbox">
-        AUTO TRADE
-      </label>
-
-      <label class="checkbox">
-        <input id="oneTrade" type="checkbox" checked>
-        ONE ACTIVE TRADE
-      </label>
-
-    </div>
-
-    <div class="buttons">
-      <button id="startBtn" class="btn-green">START DEEP SCANNER</button>
-      <button id="stopBtn" class="btn-grey">STOP SCANNER</button>
-      <button id="resetBtn" class="btn-blue">RESET</button>
-    </div>
-  </div>
-
-  <!-- LIVE MARKET -->
-  <div class="live-grid">
-
-    <div class="card">
-
-      <div class="section-title">LIVE MARKET</div>
-
-      <div class="market-main">
-        <div>
-          <div id="marketName" class="market-name">Waiting...</div>
-          <span id="marketBadge" class="badge">NO MARKET</span>
-        </div>
-      </div>
-
-      <div id="lastDigit" class="big-digit">-</div>
-
-      <div id="quote" class="quote">No tick received</div>
-
-      <div style="margin-top:14px;">
-        <div style="display:flex;justify-content:space-between;font-size:10px;">
-          <b>HISTORY LOADED</b>
-          <span id="historyCount">0 / 1000</span>
-        </div>
-
-        <div class="progress">
-          <div id="historyProgress" class="progress-bar"></div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- SCANNER -->
-    <div class="card scanner">
-
-      <div class="section-title">DEEP SCANNER</div>
-
-      <div class="scan-status">
-        <span id="scanLight" class="scan-light"></span>
-        <span id="scanStatus" class="scan-text">SCANNER STOPPED</span>
-      </div>
-
-      <table class="scan-table">
-        <thead>
-          <tr>
-            <th>CHECK</th>
-            <th>OVER 2</th>
-            <th>UNDER 7</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>Percentages</td>
-            <td id="scanOverPct">WAIT</td>
-            <td id="scanUnderPct">WAIT</td>
-          </tr>
-
-          <tr>
-            <td>Red Bar</td>
-            <td id="scanOverRed">WAIT</td>
-            <td id="scanUnderRed">WAIT</td>
-          </tr>
-
-          <tr>
-            <td>Entry Digit</td>
-            <td id="scanOverDigit">WAIT</td>
-            <td id="scanUnderDigit">WAIT</td>
-          </tr>
-
-          <tr>
-            <td>FINAL</td>
-            <td id="scanOverFinal">WAIT</td>
-            <td id="scanUnderFinal">WAIT</td>
-          </tr>
-        </tbody>
-      </table>
-
-    </div>
-
-  </div>
-
-  <!-- STRATEGIES -->
-  <div class="strategy-grid" style="margin-top:12px;">
-
-    <div class="card strategy over">
-
-      <div class="strategy-head">
-        <span>OVER 2</span>
-        <span id="overReady" class="ready">WAITING</span>
-      </div>
-
-      <div class="digits">
-
-        <div id="d0box" class="digit-box">
-          <b>0</b>
-          <small id="p0">0%</small>
-          <small id="r0">NO RED</small>
-        </div>
-
-        <div id="d1box" class="digit-box">
-          <b>1</b>
-          <small id="p1">0%</small>
-          <small id="r1">NO RED</small>
-        </div>
-
-        <div id="d2box" class="digit-box">
-          <b>2</b>
-          <small id="p2">0%</small>
-          <small id="r2">NO RED</small>
-        </div>
-
-      </div>
-
-      <div style="margin-top:10px;font-size:11px;color:var(--grey);">
-        Entry digit: <b id="overEntryDigit">-</b>
-      </div>
-
-    </div>
-
-
-    <div class="card strategy under">
-
-      <div class="strategy-head">
-        <span>UNDER 7</span>
-        <span id="underReady" class="ready">WAITING</span>
-      </div>
-
-      <div class="digits">
-
-        <div id="d7box" class="digit-box">
-          <b>7</b>
-          <small id="p7">0%</small>
-          <small id="r7">NO RED</small>
-        </div>
-
-        <div id="d8box" class="digit-box">
-          <b>8</b>
-          <small id="p8">0%</small>
-          <small id="r8">NO RED</small>
-        </div>
-
-        <div id="d9box" class="digit-box">
-          <b>9</b>
-          <small id="p9">0%</small>
-          <small id="r9">NO RED</small>
-        </div>
-
-      </div>
-
-      <div style="margin-top:10px;font-size:11px;color:var(--grey);">
-        Entry digit: <b id="underEntryDigit">-</b>
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- ACTIVITY -->
-  <div class="card" style="margin-top:12px;">
-    <div class="section-title">ACTIVITY LOG</div>
-    <div id="log" class="log"></div>
-  </div>
-
-  <div class="footer">
-    PAIRTRADE AI • Deep scanner • Over 2 / Under 7
-  </div>
+<div class="header">
+<div class="brand">
+<div class="logo">P</div>
+<div>
+<h1>PAIRTRADE AI</h1>
+<small>Deep Volatility Scanner</small>
+</div>
+</div>
+
+<div style="display:flex;align-items:center;gap:10px">
+<div class="connection">
+<span id="connectionDot" class="dot"></span>
+<span id="connectionText">OFFLINE</span>
+</div>
+
+<div class="balance-box">
+<small>BALANCE</small>
+<div id="balance" class="balance">$0.00</div>
+</div>
+</div>
+</div>
+
+
+<div class="grid">
+
+<div class="card stat">
+<div class="stat-label">Runs</div>
+<div id="runs" class="stat-value blue">0</div>
+</div>
+
+<div class="card stat">
+<div class="stat-label">Won</div>
+<div id="won" class="stat-value green">0</div>
+</div>
+
+<div class="card stat">
+<div class="stat-label">Lost</div>
+<div id="lost" class="stat-value red">0</div>
+</div>
+
+<div class="card stat">
+<div class="stat-label">Win Rate</div>
+<div id="winrate" class="stat-value blue">0%</div>
+</div>
 
 </div>
 
 
-<script>
-"use strict";
+<div class="card" style="margin-bottom:12px">
 
-/* =========================================================
-   CONFIGURATION
-========================================================= */
+<div class="section-title">DERIV CONNECTION</div>
 
-const PUBLIC_WS =
-  "wss://ws.binaryws.com/websockets/v3";
+<div class="controls">
 
-const API_BASE =
-  "https://api.derivws.com";
+<div class="field">
+<label>APP ID</label>
+<input id="appId" placeholder="Deriv App ID">
+</div>
 
+<div class="field">
+<label>PAT</label>
+<input id="pat" type="password" placeholder="Personal Access Token">
+</div>
 
-/* =========================================================
-   STATE
-========================================================= */
-
-let publicWs = null;
-let tradeWs = null;
-
-let authenticated = false;
-let scannerRunning = false;
-let tradingBusy = false;
-
-let currentSymbol = null;
-let currentPipSize = 2;
-
-let currentTicks = [];
-let currentQuote = null;
-let currentDigit = null;
-
-let markets = [];
-let marketIndex = 0;
-
-let scannerTimer = null;
-let marketSubscriptionId = null;
-
-let accountBalance = 0;
-
-let stats = {
-  runs:0,
-  won:0,
-  lost:0
-};
-
-let activeContractId = null;
-let settledContracts = new Set();
-
-let messageCounter = 1;
-let pendingMessages = new Map();
-
-
-/* =========================================================
-   DOM HELPERS
-========================================================= */
-
-const $ = id => document.getElementById(id);
-
-function log(message){
-  const box = $("log");
-
-  const line = document.createElement("div");
-  line.className = "log-line";
-
-  const now = new Date();
-  const time =
-    now.toLocaleTimeString([],{
-      hour:"2-digit",
-      minute:"2-digit",
-      second:"2-digit"
-    });
-
-  line.innerHTML =
-    '<span class="log-time">[' +
-    time +
-    ']</span> ' +
-    escapeHtml(message);
-
-  box.appendChild(line);
-
-  while(box.children.length > 250){
-    box.removeChild(box.firstChild);
-  }
-
-  box.scrollTop = box.scrollHeight;
-}
-
-function escapeHtml(value){
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
-
-
-/* =========================================================
-   STATS
-========================================================= */
-
-function updateStats(){
-
-  $("runs").textContent = stats.runs;
-  $("won").textContent = stats.won;
-  $("lost").textContent = stats.lost;
-
-  const rate =
-    stats.runs > 0
-      ? ((stats.won / stats.runs) * 100).toFixed(1)
-      : "0";
-
-  $("winrate").textContent = rate + "%";
-}
-
-
-/* =========================================================
-   RESET
-========================================================= */
-
-$("resetBtn").addEventListener("click",function(){
-
-  stats.runs = 0;
-  stats.won = 0;
-  stats.lost = 0;
-
-  updateStats();
-
-  $("log").innerHTML = "";
-
-  log("Session statistics reset.");
-
-});
-
-
-/* =========================================================
-   CONNECTION UI
-========================================================= */
-
-function setConnection(state){
-
-  const dot = $("connectionDot");
-  const text = $("connectionText");
-
-  dot.className = "dot";
-
-  if(state === "connected"){
-    dot.classList.add("connected");
-    text.textContent = "CONNECTED";
-  }
-
-  else if(state === "error"){
-    dot.classList.add("error");
-    text.textContent = "ERROR";
-  }
-
-  else{
-    text.textContent = "OFFLINE";
-  }
-}
-
-
-/* =========================================================
-   DIGIT CALCULATION
-========================================================= */
-
-function getLastDigit(quote,pipSize){
-
-  if(quote === undefined || quote === null){
-    return null;
-  }
-
-  const decimals =
-    Number.isFinite(Number(pipSize))
-      ? Number(pipSize)
-      : currentPipSize;
-
-  const text =
-    Number(quote).toFixed(decimals);
-
-  const digits =
-    text.replace(/\D/g,"");
-
-  if(!digits.length){
-    return null;
-  }
-
-  return Number(digits[digits.length - 1]);
-}
-
-
-/* =========================================================
-   HISTORY ANALYSIS
-========================================================= */
-
-function calculateCounts(){
-
-  const counts = Array(10).fill(0);
-  let total = 0;
-
-  for(const tick of currentTicks){
-
-    const d = getLastDigit(
-      tick.quote,
-      tick.pip_size || currentPipSize
-    );
-
-    if(d !== null){
-      counts[d]++;
-      total++;
-    }
-  }
-
-  return {
-    counts,
-    total
-  };
-}
-
-
-function calculatePercentages(){
-
-  const result =
-    calculateCounts();
-
-  if(result.total === 0){
-    return Array(10).fill(0);
-  }
-
-  return result.counts.map(
-    x => (x / result.total) * 100
-  );
-}
-
-
-/* =========================================================
-   RED BAR = LEAST APPEARING DIGIT
-========================================================= */
-
-function getRedDigits(){
-
-  const data =
-    calculateCounts();
-
-  if(data.total === 0){
-    return [];
-  }
-
-  const minimum =
-    Math.min(...data.counts);
-
-  return data.counts
-    .map((count,digit) =>
-      count === minimum ? digit : null
-    )
-    .filter(x => x !== null);
-}
-
-
-function getRedBarState(digit){
-
-  const redDigits =
-    getRedDigits();
-
-  return redDigits.includes(digit)
-    ? "RED"
-    : "NO_RED";
-}
-
-
-/* =========================================================
-   STRATEGY CONDITIONS
-========================================================= */
-
-function overConditions(){
-
-  const percentages =
-    calculatePercentages();
-
-  const required =
-    [0,1,2];
-
-  const percentagePass =
-    required.every(
-      d => percentages[d] < 10
-    );
-
-  const redPass =
-    required.every(
-      d => getRedBarState(d) === "NO_RED"
-    );
-
-  const entryPass =
-    currentDigit === 0 ||
-    currentDigit === 1;
-
-  return {
-    percentages,
-    percentagePass,
-    redPass,
-    entryPass,
-    ready:
-      percentagePass &&
-      redPass &&
-      entryPass
-  };
-}
-
-
-function underConditions(){
-
-  const percentages =
-    calculatePercentages();
-
-  const required =
-    [7,8,9];
-
-  const percentagePass =
-    required.every(
-      d => percentages[d] < 10
-    );
-
-  const redPass =
-    required.every(
-      d => getRedBarState(d) === "NO_RED"
-    );
-
-  const entryPass =
-    currentDigit === 8 ||
-    currentDigit === 9;
-
-  return {
-    percentages,
-    percentagePass,
-    redPass,
-    entryPass,
-    ready:
-      percentagePass &&
-      redPass &&
-      entryPass
-  };
-}
-
-
-/* =========================================================
-   UPDATE STRATEGY UI
-========================================================= */
-
-function updateDigitBox(digit,percent){
-
-  const box = $("d" + digit + "box");
-  const percentEl = $("p" + digit);
-  const redEl = $("r" + digit);
-
-  if(!box) return;
-
-  percentEl.textContent =
-    percent.toFixed(2) + "%";
-
-  const red =
-    getRedBarState(digit);
-
-  if(red === "RED"){
-
-    box.classList.add("red-digit");
-
-    redEl.textContent =
-      "RED";
-
-    redEl.className = "red";
-
-  }else{
-
-    box.classList.remove("red-digit");
-
-    redEl.textContent =
-      "NO RED";
-
-    redEl.className = "no-red";
-  }
-}
-
-
-function updateStrategyUI(){
-
-  const percentages =
-    calculatePercentages();
-
-  [0,1,2,7,8,9]
-    .forEach(d =>
-      updateDigitBox(
-        d,
-        percentages[d]
-      )
-    );
-
-  const over =
-    overConditions();
-
-  const under =
-    underConditions();
-
-
-  $("overEntryDigit").textContent =
-    currentDigit === 0 ||
-    currentDigit === 1
-      ? currentDigit
-      : "-";
-
-
-  $("underEntryDigit").textContent =
-    currentDigit === 8 ||
-    currentDigit === 9
-      ? currentDigit
-      : "-";
-
-
-  setReady(
-    $("overReady"),
-    over.ready
-  );
-
-  setReady(
-    $("underReady"),
-    under.ready
-  );
-
-
-  $("scanOverPct").innerHTML =
-    over.percentagePass
-      ? '<span class="pass">PASS</span>'
-      : '<span class="fail">FAIL</span>';
-
-  $("scanUnderPct").innerHTML =
-    under.percentagePass
-      ? '<span class="pass">PASS</span>'
-      : '<span class="fail">FAIL</span>';
-
-
-  $("scanOverRed").innerHTML =
-    over.redPass
-      ? '<span class="pass">CLEAR</span>'
-      : '<span class="fail">RED</span>';
-
-  $("scanUnderRed").innerHTML =
-    under.redPass
-      ? '<span class="pass">CLEAR</span>'
-      : '<span class="fail">RED</span>';
-
-
-  $("scanOverDigit").innerHTML =
-    over.entryPass
-      ? '<span class="pass">' +
-        currentDigit +
-        '</span>'
-      : '<span class="neutral">WAIT</span>';
-
-  $("scanUnderDigit").innerHTML =
-    under.entryPass
-      ? '<span class="pass">' +
-        currentDigit +
-        '</span>'
-      : '<span class="neutral">WAIT</span>';
-
-
-  $("scanOverFinal").innerHTML =
-    over.ready
-      ? '<span class="pass">READY</span>'
-      : '<span class="fail">BLOCKED</span>';
-
-  $("scanUnderFinal").innerHTML =
-    under.ready
-      ? '<span class="pass">READY</span>'
-      : '<span class="fail">BLOCKED</span>';
-}
-
-
-function setReady(element,ready){
-
-  element.className =
-    ready
-      ? "ready good"
-      : "ready bad";
-
-  element.textContent =
-    ready
-      ? "ENTRY READY"
-      : "WAITING";
-}
-
-
-/* =========================================================
-   MARKET DISCOVERY
-========================================================= */
-
-function sendPublic(data){
-
-  if(!publicWs ||
-     publicWs.readyState !== WebSocket.OPEN){
-
-    return;
-  }
-
-  publicWs.send(
-    JSON.stringify(data)
-  );
-}
-
-
-function connectPublic(){
-
-  return new Promise((resolve,reject)=>{
-
-    publicWs =
-      new WebSocket(PUBLIC_WS);
-
-    publicWs.onopen = () => {
-
-      log("Public Deriv market connection opened.");
-
-      setConnection("connected");
-
-      sendPublic({
-        active_symbols:"brief",
-        product_type:"basic"
-      });
-
-      resolve();
-    };
-
-
-    publicWs.onmessage = event => {
-
-      try{
-
-        const data =
-          JSON.parse(event.data);
-
-        handlePublicMessage(data);
-
-      }catch(error){
-
-        console.error(error);
-
-      }
-    };
-
-
-    publicWs.onerror = () => {
-
-      setConnection("error");
-
-      reject(
-        new Error("Public WebSocket error")
-      );
-    };
-
-
-    publicWs.onclose = () => {
-
-      if(!tradeWs){
-        setConnection("offline");
-      }
-
-      log("Public WebSocket closed.");
-    };
-
-  });
-}
-
-
-/* =========================================================
-   PUBLIC MESSAGE HANDLER
-========================================================= */
-
-function handlePublicMessage(data){
-
-  if(data.active_symbols){
-
-    markets =
-      data.active_symbols
-        .filter(item =>
-          item &&
-          item.symbol &&
-          (
-            /^R_\d+$/i.test(item.symbol) ||
-            /^1HZ\d+V$/i.test(item.symbol)
-          )
-        )
-        .map(item => ({
-          symbol:item.symbol,
-          name:item.display_name ||
-               item.symbol
-        }));
-
-    markets.sort(
-      (a,b) =>
-        a.symbol.localeCompare(b.symbol)
-    );
-
-    log(
-      "Found " +
-      markets.length +
-      " Volatility markets."
-    );
-
-    if(scannerRunning &&
-       !currentSymbol){
-
-      scanNextMarket();
-    }
-
-    return;
-  }
-
-
-  if(data.history){
-
-    const prices =
-      data.history.prices || [];
-
-    const times =
-      data.history.times || [];
-
-    currentTicks =
-      prices.map((quote,index)=>({
-        quote:Number(quote),
-        epoch:times[index],
-        pip_size:currentPipSize
-      }));
-
-    const requested =
-      Number($("historySize").value);
-
-    if(currentTicks.length > requested){
-
-      currentTicks =
-        currentTicks.slice(
-          -requested
-        );
-    }
-
-    updateHistoryUI();
-    updateStrategyUI();
-
-    return;
-  }
-
-
-  if(data.tick){
-
-    const tick =
-      data.tick;
-
-    const quote =
-      Number(tick.quote);
-
-    currentQuote = quote;
-
-    currentPipSize =
-      Number.isFinite(
-        Number(tick.pip_size)
-      )
-        ? Number(tick.pip_size)
-        : currentPipSize;
-
-    currentDigit =
-      getLastDigit(
-        quote,
-        currentPipSize
-      );
-
-
-    currentTicks.push({
-      quote,
-      epoch:tick.epoch,
-      pip_size:currentPipSize
-    });
-
-
-    const max =
-      Number($("historySize").value);
-
-    if(currentTicks.length > max){
-
-      currentTicks =
-        currentTicks.slice(
-          -max
-        );
-    }
-
-
-    $("quote").textContent =
-      quote.toFixed(currentPipSize);
-
-    $("lastDigit").textContent =
-      currentDigit ?? "-";
-
-
-    updateHistoryUI();
-    updateStrategyUI();
-
-    if(scannerRunning){
-
-      evaluateCurrentMarket();
-    }
-
-    return;
-  }
-}
-
-
-/* =========================================================
-   HISTORY UI
-========================================================= */
-
-function updateHistoryUI(){
-
-  const max =
-    Number($("historySize").value);
-
-  const count =
-    currentTicks.length;
-
-  $("historyCount").textContent =
-    count + " / " + max;
-
-  $("historyProgress").style.width =
-    Math.min(
-      100,
-      (count / max) * 100
-    ) + "%";
-}
-
-
-/* =========================================================
-   SUBSCRIBE MARKET
-========================================================= */
-
-function subscribeMarket(symbol){
-
-  if(!publicWs ||
-     publicWs.readyState !== WebSocket.OPEN){
-
-    return;
-  }
-
-  currentSymbol = symbol;
-  currentTicks = [];
-  currentQuote = null;
-  currentDigit = null;
-
-  $("marketName").textContent =
-    symbol;
-
-  $("marketBadge").textContent =
-    "SCANNING";
-
-  updateHistoryUI();
-  updateStrategyUI();
-
-
-  sendPublic({
-    forget_all:"ticks"
-  });
-
-
-  sendPublic({
-    ticks_history:symbol,
-    count:Number($("historySize").value),
-    end:"latest",
-    style:"ticks",
-    adjust_start_time:1
-  });
-
-
-  sendPublic({
-    ticks:symbol,
-    subscribe:1
-  });
-
-
-  log(
-    "Deep scanning " +
-    symbol
-  );
-}
-
-
-/* =========================================================
-   DEEP SCANNER
-========================================================= */
-
-function startScanner(){
-
-  if(scannerRunning){
-    log("Scanner is already running.");
-    return;
-  }
-
-  if(!publicWs ||
-     publicWs.readyState !== WebSocket.OPEN){
-
-    log(
-      "Connect to Deriv before starting scanner."
-    );
-
-    return;
-  }
-
-
-  scannerRunning = true;
-
-  $("scanLight").className =
-    "scan-light active";
-
-  $("scanStatus").textContent =
-    "DEEP SCANNER ACTIVE";
-
-
-  log(
-    "Deep scanner started."
-  );
-
-
-  if(markets.length === 0){
-
-    sendPublic({
-      active_symbols:"brief",
-      product_type:"basic"
-    });
-
-  }else{
-
-    scanNextMarket();
-  }
-}
-
-
-function stopScanner(){
-
-  scannerRunning = false;
-
-  clearTimeout(scannerTimer);
-
-  $("scanLight").className =
-    "scan-light";
-
-  $("scanStatus").textContent =
-    "SCANNER STOPPED";
-
-  $("marketBadge").textContent =
-    "STOPPED";
-
-  log(
-    "Scanner stopped."
-  );
-}
-
-
-function scanNextMarket(){
-
-  if(!scannerRunning ||
-     markets.length === 0){
-
-    return;
-  }
-
-  if(marketIndex >= markets.length){
-    marketIndex = 0;
-  }
-
-  const market =
-    markets[marketIndex];
-
-  marketIndex++;
-
-  subscribeMarket(
-    market.symbol
-  );
-}
-
-
-/* =========================================================
-   FULL MARKET EVALUATION
-========================================================= */
-
-function evaluateCurrentMarket(){
-
-  if(!scannerRunning){
-    return;
-  }
-
-  const requested =
-    Number($("historySize").value);
-
-  /*
-    Do not evaluate an incomplete history.
-    This prevents the scanner from making decisions
-    from only a handful of ticks.
-  */
-
-  if(currentTicks.length < requested){
-
-    $("scanStatus").textContent =
-      "BUILDING HISTORY";
-
-    return;
-  }
-
-
-  const over =
-    overConditions();
-
-  const under =
-    underConditions();
-
-
-  let selected = null;
-
-  const mode =
-    $("mode").value;
-
-
-  if(
-    (mode === "BOTH" ||
-     mode === "OVER") &&
-    over.ready
-  ){
-
-    selected = "OVER";
-
-  }
-
-
-  if(
-    (mode === "BOTH" ||
-     mode === "UNDER") &&
-    under.ready
-  ){
-
-    selected = "UNDER";
-
-  }
-
-
-  if(selected){
-
-    $("scanLight").className =
-      "scan-light found";
-
-    $("scanStatus").textContent =
-      selected +
-      " 2/7 FULL CONDITIONS PASSED";
-
-    log(
-      selected +
-      " candidate detected on " +
-      currentSymbol +
-      " | digit " +
-      currentDigit
-    );
-
-
-    /*
-      A final fresh evaluation is performed
-      immediately before attempting a trade.
-    */
-
-    if($("autoTrade").checked){
-
-      executeTradeWithFinalCheck(
-        selected
-      );
-
-    }
-
-    return;
-  }
-
-
-  $("scanLight").className =
-    "scan-light active";
-
-  $("scanStatus").textContent =
-    "ANALYZING " +
-    currentSymbol;
-}
-
-
-/* =========================================================
-   FINAL TRADE CHECK
-========================================================= */
-
-function executeTradeWithFinalCheck(strategy){
-
-  if(tradingBusy &&
-     $("oneTrade").checked){
-
-    return;
-  }
-
-
-  /*
-    Recalculate everything immediately.
-  */
-
-  const over =
-    overConditions();
-
-  const under =
-    underConditions();
-
-
-  const valid =
-    strategy === "OVER"
-      ? over.ready
-      : under.ready;
-
-
-  if(!valid){
-
-    log(
-      "Final check failed. Trade blocked."
-    );
-
-    return;
-  }
-
-
-  executeTrade(strategy);
-}
-
-
-/* =========================================================
-   AUTHENTICATED DERIV CONNECTION
-========================================================= */
-
-async function connectDeriv(){
-
-  const appId =
-    $("appId").value.trim();
-
-  const pat =
-    $("pat").value.trim();
-
-  const accountId =
-    $("accountId").value.trim();
-
-
-  if(!appId ||
-     !pat ||
-     !accountId){
-
-    alert(
-      "Enter App ID, PAT and Account ID."
-    );
-
-    return;
-  }
-
-
-  try{
-
-    log(
-      "Connecting authenticated Deriv account..."
-    );
-
-
-    const response =
-      await fetch(
-        API_BASE +
-        "/trading/v1/options/accounts",
-        {
-          method:"GET",
-          headers:{
-            "Authorization":
-              "Bearer " + pat,
-            "Deriv-App-ID":
-              appId
-          }
-        }
-      );
-
-
-    if(!response.ok){
-
-      throw new Error(
-        "Account request failed: " +
-        response.status
-      );
-    }
-
-
-    const accounts =
-      await response.json();
-
-
-    const otpResponse =
-      await fetch(
-        API_BASE +
-        "/trading/v1/options/accounts/" +
-        encodeURIComponent(accountId) +
-        "/otp",
-        {
-          method:"POST",
-          headers:{
-            "Authorization":
-              "Bearer " + pat,
-            "Deriv-App-ID":
-              appId,
-            "Content-Type":
-              "application/json"
-          },
-          body:"{}"
-        }
-      );
-
-
-    if(!otpResponse.ok){
-
-      throw new Error(
-        "OTP request failed: " +
-        otpResponse.status
-      );
-    }
-
-
-    const otpData =
-      await otpResponse.json();
-
-
-    const authenticatedUrl =
-      otpData.websocket_url ||
-      otpData.ws_url ||
-      otpData.url;
-
-
-    if(!authenticatedUrl){
-
-      throw new Error(
-        "Deriv did not return an authenticated WebSocket URL."
-      );
-    }
-
-
-    tradeWs =
-      new WebSocket(
-        authenticatedUrl
-      );
-
-
-    tradeWs.onopen = () => {
-
-      authenticated = true;
-
-      setConnection("connected");
-
-      log(
-        "Authenticated Deriv trading connection opened."
-      );
-
-      requestBalance();
-    };
-
-
-    tradeWs.onmessage = event => {
-
-      try{
-
-        const data =
-          JSON.parse(event.data);
-
-        handleTradeMessage(data);
-
-      }catch(error){
-
-        console.error(error);
-
-      }
-    };
-
-
-    tradeWs.onerror = error => {
-
-      console.error(error);
-
-      log(
-        "Authenticated trading connection error."
-      );
-    };
-
-
-    tradeWs.onclose = () => {
-
-      authenticated = false;
-
-      if(!publicWs ||
-         publicWs.readyState !== WebSocket.OPEN){
-
-        setConnection("offline");
-      }
-
-      log(
-        "Authenticated trading connection closed."
-      );
-    };
-
-
-    await connectPublic();
-
-
-  }catch(error){
-
-    console.error(error);
-
-    setConnection("error");
-
-    log(
-      "Connection failed: " +
-      error.message
-    );
-
-    alert(
-      "Connection failed. Check your App ID, PAT, Account ID and Deriv permissions."
-    );
-  }
-}
-
-
-/* =========================================================
-   TRADE WS HELPERS
-========================================================= */
-
-function sendTrade(data){
-
-  if(!tradeWs ||
-     tradeWs.readyState !== WebSocket.OPEN){
-
-    throw new Error(
-      "Trading WebSocket is not connected."
-    );
-  }
-
-  const reqId =
-    messageCounter++;
-
-  data.req_id = reqId;
-
-  tradeWs.send(
-    JSON.stringify(data)
-  );
-
-  return reqId;
-}
-
-
-function waitForTradeMessage(
-  predicate,
-  timeout=15000
-){
-
-  return new Promise(
-    (resolve,reject)=>{
-
-      const started =
-        Date.now();
-
-      const timer =
-        setInterval(()=>{
-
-          for(
-            const [id,message]
-            of pendingMessages
-          ){
-
-            if(predicate(message)){
-
-              pendingMessages.delete(id);
-
-              clearInterval(timer);
-
-              resolve(message);
-
-              return;
-            }
-          }
-
-
-          if(
-            Date.now() - started >
-            timeout
-          ){
-
-            clearInterval(timer);
-
-            reject(
-              new Error(
-                "Trading request timed out."
-              )
-            );
-          }
-
-        },100);
-
-    }
-  );
-}
-
-
-/* =========================================================
-   TRADE MESSAGE HANDLER
-========================================================= */
-
-function handleTradeMessage(data){
-
-  if(data.req_id){
-
-    pendingMessages.set(
-      data.req_id,
-      data
-    );
-  }
-
-
-  if(data.balance){
-
-    const balance =
-      Number(
-        data.balance.balance
-      );
-
-    if(Number.isFinite(balance)){
-
-      accountBalance =
-        balance;
-
-      $("balance").textContent =
-        Number(balance).toFixed(2) +
-        " " +
-        (
-          data.balance.currency ||
-          ""
-        );
-    }
-  }
-
-
-  if(data.proposal_open_contract){
-
-    processContract(
-      data.proposal_open_contract
-    );
-  }
-
-
-  if(data.error){
-
-    log(
-      "Deriv error: " +
-      (
-        data.error.message ||
-        "Unknown error"
-      )
-    );
-  }
-}
-
-
-/* =========================================================
-   BALANCE
-========================================================= */
-
-function requestBalance(){
-
-  try{
-
-    sendTrade({
-      balance:1,
-      subscribe:1
-    });
-
-  }catch(error){
-
-    log(
-      "Balance request failed: " +
-      error.message
-    );
-  }
-}
-
-
-/* =========================================================
-   CONTRACT MONITOR
-========================================================= */
-
-function processContract(contract){
-
-  const id =
-    contract.contract_id;
-
-  if(!id){
-    return;
-  }
-
-
-  if(
-    contract.is_sold ||
-    contract.status === "sold"
-  ){
-
-    if(
-      settledContracts.has(id)
-    ){
-
-      return;
-    }
-
-    settledContracts.add(id);
-
-    activeContractId = null;
-    tradingBusy = false;
-
-
-    const profit =
-      Number(contract.profit);
-
-
-    stats.runs =
-      Math.max(
-        stats.runs,
-        0
-      );
-
-
-    if(profit > 0){
-
-      stats.won++;
-
-      log(
-        "WIN | Contract " +
-        id +
-        " | Profit " +
-        profit.toFixed(2)
-      );
-
-    }else{
-
-      stats.lost++;
-
-      log(
-        "LOSS | Contract " +
-        id +
-        " | Result " +
-        profit.toFixed(2)
-      );
-    }
-
-
-    updateStats();
-
-    requestBalance();
-  }
-}
-
-
-/* =========================================================
-   EXECUTE TRADE
-========================================================= */
-
-async function executeTrade(strategy){
-
-  if(tradingBusy &&
-     $("oneTrade").checked){
-
-    return;
-  }
-
-
-  if(!authenticated){
-
-    log(
-      "Trade blocked: authenticated Deriv connection required."
-    );
-
-    return;
-  }
-
-
-  /*
-    Safety check again.
-  */
-
-  const over =
-    overConditions();
-
-  const under =
-    underConditions();
-
-
-  if(
-    strategy === "OVER" &&
-    !over.ready
-  ){
-
-    log(
-      "OVER 2 failed final safety check."
-    );
-
-    return;
-  }
-
-
-  if(
-    strategy === "UNDER" &&
-    !under.ready
-  ){
-
-    log(
-      "UNDER 7 failed final safety check."
-    );
-
-    return;
-  }
-
-
-  tradingBusy = true;
-
-
-  const stake =
-    Number(
-      $("stake").value
-    );
-
-  const duration =
-    Number(
-      $("duration").value
-    );
-
-
-  const contractType =
-    strategy === "OVER"
-      ? "DIGITOVER"
-      : "DIGITUNDER";
-
-  const barrier =
-    strategy === "OVER"
-      ? "2"
-      : "7";
-
-
-  try{
-
-    log(
-      "Requesting " +
-      strategy +
-      " proposal on " +
-      currentSymbol
-    );
-
-
-    const proposalReq =
-      sendTrade({
-        proposal:1,
-        amount:stake,
-        basis:"stake",
-        contract_type:contractType,
-        currency:"USD",
-        duration:duration,
-        duration_unit:"t",
-        symbol:currentSymbol,
-        barrier:barrier
-      });
-
-
-    const proposal =
-      await waitForTradeMessage(
-        msg =>
-          msg.req_id === proposalReq &&
-          (
-            msg.proposal ||
-            msg.error
-          ),
-        15000
-      );
-
-
-    if(proposal.error){
-
-      throw new Error(
-        proposal.error.message
-      );
-    }
-
-
-    const proposalId =
-      proposal.proposal.id;
-
-
-    if(!proposalId){
-
-      throw new Error(
-        "No proposal ID returned."
-      );
-    }
-
-
-    log(
-      "Proposal received. Buying..."
-    );
-
-
-    const buyReq =
-      sendTrade({
-        buy:proposalId,
-        price:stake
-      });
-
-
-    const buy =
-      await waitForTradeMessage(
-        msg =>
-          msg.req_id === buyReq &&
-          (
-            msg.buy ||
-            msg.error
-          ),
-        15000
-      );
-
-
-    if(buy.error){
-
-      throw new Error(
-        buy.error.message
-      );
-    }
-
-
-    const contractId =
-      buy.buy &&
-      buy.buy.contract_id;
-
-
-    if(!contractId){
-
-      throw new Error(
-        "Deriv did not return a contract ID."
-      );
-    }
-
-
-    /*
-      RUN COUNTS ONLY AFTER SUCCESSFUL BUY.
-    */
-
-    stats.runs++;
-
-    updateStats();
-
-    activeContractId =
-      contractId;
-
-
-    log(
-      "TRADE OPENED | " +
-      strategy +
-      " | " +
-      currentSymbol +
-      " | Contract " +
-      contractId
-    );
-
-
-    /*
-      Subscribe to the actual contract.
-    */
-
-    sendTrade({
-      proposal_open_contract:1,
-      contract_id:contractId,
-      subscribe:1
-    });
-
-
-  }catch(error){
-
-    tradingBusy = false;
-
-    log(
-      "Trade failed: " +
-      error.message
-    );
-  }
-}
-
-
-/* =========================================================
-   DISCONNECT
-========================================================= */
-
-function disconnect(){
-
-  stopScanner();
-
-
-  if(publicWs){
-
-    try{
-      publicWs.close();
-    }catch(e){}
-
-    publicWs = null;
-  }
-
-
-  if(tradeWs){
-
-    try{
-      tradeWs.close();
-    }catch(e){}
-
-    tradeWs = null;
-  }
-
-
-  authenticated = false;
-  tradingBusy = false;
-  activeContractId = null;
-
-  setConnection("offline");
-
-  log(
-    "Disconnected."
-  );
-}
-
-
-/* =========================================================
-   BUTTON EVENTS
-========================================================= */
-
-$("connectBtn")
-  .addEventListener(
-    "click",
-    connectDeriv
-  );
-
-$("disconnectBtn")
-  .addEventListener(
-    "click",
-    disconnect
-  );
-
-$("startBtn")
-  .addEventListener(
-    "click",
-    startScanner
-  );
-
-$("stopBtn")
-  .addEventListener(
-    "click",
-    stopScanner
-  );
-
-
-$("historySize")
-  .addEventListener(
-    "change",
-    ()=>{
-
-      if(currentSymbol &&
-         publicWs &&
-         publicWs.readyState === WebSocket.OPEN){
-
-        subscribeMarket(
-          currentSymbol
-        );
-      }
-    }
-  );
-
-
-$("mode")
-  .addEventListener(
-    "change",
-    updateStrategyUI
-  );
-
-
-/* =========================================================
-   INITIALIZATION
-========================================================= */
-
-updateStats();
-
-log(
-  "PAIRTRADE AI ready."
-);
-
-log(
-  "Red bar = least-appearing digit."
-);
-
-log(
-  "Over 2 requires 0,1,2 each below 10%, all NO RED, current digit 0/1."
-);
-
-log(
-  "Under 7 requires 7,8,9 each below 10%, all NO RED, current digit 8/9."
-);
-
-</script>
-
-</body>
-  </html>
+<div class="field">
+<label>ACCOUNT ID</label>
+<input id="accountId" placeholder="CR... / VRTC...">
