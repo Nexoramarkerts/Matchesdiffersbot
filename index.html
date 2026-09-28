@@ -195,21 +195,10 @@ body{
   margin-top:5px;
 }
 
-.blue{
-  color:var(--blue);
-}
-
-.green{
-  color:var(--green-dark);
-}
-
-.red{
-  color:var(--red);
-}
-
-.orange{
-  color:var(--orange);
-}
+.blue{color:var(--blue)}
+.green{color:var(--green-dark)}
+.red{color:var(--red)}
+.orange{color:var(--orange)}
 
 .section-title{
   font-weight:900;
@@ -238,8 +227,7 @@ body{
   margin-bottom:5px;
 }
 
-input,
-select{
+input,select{
   width:100%;
   padding:11px;
   border-radius:10px;
@@ -249,8 +237,7 @@ select{
   color:var(--dark);
 }
 
-input:focus,
-select:focus{
+input:focus,select:focus{
   border-color:var(--blue);
 }
 
@@ -483,7 +470,7 @@ button:disabled{
 
 .scan-info{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(5,1fr);
   gap:7px;
   margin-bottom:10px;
 }
@@ -515,7 +502,7 @@ button:disabled{
   width:100%;
   border-collapse:collapse;
   font-size:10px;
-  min-width:750px;
+  min-width:900px;
 }
 
 .scan-table th{
@@ -585,7 +572,7 @@ button:disabled{
 .log{
   background:#202b31;
   color:#dce9e3;
-  height:230px;
+  height:260px;
   overflow:auto;
   border-radius:11px;
   padding:10px;
@@ -623,6 +610,27 @@ button:disabled{
   font-size:12px;
 }
 
+.rule-list{
+  display:grid;
+  gap:7px;
+}
+
+.rule{
+  background:#f6f9f8;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:9px;
+  font-size:10px;
+}
+
+.rule strong{
+  color:var(--blue);
+}
+
+.rule.under-rule strong{
+  color:var(--green-dark);
+}
+
 .footer{
   text-align:center;
   color:var(--grey);
@@ -641,6 +649,7 @@ button:disabled{
 }
 
 @media(max-width:760px){
+
   .grid{
     grid-template-columns:repeat(2,1fr);
   }
@@ -655,15 +664,17 @@ button:disabled{
   }
 
   .scan-info{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:repeat(2,1fr);
   }
 
   .market-list{
     grid-template-columns:1fr 1fr;
   }
+
 }
 
 @media(max-width:430px){
+
   .container{
     width:96%;
   }
@@ -715,6 +726,7 @@ button:disabled{
   .market-list{
     grid-template-columns:1fr;
   }
+
 }
 </style>
 </head>
@@ -723,748 +735,941 @@ button:disabled{
 
 <div class="container">
 
-  <div class="header">
+<!-- =====================================================
+     HEADER
+====================================================== -->
 
-    <div class="brand">
-      <div class="logo">P</div>
+<div class="header">
 
-      <div>
-        <h1>PAIRTRADE AI</h1>
-        <small>Deep Volatility Scanner</small>
-      </div>
+  <div class="brand">
+
+    <div class="logo">P</div>
+
+    <div>
+      <h1>PAIRTRADE AI</h1>
+      <small>Deep Volatility Scanner</small>
     </div>
 
-    <div class="header-right">
+  </div>
 
-      <div class="connection">
-        <span id="connectionDot" class="dot"></span>
-        <span id="connectionText" class="connection-text">OFFLINE</span>
-      </div>
+  <div class="header-right">
 
-      <div class="balance-box">
-        <small>BALANCE</small>
-        <div id="balance" class="balance">$0.00</div>
+    <div class="connection">
+
+      <span
+        id="connectionDot"
+        class="dot">
+      </span>
+
+      <span
+        id="connectionText"
+        class="connection-text">
+        OFFLINE
+      </span>
+
+    </div>
+
+    <div class="balance-box">
+
+      <small>USD BALANCE</small>
+
+      <div
+        id="balance"
+        class="balance">
+        $0.00
       </div>
 
     </div>
 
   </div>
 
+</div>
 
-  <div class="tabs">
 
-    <button class="tab active" data-tab="dashboard">
-      DASHBOARD
-    </button>
+<!-- =====================================================
+     TABS
+====================================================== -->
 
-    <button class="tab" data-tab="scanner">
-      DEEP SCANNER
-    </button>
+<div class="tabs">
 
-    <button class="tab" data-tab="strategy">
-      STRATEGIES
-    </button>
+  <button
+    class="tab active"
+    data-tab="dashboard">
+    DASHBOARD
+  </button>
 
-    <button class="tab" data-tab="activity">
-      ACTIVITY
-    </button>
+  <button
+    class="tab"
+    data-tab="scanner">
+    DEEP SCANNER
+  </button>
+
+  <button
+    class="tab"
+    data-tab="strategy">
+    STRATEGIES
+  </button>
+
+  <button
+    class="tab"
+    data-tab="activity">
+    ACTIVITY
+  </button>
+
+</div>
+
+
+<!-- =====================================================
+     DASHBOARD
+====================================================== -->
+
+<section
+  id="dashboard"
+  class="tab-page active">
+
+  <div class="grid">
+
+    <div class="card stat">
+      <div class="stat-label">Runs</div>
+      <div
+        id="runs"
+        class="stat-value blue">
+        0
+      </div>
+    </div>
+
+    <div class="card stat">
+      <div class="stat-label">Won</div>
+      <div
+        id="won"
+        class="stat-value green">
+        0
+      </div>
+    </div>
+
+    <div class="card stat">
+      <div class="stat-label">Lost</div>
+      <div
+        id="lost"
+        class="stat-value red">
+        0
+      </div>
+    </div>
+
+    <div class="card stat">
+      <div class="stat-label">Win Rate</div>
+      <div
+        id="winrate"
+        class="stat-value blue">
+        0%
+      </div>
+    </div>
 
   </div>
 
 
-  <!-- =====================================================
-       DASHBOARD
-  ====================================================== -->
+  <div class="warning">
+    Demo trading is recommended for testing. The scanner strictly
+    follows the defined conditions but no trading condition
+    guarantees a winning result.
+  </div>
 
-  <section id="dashboard" class="tab-page active">
 
-    <div class="grid">
+  <!-- CONNECTION -->
 
-      <div class="card stat">
-        <div class="stat-label">Runs</div>
-        <div id="runs" class="stat-value blue">0</div>
+  <div class="card">
+
+    <div class="section-title">
+      DERIV CONNECTION
+    </div>
+
+    <div class="controls">
+
+      <div class="field">
+
+        <label>PAT</label>
+
+        <input
+          id="pat"
+          type="password"
+          autocomplete="off"
+          placeholder="Personal Access Token">
+
       </div>
 
-      <div class="card stat">
-        <div class="stat-label">Won</div>
-        <div id="won" class="stat-value green">0</div>
+
+      <div class="field">
+
+        <label>ACCOUNT</label>
+
+        <select id="accountType">
+
+          <option value="demo">
+            DEMO
+          </option>
+
+          <option value="real">
+            REAL
+          </option>
+
+        </select>
+
       </div>
 
-      <div class="card stat">
-        <div class="stat-label">Lost</div>
-        <div id="lost" class="stat-value red">0</div>
+
+      <div class="field">
+
+        <label>ACCOUNT STATUS</label>
+
+        <input
+          id="accountDisplay"
+          value="Not connected"
+          readonly>
+
       </div>
 
-      <div class="card stat">
-        <div class="stat-label">Win Rate</div>
-        <div id="winrate" class="stat-value blue">0%</div>
+
+      <div class="field">
+
+        <label>CURRENCY</label>
+
+        <input
+          id="currencyDisplay"
+          value="USD"
+          readonly>
+
       </div>
 
     </div>
 
 
-    <div class="warning">
-      Trading uses the real Deriv account selected by your PAT.
-      Test with a Demo account first. No strategy can guarantee profits.
+    <div class="buttons">
+
+      <button
+        id="connectBtn"
+        class="btn-blue">
+        CONNECT DERIV
+      </button>
+
+      <button
+        id="disconnectBtn"
+        class="btn-grey"
+        disabled>
+        DISCONNECT
+      </button>
+
     </div>
 
 
-    <!-- CONNECTION -->
+    <div
+      id="authStatus"
+      class="account-status">
+      Waiting for Deriv connection.
+    </div>
+
+  </div>
+
+
+  <!-- LIVE MARKET -->
+
+  <div class="live-grid">
 
     <div class="card">
 
       <div class="section-title">
-        DERIV CONNECTION
+        LIVE MARKET
       </div>
 
-      <div class="controls">
+      <div class="market-main">
 
-        <div class="field">
-          <label>PAT</label>
-          <input
-            id="pat"
-            type="password"
-            placeholder="Personal Access Token">
-        </div>
+        <div>
 
-        <div class="field">
-          <label>ACCOUNT</label>
-
-          <select id="accountType">
-            <option value="demo">
-              DEMO
-            </option>
-
-            <option value="real">
-              REAL
-            </option>
-          </select>
-
-        </div>
-
-        <div class="field">
-          <label>STATUS</label>
-
-          <input
-            id="accountDisplay"
-            value="Not connected"
-            readonly>
-        </div>
-
-        <div class="field">
-          <label>CURRENCY</label>
-
-          <input
-            id="currencyDisplay"
-            value="USD"
-            readonly>
-        </div>
-
-      </div>
-
-      <div class="buttons">
-
-        <button
-          id="connectBtn"
-          class="btn-blue">
-          CONNECT DERIV
-        </button>
-
-        <button
-          id="disconnectBtn"
-          class="btn-grey"
-          disabled>
-          DISCONNECT
-        </button>
-
-      </div>
-
-      <div class="account-status" id="authStatus">
-        Waiting for Deriv connection.
-      </div>
-
-    </div>
-
-
-    <!-- LIVE MARKET -->
-
-    <div class="live-grid">
-
-      <div class="card">
-
-        <div class="section-title">
-          LIVE MARKET
-        </div>
-
-        <div class="market-main">
-
-          <div>
-            <div id="liveMarket" class="market-name">
-              —
-            </div>
-
-            <span class="badge">
-              VOLATILITY
-            </span>
+          <div
+            id="liveMarket"
+            class="market-name">
+            —
           </div>
 
-          <div id="liveState" class="ready">
-            WAITING
-          </div>
+          <span class="badge">
+            VOLATILITY
+          </span>
 
         </div>
 
-        <div id="liveDigit" class="big-digit">
-          —
-        </div>
-
-        <div id="liveQuote" class="quote">
-          Waiting for tick data
-        </div>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="section-title">
-          CURRENT TRADE
-        </div>
-
-        <div class="trade-card">
-
-          <div class="trade-status">
-            <small>CONTRACT</small>
-            <b id="tradeContract">NONE</b>
-          </div>
-
-          <div class="trade-status">
-            <small>MARKET</small>
-            <b id="tradeMarket">—</b>
-          </div>
-
-          <div class="trade-status">
-            <small>ENTRY</small>
-            <b id="tradeEntry">—</b>
-          </div>
-
-          <div class="trade-status">
-            <small>RESULT</small>
-            <b id="tradeResult">—</b>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- QUICK STRATEGY VIEW -->
-
-    <div class="card">
-
-      <div class="section-title">
-        STRATEGY STATUS
-      </div>
-
-      <div class="strategy-grid">
-
-        <div class="card strategy over">
-
-          <div class="strategy-head">
-
-            <span>
-              OVER 2
-            </span>
-
-            <span
-              id="overReadyDash"
-              class="ready">
-              WAITING
-            </span>
-
-          </div>
-
-          <div class="digits">
-
-            <div id="dashO0" class="digit-box">
-              <b>0</b>
-              <small>—</small>
-            </div>
-
-            <div id="dashO1" class="digit-box">
-              <b>1</b>
-              <small>—</small>
-            </div>
-
-            <div id="dashO2" class="digit-box">
-              <b>2</b>
-              <small>—</small>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="card strategy under">
-
-          <div class="strategy-head">
-
-            <span>
-              UNDER 7
-            </span>
-
-            <span
-              id="underReadyDash"
-              class="ready">
-              WAITING
-            </span>
-
-          </div>
-
-          <div class="digits">
-
-            <div id="dashU7" class="digit-box">
-              <b>7</b>
-              <small>—</small>
-            </div>
-
-            <div id="dashU8" class="digit-box">
-              <b>8</b>
-              <small>—</small>
-            </div>
-
-            <div id="dashU9" class="digit-box">
-              <b>9</b>
-              <small>—</small>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       DEEP SCANNER
-  ====================================================== -->
-
-  <section id="scanner" class="tab-page">
-
-    <div class="card scanner">
-
-      <div class="section-title">
-        DEEP VOLATILITY SCANNER
-      </div>
-
-      <div class="section-subtitle">
-        Least-appearing digit = RED. Every strategy condition is
-        checked before an entry is allowed.
-      </div>
-
-      <div class="scan-status">
-
-        <span
-          id="scanLight"
-          class="scan-light">
-        </span>
-
-        <span
-          id="scanText"
-          class="scan-text">
-          SCANNER STOPPED
-        </span>
-
-      </div>
-
-
-      <div class="scan-info">
-
-        <div class="info-box">
-          <small>MARKETS</small>
-          <b id="marketCount">0</b>
-        </div>
-
-        <div class="info-box">
-          <small>HISTORY</small>
-          <b id="historySizeLabel">1000</b>
-        </div>
-
-        <div class="info-box">
-          <small>SCANNED</small>
-          <b id="scannedCount">0</b>
-        </div>
-
-        <div class="info-box">
-          <small>QUALIFIED</small>
-          <b id="qualifiedCount">0</b>
-        </div>
-
-      </div>
-
-
-      <div class="progress">
         <div
-          id="scanProgress"
-          class="progress-bar">
-        </div>
-      </div>
-
-
-      <div class="buttons">
-
-        <button
-          id="startScannerBtn"
-          class="btn-green">
-          START DEEP SCANNER
-        </button>
-
-        <button
-          id="stopScannerBtn"
-          class="btn-grey"
-          disabled>
-          STOP SCANNER
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="section-title">
-        MARKET ANALYSIS
-      </div>
-
-      <div class="scan-table-wrap">
-
-        <table class="scan-table">
-
-          <thead>
-            <tr>
-              <th>MARKET</th>
-              <th>LAST</th>
-              <th>OVER 2</th>
-              <th>UNDER 7</th>
-              <th>RED DIGITS</th>
-              <th>RED %</th>
-              <th>FINAL</th>
-            </tr>
-          </thead>
-
-          <tbody id="scannerBody">
-
-            <tr>
-              <td colspan="7" class="neutral">
-                Scanner has not started.
-              </td>
-            </tr>
-
-          </tbody>
-
-        </table>
-
-      </div>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="section-title">
-        VOLATILITY MARKETS
-      </div>
-
-      <div
-        id="marketList"
-        class="market-list">
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       STRATEGIES
-  ====================================================== -->
-
-  <section id="strategy" class="tab-page">
-
-    <div class="card">
-
-      <div class="section-title">
-        TRADING SETTINGS
-      </div>
-
-      <div class="controls">
-
-        <div class="field">
-
-          <label>MODE</label>
-
-          <select id="tradeMode">
-
-            <option value="BOTH">
-              BOTH
-            </option>
-
-            <option value="OVER">
-              OVER 2
-            </option>
-
-            <option value="UNDER">
-              UNDER 7
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <div class="field">
-
-          <label>STAKE</label>
-
-          <input
-            id="stake"
-            type="number"
-            min="0.35"
-            step="0.01"
-            value="0.50">
-
-        </div>
-
-
-        <div class="field">
-
-          <label>DURATION</label>
-
-          <select id="duration">
-
-            <option value="1">
-              1 TICK
-            </option>
-
-            <option value="2">
-              2 TICKS
-            </option>
-
-            <option value="3">
-              3 TICKS
-            </option>
-
-            <option value="5">
-              5 TICKS
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <div class="field">
-
-          <label>HISTORY</label>
-
-          <select id="historySize">
-
-            <option value="250">
-              250 TICKS
-            </option>
-
-            <option value="500">
-              500 TICKS
-            </option>
-
-            <option value="1000" selected>
-              1000 TICKS
-            </option>
-
-          </select>
-
-        </div>
-
-      </div>
-
-
-      <div class="buttons">
-
-        <label class="checkbox">
-
-          <input
-            id="autoTrade"
-            type="checkbox">
-
-          AUTO TRADE
-
-        </label>
-
-
-        <label class="checkbox">
-
-          <input
-            id="oneActive"
-            type="checkbox"
-            checked>
-
-          ONE ACTIVE TRADE
-
-        </label>
-
-      </div>
-
-    </div>
-
-
-    <!-- OVER -->
-
-    <div class="card strategy over">
-
-      <div class="strategy-head">
-
-        <span>
-          OVER 2 LOGIC
-        </span>
-
-        <span
-          id="overReady"
+          id="liveState"
           class="ready">
           WAITING
-        </span>
-
-      </div>
-
-      <div class="section-subtitle">
-        0, 1 and 2 must each be below 10%, none may be RED,
-        and the latest digit must be 0 or 1.
-      </div>
-
-      <div class="digits">
-
-        <div id="over0" class="digit-box">
-          <b>0</b>
-          <small>—</small>
-        </div>
-
-        <div id="over1" class="digit-box">
-          <b>1</b>
-          <small>—</small>
-        </div>
-
-        <div id="over2" class="digit-box">
-          <b>2</b>
-          <small>—</small>
         </div>
 
       </div>
 
-    </div>
-
-
-    <!-- UNDER -->
-
-    <div class="card strategy under">
-
-      <div class="strategy-head">
-
-        <span>
-          UNDER 7 LOGIC
-        </span>
-
-        <span
-          id="underReady"
-          class="ready">
-          WAITING
-        </span>
-
-      </div>
-
-      <div class="section-subtitle">
-        7, 8 and 9 must each be below 10%, none may be RED,
-        and the latest digit must be 8 or 9.
-      </div>
-
-      <div class="digits">
-
-        <div id="under7" class="digit-box">
-          <b>7</b>
-          <small>—</small>
-        </div>
-
-        <div id="under8" class="digit-box">
-          <b>8</b>
-          <small>—</small>
-        </div>
-
-        <div id="under9" class="digit-box">
-          <b>9</b>
-          <small>—</small>
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="section-title">
-        SESSION CONTROL
-      </div>
-
-      <div class="buttons">
-
-        <button
-          id="resetBtn"
-          class="btn-red">
-          RESET SESSION
-        </button>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       ACTIVITY
-  ====================================================== -->
-
-  <section id="activity" class="tab-page">
-
-    <div class="card">
-
-      <div class="section-title">
-        ACTIVITY LOG
-      </div>
 
       <div
-        id="log"
-        class="log">
-        <div class="log-line">
-          <span class="log-time">SYSTEM</span>
-          PAIRTRADE AI ready.
-        </div>
+        id="liveDigit"
+        class="big-digit">
+        —
+      </div>
+
+
+      <div
+        id="liveQuote"
+        class="quote">
+        Waiting for tick data
       </div>
 
     </div>
 
-  </section>
 
+    <!-- CURRENT TRADE -->
 
-  <div class="footer">
-    PAIRTRADE AI • Deriv Volatility Deep Scanner
+    <div class="card">
+
+      <div class="section-title">
+        CURRENT TRADE
+      </div>
+
+      <div class="trade-card">
+
+        <div class="trade-status">
+          <small>CONTRACT</small>
+          <b id="tradeContract">NONE</b>
+        </div>
+
+        <div class="trade-status">
+          <small>MARKET</small>
+          <b id="tradeMarket">—</b>
+        </div>
+
+        <div class="trade-status">
+          <small>ENTRY</small>
+          <b id="tradeEntry">—</b>
+        </div>
+
+        <div class="trade-status">
+          <small>RESULT</small>
+          <b id="tradeResult">—</b>
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
+
+
+  <!-- STRATEGY QUICK VIEW -->
+
+  <div class="card">
+
+    <div class="section-title">
+      STRATEGY STATUS
+    </div>
+
+    <div class="strategy-grid">
+
+      <div class="card strategy over">
+
+        <div class="strategy-head">
+
+          <span>OVER 2</span>
+
+          <span
+            id="overReadyDash"
+            class="ready">
+            WAITING
+          </span>
+
+        </div>
+
+        <div class="digits">
+
+          <div
+            id="dashO0"
+            class="digit-box">
+            <b>0</b>
+            <small>—</small>
+          </div>
+
+          <div
+            id="dashO1"
+            class="digit-box">
+            <b>1</b>
+            <small>—</small>
+          </div>
+
+          <div
+            id="dashO2"
+            class="digit-box">
+            <b>2</b>
+            <small>—</small>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="card strategy under">
+
+        <div class="strategy-head">
+
+          <span>UNDER 7</span>
+
+          <span
+            id="underReadyDash"
+            class="ready">
+            WAITING
+          </span>
+
+        </div>
+
+        <div class="digits">
+
+          <div
+            id="dashU7"
+            class="digit-box">
+            <b>7</b>
+            <small>—</small>
+          </div>
+
+          <div
+            id="dashU8"
+            class="digit-box">
+            <b>8</b>
+            <small>—</small>
+          </div>
+
+          <div
+            id="dashU9"
+            class="digit-box">
+            <b>9</b>
+            <small>—</small>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     DEEP SCANNER
+====================================================== -->
+
+<section
+  id="scanner"
+  class="tab-page">
+
+  <div class="card scanner">
+
+    <div class="section-title">
+      DEEP VOLATILITY SCANNER
+    </div>
+
+    <div class="section-subtitle">
+      Scanner loads the selected tick history, calculates all
+      digit frequencies, identifies the least-appearing RED
+      digits, then applies the complete entry conditions.
+    </div>
+
+
+    <div class="scan-status">
+
+      <span
+        id="scanLight"
+        class="scan-light">
+      </span>
+
+      <span
+        id="scanText"
+        class="scan-text">
+        SCANNER STOPPED
+      </span>
+
+    </div>
+
+
+    <div class="scan-info">
+
+      <div class="info-box">
+        <small>MARKETS</small>
+        <b id="marketCount">0</b>
+      </div>
+
+      <div class="info-box">
+        <small>HISTORY</small>
+        <b id="historySizeLabel">1000</b>
+      </div>
+
+      <div class="info-box">
+        <small>SCANNED</small>
+        <b id="scannedCount">0</b>
+      </div>
+
+      <div class="info-box">
+        <small>QUALIFIED</small>
+        <b id="qualifiedCount">0</b>
+      </div>
+
+      <div class="info-box">
+        <small>ACTIVE TRADE</small>
+        <b id="activeTradeLabel">NONE</b>
+      </div>
+
+    </div>
+
+
+    <div class="progress">
+
+      <div
+        id="scanProgress"
+        class="progress-bar">
+      </div>
+
+    </div>
+
+
+    <div class="buttons">
+
+      <button
+        id="startScannerBtn"
+        class="btn-green">
+        START DEEP SCANNER
+      </button>
+
+      <button
+        id="stopScannerBtn"
+        class="btn-grey"
+        disabled>
+        STOP SCANNER
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ANALYSIS TABLE -->
+
+  <div class="card">
+
+    <div class="section-title">
+      DEEP MARKET ANALYSIS
+    </div>
+
+    <div class="scan-table-wrap">
+
+      <table class="scan-table">
+
+        <thead>
+
+          <tr>
+
+            <th>MARKET</th>
+            <th>LAST</th>
+            <th>OVER 2</th>
+            <th>UNDER 7</th>
+            <th>RED DIGITS</th>
+            <th>RED %</th>
+            <th>ENTRY</th>
+            <th>FINAL</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody id="scannerBody">
+
+          <tr>
+
+            <td
+              colspan="8"
+              class="neutral">
+              Scanner has not started.
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <!-- MARKETS -->
+
+  <div class="card">
+
+    <div class="section-title">
+      VOLATILITY MARKETS
+    </div>
+
+    <div class="section-subtitle">
+      Markets are discovered dynamically from Deriv instead of
+      relying on a fixed list.
+    </div>
+
+    <div
+      id="marketList"
+      class="market-list">
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     STRATEGIES
+====================================================== -->
+
+<section
+  id="strategy"
+  class="tab-page">
+
+
+  <div class="card">
+
+    <div class="section-title">
+      TRADING SETTINGS
+    </div>
+
+    <div class="controls">
+
+      <div class="field">
+
+        <label>MODE</label>
+
+        <select id="tradeMode">
+
+          <option value="BOTH">
+            BOTH
+          </option>
+
+          <option value="OVER">
+            OVER 2
+          </option>
+
+          <option value="UNDER">
+            UNDER 7
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>STAKE USD</label>
+
+        <input
+          id="stake"
+          type="number"
+          min="0.35"
+          step="0.01"
+          value="0.50">
+
+      </div>
+
+
+      <div class="field">
+
+        <label>DURATION</label>
+
+        <select id="duration">
+
+          <option value="1">
+            1 TICK
+          </option>
+
+          <option value="2">
+            2 TICKS
+          </option>
+
+          <option value="3">
+            3 TICKS
+          </option>
+
+          <option value="5">
+            5 TICKS
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>HISTORY</label>
+
+        <select id="historySize">
+
+          <option value="250">
+            250 TICKS
+          </option>
+
+          <option value="500">
+            500 TICKS
+          </option>
+
+          <option
+            value="1000"
+            selected>
+            1000 TICKS
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <div class="buttons">
+
+      <label class="checkbox">
+
+        <input
+          id="autoTrade"
+          type="checkbox">
+
+        AUTO TRADE
+
+      </label>
+
+
+      <label class="checkbox">
+
+        <input
+          id="oneActive"
+          type="checkbox"
+          checked>
+
+        ONE ACTIVE TRADE
+
+      </label>
+
+    </div>
+
+  </div>
+
+
+  <!-- OVER 2 -->
+
+  <div class="card strategy over">
+
+    <div class="strategy-head">
+
+      <span>
+        OVER 2
+      </span>
+
+      <span
+        id="overReady"
+        class="ready">
+        WAITING
+      </span>
+
+    </div>
+
+
+    <div class="section-subtitle">
+      Every one of 0, 1 and 2 must be below 10%.
+      None of 0, 1 or 2 may be RED.
+      Latest digit must be 0 or 1.
+    </div>
+
+
+    <div class="digits">
+
+      <div
+        id="over0"
+        class="digit-box">
+        <b>0</b>
+        <small>—</small>
+      </div>
+
+      <div
+        id="over1"
+        class="digit-box">
+        <b>1</b>
+        <small>—</small>
+      </div>
+
+      <div
+        id="over2"
+        class="digit-box">
+        <b>2</b>
+        <small>—</small>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- UNDER 7 -->
+
+  <div class="card strategy under">
+
+    <div class="strategy-head">
+
+      <span>
+        UNDER 7
+      </span>
+
+      <span
+        id="underReady"
+        class="ready">
+        WAITING
+      </span>
+
+    </div>
+
+
+    <div class="section-subtitle">
+      Every one of 7, 8 and 9 must be below 10%.
+      None of 7, 8 or 9 may be RED.
+      Latest digit must be 8 or 9.
+    </div>
+
+
+    <div class="digits">
+
+      <div
+        id="under7"
+        class="digit-box">
+        <b>7</b>
+        <small>—</small>
+      </div>
+
+      <div
+        id="under8"
+        class="digit-box">
+        <b>8</b>
+        <small>—</small>
+      </div>
+
+      <div
+        id="under9"
+        class="digit-box">
+        <b>9</b>
+        <small>—</small>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- LOGIC -->
+
+  <div class="card">
+
+    <div class="section-title">
+      ENTRY LOGIC
+    </div>
+
+    <div class="rule-list">
+
+      <div class="rule">
+        <strong>RED DIGIT:</strong>
+        the digit with the lowest frequency in the selected
+        history. Ties are all RED.
+      </div>
+
+      <div class="rule">
+        <strong>OVER 2:</strong>
+        0%, 1% and 2% frequencies must each be below 10%;
+        0, 1 and 2 must all be NO RED; latest digit must be
+        0 or 1.
+      </div>
+
+      <div class="rule under-rule">
+        <strong>UNDER 7:</strong>
+        7%, 8% and 9% frequencies must each be below 10%;
+        7, 8 and 9 must all be NO RED; latest digit must be
+        8 or 9.
+      </div>
+
+      <div class="rule">
+        <strong>FINAL CHECK:</strong>
+        conditions are recalculated immediately before the
+        proposal and again immediately before BUY.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="section-title">
+      SESSION CONTROL
+    </div>
+
+    <div class="buttons">
+
+      <button
+        id="resetBtn"
+        class="btn-red">
+        RESET SESSION
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     ACTIVITY
+====================================================== -->
+
+<section
+  id="activity"
+  class="tab-page">
+
+  <div class="card">
+
+    <div class="section-title">
+      ACTIVITY LOG
+    </div>
+
+    <div
+      id="log"
+      class="log">
+
+      <div class="log-line">
+        <span class="log-time">
+          SYSTEM
+        </span>
+        PAIRTRADE AI ready.
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<div class="footer">
+  PAIRTRADE AI • Deep Volatility Scanner • USD
+</div>
 
 </div>
 
@@ -1516,11 +1721,14 @@ let stats = {
 };
 
 let balanceValue = 0;
+
 let balanceCurrency = "USD";
+
+let lastMarketDiscovery = 0;
 
 
 /* =====================================================
-   HELPERS
+   BASIC HELPERS
 ===================================================== */
 
 function $(id){
@@ -1534,45 +1742,65 @@ function nextReq(){
 }
 
 
-function log(message){
+function sleep(ms){
 
-  const box = $("log");
-
-  if(!box){
-    return;
-  }
-
-  const line =
-    document.createElement("div");
-
-  line.className =
-    "log-line";
-
-  const time =
-    new Date().toLocaleTimeString();
-
-  line.innerHTML =
-    '<span class="log-time">' +
-    time +
-    '</span> ' +
-    escapeHtml(String(message));
-
-  box.appendChild(line);
-
-  box.scrollTop =
-    box.scrollHeight;
+  return new Promise(
+    resolve =>
+      setTimeout(
+        resolve,
+        ms
+      )
+  );
 
 }
 
 
 function escapeHtml(value){
 
-  return value
+  return String(value)
     .replaceAll("&","&amp;")
     .replaceAll("<","&lt;")
     .replaceAll(">","&gt;")
     .replaceAll('"',"&quot;")
     .replaceAll("'","&#039;");
+
+}
+
+
+function log(message){
+
+  const box =
+    $("log");
+
+  if(!box){
+    return;
+  }
+
+  const line =
+    document.createElement(
+      "div"
+    );
+
+  line.className =
+    "log-line";
+
+  const time =
+    new Date()
+      .toLocaleTimeString();
+
+  line.innerHTML =
+    '<span class="log-time">' +
+    escapeHtml(time) +
+    '</span> ' +
+    escapeHtml(
+      String(message)
+    );
+
+  box.appendChild(line);
+
+  box.scrollTop =
+    box.scrollHeight;
+
 }
 
 
@@ -1589,14 +1817,18 @@ function setConnection(state){
 
   if(state === "connected"){
 
-    dot.classList.add("connected");
+    dot.classList.add(
+      "connected"
+    );
 
     text.textContent =
       "CONNECTED";
 
   }else if(state === "error"){
 
-    dot.classList.add("error");
+    dot.classList.add(
+      "error"
+    );
 
     text.textContent =
       "ERROR";
@@ -1605,12 +1837,16 @@ function setConnection(state){
 
     text.textContent =
       "OFFLINE";
+
   }
 
 }
 
 
-function setScanStatus(state,text){
+function setScanStatus(
+  state,
+  text
+){
 
   const light =
     $("scanLight");
@@ -1622,23 +1858,30 @@ function setScanStatus(state,text){
     "scan-light";
 
   if(state === "active"){
-    light.classList.add("active");
+    light.classList.add(
+      "active"
+    );
   }
 
   if(state === "found"){
-    light.classList.add("found");
+    light.classList.add(
+      "found"
+    );
   }
 
   if(state === "error"){
-    light.classList.add("error");
+    light.classList.add(
+      "error"
+    );
   }
 
   label.textContent =
     text;
+
 }
 
 
-function formatMoney(value){
+function formatUSD(value){
 
   const number =
     Number(value);
@@ -1647,15 +1890,14 @@ function formatMoney(value){
     return "$0.00";
   }
 
-  return (
-    "$" +
-    number.toFixed(2)
-  );
+  return "$" +
+    number.toFixed(2);
+
 }
 
 
 /* =====================================================
-   LAST DIGIT
+   DIGIT EXTRACTION
 ===================================================== */
 
 function getLastDigit(tick){
@@ -1674,46 +1916,78 @@ function getLastDigit(tick){
     return null;
   }
 
-  quote =
+  const quoteNumber =
     Number(quote);
 
-  if(!Number.isFinite(quote)){
+  if(!Number.isFinite(quoteNumber)){
     return null;
   }
 
-  let decimals =
-    Number(tick.pip_size);
+
+  let pip =
+    Number(
+      tick.pip_size
+    );
+
 
   if(
-    !Number.isFinite(decimals) ||
-    decimals < 0 ||
-    decimals > 10
+    !Number.isFinite(pip)
   ){
 
-    const text =
-      String(tick.quote);
+    if(
+      tick.display_value !==
+      undefined
+    ){
 
-    if(text.includes(".")){
-      decimals =
-        text.split(".")[1].length;
-    }else{
-      decimals = 0;
+      const text =
+        String(
+          tick.display_value
+        );
+
+      if(text.includes(".")){
+
+        pip =
+          text
+            .split(".")[1]
+            .length;
+
+      }
+
     }
+
   }
 
+
+  if(
+    !Number.isFinite(pip) ||
+    pip < 0 ||
+    pip > 10
+  ){
+
+    pip = 2;
+
+  }
+
+
   const formatted =
-    quote.toFixed(decimals);
+    quoteNumber.toFixed(pip);
 
   const clean =
-    formatted.replace(/\D/g,"");
+    formatted.replace(
+      /\D/g,
+      ""
+    );
+
 
   if(!clean.length){
     return null;
   }
 
+
   return Number(
     clean.slice(-1)
   );
+
 }
 
 
@@ -1723,9 +1997,21 @@ function quoteText(tick){
     return "—";
   }
 
+  if(
+    tick.display_value !==
+    undefined
+  ){
+
+    return String(
+      tick.display_value
+    );
+
+  }
+
   return String(
     tick.quote ?? "—"
   );
+
 }
 
 
@@ -1742,68 +2028,106 @@ function calculateCounts(history){
     return counts;
   }
 
-  history.forEach(tick => {
+  history.forEach(
+    tick => {
 
-    const digit =
-      getLastDigit(tick);
+      const digit =
+        getLastDigit(tick);
 
-    if(
-      digit !== null &&
-      digit >= 0 &&
-      digit <= 9
-    ){
+      if(
+        digit !== null &&
+        digit >= 0 &&
+        digit <= 9
+      ){
 
-      counts[digit]++;
+        counts[digit]++;
+
+      }
+
     }
-
-  });
+  );
 
   return counts;
+
 }
 
 
-function calculatePercentages(counts,total){
+function calculatePercentages(
+  counts,
+  total
+){
 
   return counts.map(
     count =>
       total > 0
-        ? (count / total) * 100
+        ? (
+            count /
+            total *
+            100
+          )
         : 0
   );
 
 }
 
 
-function getRedDigits(counts,total){
+function getRedDigits(
+  counts,
+  total
+){
 
   if(!total){
     return [];
   }
 
   const minimum =
-    Math.min(...counts);
+    Math.min(
+      ...counts
+    );
 
   const red = [];
 
-  for(let i=0;i<10;i++){
+  for(
+    let i = 0;
+    i < 10;
+    i++
+  ){
 
-    if(counts[i] === minimum){
+    if(
+      counts[i] ===
+      minimum
+    ){
+
       red.push(i);
+
     }
 
   }
 
   return red;
+
 }
 
 
-function analyseHistory(history){
+function analyseHistory(
+  history
+){
+
+  const safeHistory =
+    Array.isArray(history)
+      ? history
+      : [];
+
 
   const counts =
-    calculateCounts(history);
+    calculateCounts(
+      safeHistory
+    );
+
 
   const total =
-    history.length;
+    safeHistory.length;
+
 
   const percentages =
     calculatePercentages(
@@ -1811,19 +2135,27 @@ function analyseHistory(history){
       total
     );
 
+
   const redDigits =
     getRedDigits(
       counts,
       total
     );
 
+
   const latestTick =
-    history.length
-      ? history[history.length - 1]
+    safeHistory.length
+      ? safeHistory[
+          safeHistory.length - 1
+        ]
       : null;
 
+
   const latestDigit =
-    getLastDigit(latestTick);
+    getLastDigit(
+      latestTick
+    );
+
 
   return {
     counts,
@@ -1837,17 +2169,24 @@ function analyseHistory(history){
 
 
 /* =====================================================
-   STRATEGY CONDITIONS
+   OVER 2
 ===================================================== */
 
-function overConditions(analysis){
+function overConditions(
+  analysis
+){
 
   if(!analysis){
+
     return {
       ready:false,
-      reasons:["No analysis"]
+      reasons:[
+        "No analysis"
+      ]
     };
+
   }
+
 
   const p =
     analysis.percentages;
@@ -1860,38 +2199,60 @@ function overConditions(analysis){
 
   const reasons = [];
 
+
   if(!(p[0] < 10)){
-    reasons.push("0 >= 10%");
+    reasons.push(
+      "0 >= 10%"
+    );
   }
+
 
   if(!(p[1] < 10)){
-    reasons.push("1 >= 10%");
+    reasons.push(
+      "1 >= 10%"
+    );
   }
+
 
   if(!(p[2] < 10)){
-    reasons.push("2 >= 10%");
+    reasons.push(
+      "2 >= 10%"
+    );
   }
+
 
   if(red.includes(0)){
-    reasons.push("0 RED");
+    reasons.push(
+      "0 RED"
+    );
   }
+
 
   if(red.includes(1)){
-    reasons.push("1 RED");
+    reasons.push(
+      "1 RED"
+    );
   }
 
+
   if(red.includes(2)){
-    reasons.push("2 RED");
+    reasons.push(
+      "2 RED"
+    );
   }
+
 
   if(
     latest !== 0 &&
     latest !== 1
   ){
+
     reasons.push(
       "Entry digit not 0/1"
     );
+
   }
+
 
   return {
     ready:
@@ -1902,14 +2263,25 @@ function overConditions(analysis){
 }
 
 
-function underConditions(analysis){
+/* =====================================================
+   UNDER 7
+===================================================== */
+
+function underConditions(
+  analysis
+){
 
   if(!analysis){
+
     return {
       ready:false,
-      reasons:["No analysis"]
+      reasons:[
+        "No analysis"
+      ]
     };
+
   }
+
 
   const p =
     analysis.percentages;
@@ -1922,38 +2294,60 @@ function underConditions(analysis){
 
   const reasons = [];
 
+
   if(!(p[7] < 10)){
-    reasons.push("7 >= 10%");
+    reasons.push(
+      "7 >= 10%"
+    );
   }
+
 
   if(!(p[8] < 10)){
-    reasons.push("8 >= 10%");
+    reasons.push(
+      "8 >= 10%"
+    );
   }
+
 
   if(!(p[9] < 10)){
-    reasons.push("9 >= 10%");
+    reasons.push(
+      "9 >= 10%"
+    );
   }
+
 
   if(red.includes(7)){
-    reasons.push("7 RED");
+    reasons.push(
+      "7 RED"
+    );
   }
+
 
   if(red.includes(8)){
-    reasons.push("8 RED");
+    reasons.push(
+      "8 RED"
+    );
   }
 
+
   if(red.includes(9)){
-    reasons.push("9 RED");
+    reasons.push(
+      "9 RED"
+    );
   }
+
 
   if(
     latest !== 8 &&
     latest !== 9
   ){
+
     reasons.push(
       "Entry digit not 8/9"
     );
+
   }
+
 
   return {
     ready:
@@ -1965,25 +2359,102 @@ function underConditions(analysis){
 
 
 /* =====================================================
-   VOLATILITY FILTER
+   VOLATILITY MARKET FILTER
 ===================================================== */
 
-function isVolatilitySymbol(symbol){
+function isVolatilitySymbol(
+  item
+){
 
-  if(!symbol){
+  if(!item){
     return false;
   }
 
-  return (
-    /^R_\d+$/i.test(symbol) ||
+
+  const symbol =
+    String(
+      item.underlying_symbol ||
+      item.symbol ||
+      ""
+    );
+
+
+  const name =
+    String(
+      item.underlying_symbol_name ||
+      item.display_name ||
+      ""
+    );
+
+
+  const type =
+    String(
+      item.underlying_symbol_type ||
+      item.symbol_type ||
+      ""
+    );
+
+
+  /*
+    Known classic volatility formats.
+  */
+
+  if(
+    /^R_\d+$/i.test(symbol)
+  ){
+
+    return true;
+
+  }
+
+
+  if(
     /^1HZ\d+V$/i.test(symbol)
-  );
+  ){
+
+    return true;
+
+  }
+
+
+  /*
+    New volatility indices can be identified
+    from the active-symbol metadata/name.
+  */
+
+  const volatilityName =
+    /volatility/i.test(
+      name
+    );
+
+
+  const syntheticType =
+    /synthetic/i.test(
+      type
+    );
+
+
+  if(
+    volatilityName &&
+    (
+      syntheticType ||
+      /^1HZ/i.test(symbol) ||
+      /^R_/i.test(symbol)
+    )
+  ){
+
+    return true;
+
+  }
+
+
+  return false;
 
 }
 
 
 /* =====================================================
-   PUBLIC MARKET CONNECTION
+   PUBLIC CONNECTION
 ===================================================== */
 
 function connectPublic(){
@@ -1999,33 +2470,48 @@ function connectPublic(){
 
       }
 
+
+      publicReady =
+        false;
+
+
       publicWs =
         new WebSocket(
           PUBLIC_WS
         );
 
-      publicWs.onopen = () => {
 
-        publicReady = true;
+      publicWs.onopen =
+        () => {
 
-        log(
-          "Public market connection ready."
-        );
+          publicReady =
+            true;
 
-        const reqId =
-          nextReq();
+          log(
+            "Public market connection ready."
+          );
 
-        publicWs.send(
-          JSON.stringify({
-            active_symbols:"brief",
-            product_type:"basic",
-            req_id:reqId
-          })
-        );
 
-        resolve();
+          const reqId =
+            nextReq();
 
-      };
+
+          /*
+            New API active_symbols request.
+          */
+
+          publicWs.send(
+            JSON.stringify({
+              active_symbols:
+                "brief",
+              req_id:reqId
+            })
+          );
+
+
+          resolve();
+
+        };
 
 
       publicWs.onmessage =
@@ -2038,7 +2524,9 @@ function connectPublic(){
                 event.data
               );
 
-            handlePublicMessage(data);
+            handlePublicMessage(
+              data
+            );
 
           }catch(error){
 
@@ -2059,35 +2547,42 @@ function connectPublic(){
             error
           );
 
+
           if(!publicReady){
+
             reject(
               new Error(
                 "Public market WebSocket failed."
               )
             );
+
           }
 
         };
 
 
-      publicWs.onclose = () => {
+      publicWs.onclose =
+        () => {
 
-        publicReady = false;
+          publicReady =
+            false;
 
-        if(scannerRunning){
 
-          log(
-            "Public market connection closed."
-          );
+          if(scannerRunning){
 
-          setScanStatus(
-            "error",
-            "MARKET CONNECTION CLOSED"
-          );
+            setScanStatus(
+              "error",
+              "MARKET CONNECTION CLOSED"
+            );
 
-        }
 
-      };
+            log(
+              "Public market connection closed."
+            );
+
+          }
+
+        };
 
     }
   );
@@ -2099,7 +2594,9 @@ function connectPublic(){
    PUBLIC MESSAGE HANDLER
 ===================================================== */
 
-function handlePublicMessage(data){
+function handlePublicMessage(
+  data
+){
 
   if(data.error){
 
@@ -2112,6 +2609,7 @@ function handlePublicMessage(data){
     );
 
     return;
+
   }
 
 
@@ -2127,22 +2625,65 @@ function handlePublicMessage(data){
         ? data.active_symbols
         : [];
 
+
     markets =
       list
-        .filter(item =>
-          isVolatilitySymbol(
-            item.symbol
-          )
+        .filter(
+          isVolatilitySymbol
         )
-        .map(item => ({
-          symbol:item.symbol,
-          display_name:
-            item.display_name ||
-            item.symbol,
-          market:
-            item.market ||
-            "synthetic"
-        }));
+        .map(
+          item => ({
+
+            symbol:
+              item.underlying_symbol ||
+              item.symbol,
+
+            display_name:
+              item.underlying_symbol_name ||
+              item.display_name ||
+              item.underlying_symbol ||
+              item.symbol,
+
+            market:
+              item.market ||
+              "synthetic",
+
+            type:
+              item.underlying_symbol_type ||
+              item.symbol_type ||
+              "synthetic",
+
+            pip_size:
+              item.pip_size ??
+              item.pip ??
+              null
+
+          })
+        )
+        .filter(
+          item =>
+            item.symbol
+        );
+
+
+    const unique =
+      new Map();
+
+
+    markets.forEach(
+      item =>
+        unique.set(
+          item.symbol,
+          item
+        )
+    );
+
+
+    markets =
+      Array.from(
+        unique.values()
+      );
+
 
     markets.sort(
       (a,b) =>
@@ -2151,44 +2692,84 @@ function handlePublicMessage(data){
         )
     );
 
+
+    lastMarketDiscovery =
+      Date.now();
+
+
     $("marketCount").textContent =
       markets.length;
 
+
     renderMarketList();
+
 
     log(
       markets.length +
       " volatility markets discovered."
     );
 
+
+    if(
+      markets.length === 0
+    ){
+
+      log(
+        "No volatility markets returned by Deriv."
+      );
+
+      return;
+
+    }
+
+
     subscribeMarkets();
 
-    loadAllHistories();
+
+    if(scannerRunning){
+
+      loadAllHistories();
+
+    }
+
 
     return;
+
   }
 
 
-  if(data.msg_type === "history"){
+  if(
+    data.msg_type ===
+    "history"
+  ){
 
-    handleHistory(data);
+    handleHistory(
+      data
+    );
 
     return;
+
   }
 
 
-  if(data.msg_type === "tick"){
+  if(
+    data.msg_type ===
+    "tick"
+  ){
 
-    handleLiveTick(data);
+    handleLiveTick(
+      data
+    );
 
     return;
+
   }
 
 }
 
 
 /* =====================================================
-   SUBSCRIBE TO VOLATILITY MARKETS
+   SUBSCRIBE MARKETS
 ===================================================== */
 
 function subscribeMarkets(){
@@ -2198,20 +2779,39 @@ function subscribeMarkets(){
     publicWs.readyState !==
     WebSocket.OPEN
   ){
+
     return;
+
   }
+
 
   markets.forEach(
     market => {
 
-      publicWs.send(
-        JSON.stringify({
-          ticks:
-            market.symbol,
-          subscribe:1,
-          req_id:nextReq()
-        })
-      );
+      try{
+
+        publicWs.send(
+          JSON.stringify({
+
+            ticks:
+              market.symbol,
+
+            subscribe:1,
+
+            req_id:
+              nextReq()
+
+          })
+        );
+
+      }catch(error){
+
+        log(
+          "Tick subscription failed for " +
+          market.symbol
+        );
+
+      }
 
     }
   );
@@ -2229,24 +2829,31 @@ async function loadAllHistories(){
     return;
   }
 
+
   selectedHistory =
     Number(
       $("historySize").value
     );
 
+
   $("historySizeLabel").textContent =
     selectedHistory;
+
 
   $("scannedCount").textContent =
     "0";
 
+
   $("qualifiedCount").textContent =
     "0";
+
 
   $("scanProgress").style.width =
     "0%";
 
+
   let completed = 0;
+
 
   for(
     const market of markets
@@ -2257,35 +2864,48 @@ async function loadAllHistories(){
       publicWs.readyState !==
       WebSocket.OPEN
     ){
+
       break;
+
     }
+
 
     await requestHistory(
       market.symbol,
       selectedHistory
     );
 
+
     completed++;
+
 
     $("scannedCount").textContent =
       completed;
+
 
     $("scanProgress").style.width =
       (
         completed /
         markets.length *
         100
-      ) + "%";
+      ) +
+      "%";
 
-    await sleep(80);
+
+    await sleep(60);
 
   }
 
-  log(
-    "Deep history loading completed."
-  );
 
   evaluateAllMarkets();
+
+
+  log(
+    "Deep history loading completed: " +
+    completed +
+    "/" +
+    markets.length
+  );
 
 }
 
@@ -2305,25 +2925,43 @@ function requestHistory(
       const reqId =
         nextReq();
 
+
       pendingRequests[
         reqId
       ] = {
+
         type:"history",
+
         symbol,
+
         resolve
+
       };
+
 
       try{
 
         publicWs.send(
           JSON.stringify({
-            ticks_history:symbol,
-            count,
-            end:"latest",
-            style:"ticks",
-            req_id:reqId
+
+            ticks_history:
+              symbol,
+
+            count:
+              count,
+
+            end:
+              "latest",
+
+            style:
+              "ticks",
+
+            req_id:
+              reqId
+
           })
         );
+
 
       }catch(error){
 
@@ -2331,9 +2969,11 @@ function requestHistory(
           reqId
         ];
 
+
         resolve();
 
       }
+
 
       setTimeout(
         () => {
@@ -2353,7 +2993,7 @@ function requestHistory(
           }
 
         },
-        15000
+        20000
       );
 
     }
@@ -2366,16 +3006,33 @@ function requestHistory(
    HISTORY RESPONSE
 ===================================================== */
 
-function handleHistory(data){
-
-  const symbol =
-    data.echo_req?.ticks_history ||
-    data.echo_req?.symbol;
+function handleHistory(
+  data
+){
 
   const reqId =
     data.req_id;
 
+
+  const pending =
+    pendingRequests[
+      reqId
+    ];
+
+
+  let symbol =
+    pending?.symbol ||
+    data.echo_req?.ticks_history ||
+    data.echo_req?.symbol;
+
+
   let history = [];
+
+
+  /*
+    New API may return tick history
+    with arrays/objects depending on response.
+  */
 
   if(
     Array.isArray(
@@ -2385,18 +3042,34 @@ function handleHistory(data){
 
     history =
       data.history.map(
-        (quote,index) => {
+        (item,index) => {
+
+          if(
+            typeof item ===
+            "object"
+          ){
+
+            return item;
+
+          }
+
 
           const epoch =
             Array.isArray(
               data.history_times
             )
-              ? data.history_times[index]
+              ? data.history_times[
+                  index
+                ]
               : null;
 
+
           return {
-            quote,
-            epoch
+
+            quote:item,
+
+            epoch:epoch
+
           };
 
         }
@@ -2405,39 +3078,60 @@ function handleHistory(data){
   }
 
 
-  const market =
-    symbol ||
-    findPendingHistorySymbol(
-      reqId
-    );
+  /*
+    If new API provides a tick array,
+    preserve it.
+  */
 
-  if(market){
+  if(
+    Array.isArray(
+      data.ticks
+    )
+  ){
+
+    history =
+      data.ticks;
+
+  }
+
+
+  if(symbol){
 
     const state =
-      getMarketState(market);
+      getMarketState(
+        symbol
+      );
+
 
     state.history =
       history.slice(
         -selectedHistory
       );
 
-    state.analysis =
-      analyseHistory(
-        state.history
-      );
+
+    /*
+      Do not evaluate until the
+      requested history is complete.
+    */
+
+    if(
+      state.history.length >=
+      selectedHistory
+    ){
+
+      state.analysis =
+        analyseHistory(
+          state.history
+        );
+
+    }
 
   }
 
 
-  if(
-    pendingRequests[
-      reqId
-    ]
-  ){
+  if(pending){
 
-    pendingRequests[
-      reqId
-    ].resolve();
+    pending.resolve();
 
     delete pendingRequests[
       reqId
@@ -2446,24 +3140,16 @@ function handleHistory(data){
   }
 
 
-  evaluateMarket(
-    market
-  );
+  if(
+    symbol &&
+    getMarketState(symbol).analysis
+  ){
 
-}
+    evaluateMarket(
+      symbol
+    );
 
-
-/* =====================================================
-   FIND PENDING SYMBOL
-===================================================== */
-
-function findPendingHistorySymbol(
-  reqId
-){
-
-  return pendingRequests[
-    reqId
-  ]?.symbol || null;
+  }
 
 }
 
@@ -2472,20 +3158,38 @@ function findPendingHistorySymbol(
    MARKET STATE
 ===================================================== */
 
-function getMarketState(symbol){
+function getMarketState(
+  symbol
+){
 
-  if(!marketState[symbol]){
+  if(
+    !marketState[
+      symbol
+    ]
+  ){
 
-    marketState[symbol] = {
+    marketState[
+      symbol
+    ] = {
+
       history:[],
+
       analysis:null,
+
       latestTick:null,
-      lastEvaluation:0
+
+      lastEvaluation:0,
+
+      lastTradeAttempt:0
+
     };
 
   }
 
-  return marketState[symbol];
+
+  return marketState[
+    symbol
+  ];
 
 }
 
@@ -2494,36 +3198,61 @@ function getMarketState(symbol){
    LIVE TICK
 ===================================================== */
 
-function handleLiveTick(data){
+function handleLiveTick(
+  data
+){
 
   const tick =
     data.tick;
+
 
   if(!tick){
     return;
   }
 
+
   const symbol =
+    tick.underlying_symbol ||
     tick.symbol;
 
-  if(!isVolatilitySymbol(symbol)){
+
+  if(
+    !symbol ||
+    !isVolatilitySymbol({
+      underlying_symbol:
+        symbol
+    })
+  ){
+
     return;
+
   }
 
+
   const state =
-    getMarketState(symbol);
+    getMarketState(
+      symbol
+    );
+
 
   state.latestTick =
     tick;
 
+
   const digit =
-    getLastDigit(tick);
+    getLastDigit(
+      tick
+    );
+
 
   if(
     digit !== null
   ){
 
-    state.history.push(tick);
+    state.history.push(
+      tick
+    );
+
 
     if(
       state.history.length >
@@ -2537,6 +3266,12 @@ function handleLiveTick(data){
 
     }
 
+
+    /*
+      Only evaluate once the complete
+      selected history exists.
+    */
+
     if(
       state.history.length >=
       selectedHistory
@@ -2546,6 +3281,7 @@ function handleLiveTick(data){
         analyseHistory(
           state.history
         );
+
 
       evaluateMarket(
         symbol
@@ -2565,7 +3301,7 @@ function handleLiveTick(data){
 
 
 /* =====================================================
-   UPDATE LIVE MARKET
+   LIVE MARKET UI
 ===================================================== */
 
 function updateLiveMarket(
@@ -2576,22 +3312,31 @@ function updateLiveMarket(
   currentMarket =
     symbol;
 
+
   $("liveMarket").textContent =
     symbol;
 
+
   $("liveDigit").textContent =
-    getLastDigit(tick) ??
-    "—";
+    getLastDigit(
+      tick
+    ) ?? "—";
+
 
   $("liveQuote").textContent =
     "Quote: " +
     quoteText(tick);
 
+
   const state =
-    getMarketState(symbol);
+    getMarketState(
+      symbol
+    );
+
 
   const analysis =
     state.analysis;
+
 
   if(!analysis){
 
@@ -2602,17 +3347,21 @@ function updateLiveMarket(
       "ready";
 
     return;
+
   }
+
 
   const over =
     overConditions(
       analysis
     );
 
+
   const under =
     underConditions(
       analysis
     );
+
 
   if(
     over.ready ||
@@ -2639,12 +3388,13 @@ function updateLiveMarket(
 
 
 /* =====================================================
-   EVALUATE ALL MARKETS
+   EVALUATE ALL
 ===================================================== */
 
 function evaluateAllMarkets(){
 
   let qualified = 0;
+
 
   markets.forEach(
     market => {
@@ -2653,6 +3403,7 @@ function evaluateAllMarkets(){
         evaluateMarket(
           market.symbol
         );
+
 
       if(
         result &&
@@ -2669,6 +3420,7 @@ function evaluateAllMarkets(){
     }
   );
 
+
   $("qualifiedCount").textContent =
     qualified;
 
@@ -2679,34 +3431,49 @@ function evaluateAllMarkets(){
    EVALUATE ONE MARKET
 ===================================================== */
 
-function evaluateMarket(symbol){
+function evaluateMarket(
+  symbol
+){
 
   if(!symbol){
     return null;
   }
 
-  const state =
-    getMarketState(symbol);
 
-  if(!state.analysis){
+  const state =
+    getMarketState(
+      symbol
+    );
+
+
+  if(
+    !state.analysis
+  ){
+
     return null;
+
   }
+
 
   const analysis =
     state.analysis;
+
 
   const over =
     overConditions(
       analysis
     );
 
+
   const under =
     underConditions(
       analysis
     );
 
+
   state.lastEvaluation =
     Date.now();
+
 
   renderScannerRow(
     symbol,
@@ -2715,10 +3482,12 @@ function evaluateMarket(symbol){
     under
   );
 
+
   updateStrategyUI(
     analysis,
     symbol
   );
+
 
   if(scannerRunning){
 
@@ -2731,18 +3500,36 @@ function evaluateMarket(symbol){
 
   }
 
+
   return {
+
     analysis,
+
     over,
+
     under
+
   };
 
 }
 
 
 /* =====================================================
-   RENDER SCANNER
+   SCANNER ROW
 ===================================================== */
+
+function cssSafe(
+  value
+){
+
+  return String(value)
+    .replace(
+      /[^a-zA-Z0-9_-]/g,
+      "_"
+    );
+
+}
+
 
 function renderScannerRow(
   symbol,
@@ -2754,35 +3541,47 @@ function renderScannerRow(
   const body =
     $("scannerBody");
 
+
   let row =
     document.getElementById(
       "row-" +
       cssSafe(symbol)
     );
 
+
   if(!row){
 
     row =
-      document.createElement("tr");
+      document.createElement(
+        "tr"
+      );
+
 
     row.id =
       "row-" +
       cssSafe(symbol);
 
-    body.appendChild(row);
+
+    body.appendChild(
+      row
+    );
 
   }
+
 
   const red =
     analysis.redDigits
       .map(String)
       .join(",");
 
+
   let finalText =
     "WAIT";
 
+
   let finalClass =
     "neutral";
+
 
   if(over.ready){
 
@@ -2802,6 +3601,12 @@ function renderScannerRow(
 
   }
 
+
+  const entryDigit =
+    analysis.latestDigit ??
+    "—";
+
+
   row.innerHTML =
 
     "<td><b>" +
@@ -2809,10 +3614,7 @@ function renderScannerRow(
     "</b></td>" +
 
     "<td>" +
-    (
-      analysis.latestDigit ??
-      "—"
-    ) +
+    entryDigit +
     "</td>" +
 
     "<td class='" +
@@ -2855,9 +3657,22 @@ function renderScannerRow(
         ? (
           Math.min(
             ...analysis.percentages
-          ).toFixed(2)
-          + "%"
+          ).toFixed(2) +
+          "%"
         )
+        : "—"
+    ) +
+    "</td>" +
+
+    "<td>" +
+    (
+      entryDigit === 0 ||
+      entryDigit === 1
+        ? "0/1"
+        :
+      entryDigit === 8 ||
+      entryDigit === 9
+        ? "8/9"
         : "—"
     ) +
     "</td>" +
@@ -2871,19 +3686,8 @@ function renderScannerRow(
 }
 
 
-function cssSafe(value){
-
-  return String(value)
-    .replace(
-      /[^a-zA-Z0-9_-]/g,
-      "_"
-    );
-
-}
-
-
 /* =====================================================
-   UPDATE STRATEGY UI
+   STRATEGY UI
 ===================================================== */
 
 function updateStrategyUI(
@@ -2891,76 +3695,29 @@ function updateStrategyUI(
   symbol
 ){
 
-  updateDigitBox(
-    "over0",
-    0,
-    analysis
-  );
+  const ids = [
+    ["over0",0],
+    ["over1",1],
+    ["over2",2],
+    ["under7",7],
+    ["under8",8],
+    ["under9",9],
+    ["dashO0",0],
+    ["dashO1",1],
+    ["dashO2",2],
+    ["dashU7",7],
+    ["dashU8",8],
+    ["dashU9",9]
+  ];
 
-  updateDigitBox(
-    "over1",
-    1,
-    analysis
-  );
 
-  updateDigitBox(
-    "over2",
-    2,
-    analysis
-  );
-
-  updateDigitBox(
-    "under7",
-    7,
-    analysis
-  );
-
-  updateDigitBox(
-    "under8",
-    8,
-    analysis
-  );
-
-  updateDigitBox(
-    "under9",
-    9,
-    analysis
-  );
-
-  updateDigitBox(
-    "dashO0",
-    0,
-    analysis
-  );
-
-  updateDigitBox(
-    "dashO1",
-    1,
-    analysis
-  );
-
-  updateDigitBox(
-    "dashO2",
-    2,
-    analysis
-  );
-
-  updateDigitBox(
-    "dashU7",
-    7,
-    analysis
-  );
-
-  updateDigitBox(
-    "dashU8",
-    8,
-    analysis
-  );
-
-  updateDigitBox(
-    "dashU9",
-    9,
-    analysis
+  ids.forEach(
+    pair =>
+      updateDigitBox(
+        pair[0],
+        pair[1],
+        analysis
+      )
   );
 
 
@@ -2968,6 +3725,7 @@ function updateStrategyUI(
     overConditions(
       analysis
     );
+
 
   const under =
     underConditions(
@@ -2980,15 +3738,18 @@ function updateStrategyUI(
     over.ready
   );
 
+
   setReadyElement(
     $("underReady"),
     under.ready
   );
 
+
   setReadyElement(
     $("overReadyDash"),
     over.ready
   );
+
 
   setReadyElement(
     $("underReadyDash"),
@@ -3007,29 +3768,35 @@ function updateDigitBox(
   const box =
     $(id);
 
+
   if(!box){
     return;
   }
+
 
   const percent =
     analysis.percentages[
       digit
     ] || 0;
 
+
   const isRed =
     analysis.redDigits.includes(
       digit
     );
+
 
   box.classList.toggle(
     "red-digit",
     isRed
   );
 
+
   const small =
     box.querySelector(
       "small"
     );
+
 
   if(small){
 
@@ -3041,6 +3808,7 @@ function updateDigitBox(
           ? " • RED"
           : " • NO RED"
       );
+
 
     small.className =
       isRed
@@ -3061,14 +3829,17 @@ function setReadyElement(
     return;
   }
 
+
   element.className =
     "ready";
+
 
   if(ready){
 
     element.classList.add(
       "good"
     );
+
 
     element.textContent =
       "READY";
@@ -3092,7 +3863,10 @@ function renderMarketList(){
   const box =
     $("marketList");
 
-  box.innerHTML = "";
+
+  box.innerHTML =
+    "";
+
 
   markets.forEach(
     market => {
@@ -3102,8 +3876,10 @@ function renderMarketList(){
           "div"
         );
 
+
       div.className =
         "market-item";
+
 
       div.innerHTML =
         "<b>" +
@@ -3111,13 +3887,17 @@ function renderMarketList(){
           market.symbol
         ) +
         "</b>" +
+
         "<small>" +
         escapeHtml(
           market.display_name
         ) +
         "</small>";
 
-      box.appendChild(div);
+
+      box.appendChild(
+        div
+      );
 
     }
   );
@@ -3126,13 +3906,14 @@ function renderMarketList(){
 
 
 /* =====================================================
-   AUTOMATIC ACCOUNT DISCOVERY
+   ACCOUNT DISCOVERY
 ===================================================== */
 
 async function discoverAccount(){
 
   const pat =
     $("pat").value.trim();
+
 
   if(!pat){
 
@@ -3153,11 +3934,13 @@ async function discoverAccount(){
       API_BASE +
       "/trading/v1/options/accounts",
       {
+
         method:"GET",
 
         headers:{
           "Authorization":
-            "Bearer " + pat,
+            "Bearer " +
+            pat,
 
           "Deriv-App-ID":
             HIDDEN_APP_ID
@@ -3168,6 +3951,7 @@ async function discoverAccount(){
 
 
   let result;
+
 
   try{
 
@@ -3190,6 +3974,7 @@ async function discoverAccount(){
       result?.error?.message ||
       "Account discovery failed.";
 
+
     throw new Error(
       message +
       " (HTTP " +
@@ -3208,7 +3993,8 @@ async function discoverAccount(){
 
     if(
       accounts &&
-      typeof accounts === "object"
+      typeof accounts ===
+      "object"
     ){
 
       accounts =
@@ -3233,19 +4019,23 @@ async function discoverAccount(){
 
 
   const requestedType =
-    $("accountType").value.toLowerCase();
+    $("accountType")
+      .value
+      .toLowerCase();
 
 
   let account =
     accounts.find(
       a =>
         String(
-          a?.account_type || ""
+          a?.account_type ||
+          ""
         ).toLowerCase() ===
         requestedType &&
 
         String(
-          a?.status || ""
+          a?.status ||
+          ""
         ).toLowerCase() ===
         "active"
     );
@@ -3257,7 +4047,8 @@ async function discoverAccount(){
       accounts.find(
         a =>
           String(
-            a?.account_type || ""
+            a?.account_type ||
+            ""
           ).toLowerCase() ===
           requestedType
       );
@@ -3271,7 +4062,8 @@ async function discoverAccount(){
       accounts.find(
         a =>
           String(
-            a?.status || ""
+            a?.status ||
+            ""
           ).toLowerCase() ===
           "active"
       );
@@ -3280,8 +4072,10 @@ async function discoverAccount(){
 
 
   if(!account){
+
     account =
       accounts[0];
+
   }
 
 
@@ -3294,12 +4088,26 @@ async function discoverAccount(){
   }
 
 
+  /*
+    Options accounts are currently USD
+    according to the current Options API.
+  */
+
+  balanceCurrency =
+    "USD";
+
+
+  $("currencyDisplay").value =
+    "USD";
+
+
   log(
     "Account detected: " +
     account.account_id +
     " • " +
     String(
-      account.account_type || ""
+      account.account_type ||
+      ""
     ).toUpperCase()
   );
 
@@ -3318,6 +4126,7 @@ async function connectDeriv(){
   const pat =
     $("pat").value.trim();
 
+
   if(!pat){
 
     alert(
@@ -3334,9 +4143,11 @@ async function connectDeriv(){
     $("connectBtn").disabled =
       true;
 
+
     setConnection(
       "offline"
     );
+
 
     $("authStatus").textContent =
       "Authenticating with Deriv...";
@@ -3359,7 +4170,8 @@ async function connectDeriv(){
       account.account_id +
       " • " +
       String(
-        account.account_type || ""
+        account.account_type ||
+        ""
       ).toUpperCase();
 
 
@@ -3377,25 +4189,31 @@ async function connectDeriv(){
         ) +
         "/otp",
         {
+
           method:"POST",
 
           headers:{
+
             "Authorization":
-              "Bearer " + pat,
+              "Bearer " +
+              pat,
 
             "Deriv-App-ID":
               HIDDEN_APP_ID,
 
             "Content-Type":
               "application/json"
+
           },
 
           body:"{}"
+
         }
       );
 
 
     let otpResult;
+
 
     try{
 
@@ -3417,6 +4235,7 @@ async function connectDeriv(){
         otpResult?.errors?.[0]?.message ||
         otpResult?.error?.message ||
         "Deriv authentication failed.";
+
 
       throw new Error(
         message +
@@ -3446,6 +4265,11 @@ async function connectDeriv(){
     );
 
 
+    /*
+      OTP URL is single-use.
+      Connect immediately.
+    */
+
     await openTradeSocket(
       authenticatedUrl
     );
@@ -3463,12 +4287,13 @@ async function connectDeriv(){
     $("connectBtn").disabled =
       true;
 
+
     $("disconnectBtn").disabled =
       false;
 
 
     $("authStatus").textContent =
-      "Connected to Deriv Options.";
+      "Connected to Deriv Options • USD";
 
 
     log(
@@ -3478,6 +4303,10 @@ async function connectDeriv(){
 
     requestBalance();
 
+
+    /*
+      Public market data.
+    */
 
     if(
       !publicWs ||
@@ -3515,6 +4344,7 @@ async function connectDeriv(){
     $("connectBtn").disabled =
       false;
 
+
     $("disconnectBtn").disabled =
       true;
 
@@ -3535,7 +4365,9 @@ async function connectDeriv(){
         tradeWs.close();
       }catch(e){}
 
-      tradeWs = null;
+
+      tradeWs =
+        null;
 
     }
 
@@ -3545,7 +4377,7 @@ async function connectDeriv(){
 
 
 /* =====================================================
-   OPEN TRADE SOCKET
+   TRADE SOCKET
 ===================================================== */
 
 function openTradeSocket(
@@ -3555,10 +4387,14 @@ function openTradeSocket(
   return new Promise(
     (resolve,reject)=>{
 
-      let opened = false;
+      let opened =
+        false;
+
 
       tradeWs =
-        new WebSocket(url);
+        new WebSocket(
+          url
+        );
 
 
       tradeWs.onopen =
@@ -3581,6 +4417,7 @@ function openTradeSocket(
               JSON.parse(
                 event.data
               );
+
 
             handleTradeMessage(
               data
@@ -3606,6 +4443,7 @@ function openTradeSocket(
             error
           );
 
+
           if(!opened){
 
             reject(
@@ -3625,6 +4463,7 @@ function openTradeSocket(
           authenticated =
             false;
 
+
           setConnection(
             "offline"
           );
@@ -3632,6 +4471,7 @@ function openTradeSocket(
 
           $("connectBtn").disabled =
             false;
+
 
           $("disconnectBtn").disabled =
             true;
@@ -3673,42 +4513,59 @@ function requestBalance(){
     tradeWs.readyState !==
     WebSocket.OPEN
   ){
+
     return;
+
   }
+
 
   tradeWs.send(
     JSON.stringify({
+
       balance:1,
+
       subscribe:1,
-      req_id:nextReq()
+
+      req_id:
+        nextReq()
+
     })
   );
 
 }
 
 
-function handleBalance(data){
+function handleBalance(
+  data
+){
 
   if(!data.balance){
     return;
   }
+
 
   balanceValue =
     Number(
       data.balance.balance
     ) || 0;
 
+
+  /*
+    Display is intentionally USD.
+  */
+
   balanceCurrency =
-    data.balance.currency ||
     "USD";
 
+
   $("balance").textContent =
-    formatMoney(
+    formatUSD(
       balanceValue
     );
 
+
   $("currencyDisplay").value =
-    balanceCurrency;
+    "USD";
 
 }
 
@@ -3717,7 +4574,9 @@ function handleBalance(data){
    TRADE MESSAGE HANDLER
 ===================================================== */
 
-function handleTradeMessage(data){
+function handleTradeMessage(
+  data
+){
 
   if(data.error){
 
@@ -3725,10 +4584,12 @@ function handleTradeMessage(data){
       data.error.message ||
       "Trading API error.";
 
+
     log(
       "Trading error: " +
       message
     );
+
 
     if(
       data.req_id &&
@@ -3737,17 +4598,32 @@ function handleTradeMessage(data){
       ]
     ){
 
-      pendingRequests[
-        data.req_id
-      ].reject(
-        new Error(message)
-      );
+      const pending =
+        pendingRequests[
+          data.req_id
+        ];
+
+
+      if(
+        typeof pending.reject ===
+        "function"
+      ){
+
+        pending.reject(
+          new Error(
+            message
+          )
+        );
+
+      }
+
 
       delete pendingRequests[
         data.req_id
       ];
 
     }
+
 
     return;
 
@@ -3759,7 +4635,10 @@ function handleTradeMessage(data){
     "balance"
   ){
 
-    handleBalance(data);
+    handleBalance(
+      data
+    );
+
     return;
 
   }
@@ -3770,7 +4649,10 @@ function handleTradeMessage(data){
     "proposal"
   ){
 
-    handleProposal(data);
+    handleProposal(
+      data
+    );
+
     return;
 
   }
@@ -3781,7 +4663,10 @@ function handleTradeMessage(data){
     "buy"
   ){
 
-    handleBuy(data);
+    handleBuy(
+      data
+    );
+
     return;
 
   }
@@ -3792,7 +4677,10 @@ function handleTradeMessage(data){
     "proposal_open_contract"
   ){
 
-    handleContract(data);
+    handleContract(
+      data
+    );
+
     return;
 
   }
@@ -3801,7 +4689,7 @@ function handleTradeMessage(data){
 
 
 /* =====================================================
-   AUTO TRADE DECISION
+   AUTO TRADE
 ===================================================== */
 
 function maybeAutoTrade(
@@ -3814,7 +4702,9 @@ function maybeAutoTrade(
   if(
     !$("autoTrade").checked
   ){
+
     return;
+
   }
 
 
@@ -3827,7 +4717,9 @@ function maybeAutoTrade(
     $("oneActive").checked &&
     activeTrade
   ){
+
     return;
+
   }
 
 
@@ -3835,7 +4727,8 @@ function maybeAutoTrade(
     $("tradeMode").value;
 
 
-  let strategy = null;
+  let strategy =
+    null;
 
 
   if(
@@ -3873,7 +4766,9 @@ function maybeAutoTrade(
 
 
   const state =
-    getMarketState(symbol);
+    getMarketState(
+      symbol
+    );
 
 
   const now =
@@ -3882,7 +4777,10 @@ function maybeAutoTrade(
 
   if(
     now -
-    state.lastTradeAttempt <
+    (
+      state.lastTradeAttempt ||
+      0
+    ) <
     3000
   ){
 
@@ -3904,7 +4802,7 @@ function maybeAutoTrade(
 
 
 /* =====================================================
-   FINAL SAFETY RECHECK
+   FINAL SAFETY CHECK
 ===================================================== */
 
 function finalCheck(
@@ -3913,7 +4811,9 @@ function finalCheck(
 ){
 
   const state =
-    getMarketState(symbol);
+    getMarketState(
+      symbol
+    );
 
 
   if(
@@ -3933,7 +4833,10 @@ function finalCheck(
     );
 
 
-  if(strategy === "OVER"){
+  if(
+    strategy ===
+    "OVER"
+  ){
 
     return overConditions(
       analysis
@@ -3942,7 +4845,10 @@ function finalCheck(
   }
 
 
-  if(strategy === "UNDER"){
+  if(
+    strategy ===
+    "UNDER"
+  ){
 
     return underConditions(
       analysis
@@ -3996,7 +4902,7 @@ async function executeTrade(
 
 
   /*
-    FINAL DEEP RECHECK
+    FINAL COMPLETE RECHECK
   */
 
   if(
@@ -4016,7 +4922,9 @@ async function executeTrade(
 
 
   const state =
-    getMarketState(symbol);
+    getMarketState(
+      symbol
+    );
 
 
   const analysis =
@@ -4033,7 +4941,10 @@ async function executeTrade(
   let barrier;
 
 
-  if(strategy === "OVER"){
+  if(
+    strategy ===
+    "OVER"
+  ){
 
     if(
       latest !== 0 &&
@@ -4041,15 +4952,17 @@ async function executeTrade(
     ){
 
       log(
-        "Over 2 blocked: latest digit changed."
+        "OVER 2 blocked: latest digit changed."
       );
 
       return;
 
     }
 
+
     contractType =
       "DIGITOVER";
+
 
     barrier =
       "2";
@@ -4062,15 +4975,17 @@ async function executeTrade(
     ){
 
       log(
-        "Under 7 blocked: latest digit changed."
+        "UNDER 7 blocked: latest digit changed."
       );
 
       return;
 
     }
 
+
     contractType =
       "DIGITUNDER";
+
 
     barrier =
       "7";
@@ -4096,7 +5011,7 @@ async function executeTrade(
   ){
 
     log(
-      "Invalid stake."
+      "Invalid USD stake."
     );
 
     return;
@@ -4110,7 +5025,7 @@ async function executeTrade(
   ){
 
     log(
-      "Invalid duration."
+      "Invalid tick duration."
     );
 
     return;
@@ -4121,9 +5036,9 @@ async function executeTrade(
   log(
     "FINAL CHECK PASSED → " +
     strategy +
-    " on " +
+    " → " +
     symbol +
-    " → requesting proposal..."
+    " → proposal"
   );
 
 
@@ -4159,28 +5074,34 @@ async function executeTrade(
 
         proposal:1,
 
-        amount:stake,
+        amount:
+          stake,
 
-        basis:"stake",
+        basis:
+          "stake",
 
         contract_type:
           contractType,
 
         currency:
-          balanceCurrency,
+          "USD",
 
-        duration:duration,
+        duration:
+          duration,
 
-        duration_unit:"t",
+        duration_unit:
+          "t",
 
-        barrier:String(
-          barrier
-        ),
+        barrier:
+          String(
+            barrier
+          ),
 
         underlying_symbol:
           symbol,
 
-        req_id:reqId
+        req_id:
+          reqId
 
       })
     );
@@ -4191,6 +5112,7 @@ async function executeTrade(
     delete pendingRequests[
       reqId
     ];
+
 
     log(
       "Proposal request failed: " +
@@ -4206,7 +5128,9 @@ async function executeTrade(
    PROPOSAL
 ===================================================== */
 
-function handleProposal(data){
+function handleProposal(
+  data
+){
 
   const reqId =
     data.req_id;
@@ -4247,10 +5171,10 @@ function handleProposal(data){
     proposal.id;
 
 
-  const price =
+  const askPrice =
     Number(
-      proposal.ask_price ||
-      proposal.display_value ||
+      proposal.ask_price ??
+      proposal.display_value ??
       pending.stake
     );
 
@@ -4267,8 +5191,7 @@ function handleProposal(data){
 
 
   /*
-    Reconfirm conditions one more time
-    immediately before BUY.
+    Second final check before BUY.
   */
 
   if(
@@ -4279,7 +5202,7 @@ function handleProposal(data){
   ){
 
     log(
-      "Proposal received but entry disappeared. BUY CANCELLED."
+      "ENTRY DISAPPEARED → BUY CANCELLED."
     );
 
     return;
@@ -4327,9 +5250,10 @@ function handleProposal(data){
           proposalId,
 
         price:
-
-          Number.isFinite(price)
-            ? price
+          Number.isFinite(
+            askPrice
+          )
+            ? askPrice
             : pending.stake,
 
         req_id:
@@ -4340,9 +5264,9 @@ function handleProposal(data){
 
 
     log(
-      "Proposal approved → buying " +
+      "Proposal approved → BUY " +
       pending.strategy +
-      " on " +
+      " " +
       pending.symbol
     );
 
@@ -4352,6 +5276,7 @@ function handleProposal(data){
     delete pendingRequests[
       buyReq
     ];
+
 
     log(
       "Buy request failed: " +
@@ -4367,7 +5292,9 @@ function handleProposal(data){
    BUY RESPONSE
 ===================================================== */
 
-function handleBuy(data){
+function handleBuy(
+  data
+){
 
   const reqId =
     data.req_id;
@@ -4409,10 +5336,11 @@ function handleBuy(data){
 
 
   /*
-    RUNS increments ONLY after successful BUY.
+    RUNS ONLY AFTER ACTUAL BUY.
   */
 
   stats.runs++;
+
 
   updateStats();
 
@@ -4441,14 +5369,21 @@ function handleBuy(data){
   };
 
 
+  $("activeTradeLabel").textContent =
+    pending.strategy;
+
+
   $("tradeContract").textContent =
     contractId;
+
 
   $("tradeMarket").textContent =
     pending.symbol;
 
+
   $("tradeEntry").textContent =
     pending.strategy;
+
 
   $("tradeResult").textContent =
     "OPEN";
@@ -4465,7 +5400,7 @@ function handleBuy(data){
 
 
   /*
-    Monitor contract.
+    Monitor actual contract.
   */
 
   const monitorReq =
@@ -4476,29 +5411,39 @@ function handleBuy(data){
     monitorReq
   ] = {
 
-    type:
-      "contract",
+    type:"contract",
 
     contractId
 
   };
 
 
-  tradeWs.send(
-    JSON.stringify({
+  try{
 
-      proposal_open_contract:1,
+    tradeWs.send(
+      JSON.stringify({
 
-      contract_id:
-        contractId,
+        proposal_open_contract:1,
 
-      subscribe:1,
+        contract_id:
+          contractId,
 
-      req_id:
-        monitorReq
+        subscribe:1,
 
-    })
-  );
+        req_id:
+          monitorReq
+
+      })
+    );
+
+  }catch(error){
+
+    log(
+      "Contract monitor failed: " +
+      error.message
+    );
+
+  }
 
 }
 
@@ -4507,7 +5452,9 @@ function handleBuy(data){
    CONTRACT MONITOR
 ===================================================== */
 
-function handleContract(data){
+function handleContract(
+  data
+){
 
   const contract =
     data.proposal_open_contract;
@@ -4548,7 +5495,8 @@ function handleContract(data){
 
   if(
     !isSold &&
-    status !== "sold"
+    status !==
+    "sold"
   ){
 
     $("tradeResult").textContent =
@@ -4559,8 +5507,12 @@ function handleContract(data){
   }
 
 
-  if(activeTrade.settled){
+  if(
+    activeTrade.settled
+  ){
+
     return;
+
   }
 
 
@@ -4578,26 +5530,32 @@ function handleContract(data){
 
     stats.won++;
 
+
     $("tradeResult").textContent =
       "WON +" +
       profit.toFixed(2);
 
+
     log(
       "TRADE WON ✓ +" +
-      profit.toFixed(2)
+      profit.toFixed(2) +
+      " USD"
     );
 
   }else{
 
     stats.lost++;
 
+
     $("tradeResult").textContent =
       "LOST " +
       profit.toFixed(2);
 
+
     log(
       "TRADE LOST • " +
-      profit.toFixed(2)
+      profit.toFixed(2) +
+      " USD"
     );
 
   }
@@ -4608,6 +5566,10 @@ function handleContract(data){
 
   activeTrade =
     null;
+
+
+  $("activeTradeLabel").textContent =
+    "NONE";
 
 
   requestBalance();
@@ -4624,8 +5586,10 @@ function updateStats(){
   $("runs").textContent =
     stats.runs;
 
+
   $("won").textContent =
     stats.won;
+
 
   $("lost").textContent =
     stats.lost;
@@ -4662,10 +5626,19 @@ function disconnectDeriv(){
   scannerRunning =
     false;
 
+
   setScanStatus(
     "inactive",
     "SCANNER STOPPED"
   );
+
+
+  $("startScannerBtn").disabled =
+    false;
+
+
+  $("stopScannerBtn").disabled =
+    true;
 
 
   if(publicWs){
@@ -4695,12 +5668,17 @@ function disconnectDeriv(){
   authenticated =
     false;
 
+
   publicReady =
     false;
 
 
   activeTrade =
     null;
+
+
+  $("activeTradeLabel").textContent =
+    "NONE";
 
 
   setConnection(
@@ -4710,6 +5688,7 @@ function disconnectDeriv(){
 
   $("connectBtn").disabled =
     false;
+
 
   $("disconnectBtn").disabled =
     true;
@@ -4723,6 +5702,10 @@ function disconnectDeriv(){
     "Not connected";
 
 
+  $("balance").textContent =
+    "$0.00";
+
+
   log(
     "Disconnected from Deriv."
   );
@@ -4731,7 +5714,7 @@ function disconnectDeriv(){
 
 
 /* =====================================================
-   SCANNER CONTROL
+   START SCANNER
 ===================================================== */
 
 async function startScanner(){
@@ -4764,6 +5747,7 @@ async function startScanner(){
   $("startScannerBtn").disabled =
     true;
 
+
   $("stopScannerBtn").disabled =
     false;
 
@@ -4788,20 +5772,25 @@ async function startScanner(){
       scannerRunning =
         false;
 
+
       setScanStatus(
         "error",
         "MARKET CONNECTION FAILED"
       );
 
+
       $("startScannerBtn").disabled =
         false;
+
 
       $("stopScannerBtn").disabled =
         true;
 
+
       log(
         error.message
       );
+
 
       return;
 
@@ -4832,6 +5821,10 @@ async function startScanner(){
 }
 
 
+/* =====================================================
+   STOP SCANNER
+===================================================== */
+
 function stopScanner(){
 
   scannerRunning =
@@ -4847,6 +5840,7 @@ function stopScanner(){
   $("startScannerBtn").disabled =
     false;
 
+
   $("stopScannerBtn").disabled =
     true;
 
@@ -4859,20 +5853,20 @@ function stopScanner(){
 
 
 /* =====================================================
-   RESET
+   RESET SESSION
 ===================================================== */
 
 function resetSession(){
 
   stats = {
+
     runs:0,
+
     won:0,
+
     lost:0
+
   };
-
-
-  activeTrade =
-    null;
 
 
   updateStats();
@@ -4881,14 +5875,22 @@ function resetSession(){
   $("tradeContract").textContent =
     "NONE";
 
+
   $("tradeMarket").textContent =
     "—";
+
 
   $("tradeEntry").textContent =
     "—";
 
+
   $("tradeResult").textContent =
     "—";
+
+
+  /*
+    Do not alter actual Deriv balance.
+  */
 
 
   $("log").innerHTML =
@@ -4907,7 +5909,9 @@ function resetSession(){
 ===================================================== */
 
 document
-  .querySelectorAll(".tab")
+  .querySelectorAll(
+    ".tab"
+  )
   .forEach(
     tab => {
 
@@ -4916,7 +5920,9 @@ document
         () => {
 
           document
-            .querySelectorAll(".tab")
+            .querySelectorAll(
+              ".tab"
+            )
             .forEach(
               item =>
                 item.classList.remove(
@@ -4926,7 +5932,9 @@ document
 
 
           document
-            .querySelectorAll(".tab-page")
+            .querySelectorAll(
+              ".tab-page"
+            )
             .forEach(
               page =>
                 page.classList.remove(
@@ -4941,12 +5949,17 @@ document
 
 
           const page =
-            $(tab.dataset.tab);
+            $(
+              tab.dataset.tab
+            );
+
 
           if(page){
+
             page.classList.add(
               "active"
             );
+
           }
 
         }
@@ -5005,8 +6018,10 @@ $("historySize")
           $("historySize").value
         );
 
+
       $("historySizeLabel").textContent =
         selectedHistory;
+
 
       if(scannerRunning){
 
@@ -5018,21 +6033,26 @@ $("historySize")
   );
 
 
-/* =====================================================
-   UTILITY
-===================================================== */
+/*
+  If the user changes account type,
+  clear the previous detected account
+  but don't disconnect automatically.
+*/
 
-function sleep(ms){
+$("accountType")
+  .addEventListener(
+    "change",
+    () => {
 
-  return new Promise(
-    resolve =>
-      setTimeout(
-        resolve,
-        ms
-      )
+      if(!authenticated){
+
+        $("accountDisplay").value =
+          "Not connected";
+
+      }
+
+    }
   );
-
-}
 
 
 /* =====================================================
@@ -5048,6 +6068,10 @@ selectedHistory =
 updateStats();
 
 
+$("currencyDisplay").value =
+  "USD";
+
+
 log(
   "PAIRTRADE AI initialized."
 );
@@ -5059,7 +6083,27 @@ log(
 
 
 log(
-  "Red Bar = least-appearing digit."
+  "RED = least-appearing digit."
+);
+
+
+log(
+  "Over 2 entry = latest digit 0 or 1."
+);
+
+
+log(
+  "Under 7 entry = latest digit 8 or 9."
+);
+
+
+log(
+  "Each required digit must be below 10%."
+);
+
+
+log(
+  "Required digits must be NO RED."
 );
 
 
@@ -5072,4 +6116,4 @@ log(
 </script>
 
 </body>
-           </html>
+  </html>
