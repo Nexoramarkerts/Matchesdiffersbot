@@ -2,186 +2,2094 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#080b20">
-<title>NEXORA Forex Analyzer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Cartoon Studio</title>
+
 <style>
-:root{--bg:#070a1b;--panel:#0c1230;--panel2:#10183b;--line:#263568;--text:#eef1ff;--muted:#9ca9d8;--purple:#762cff;--purple2:#4b16d5;--green:#00d6a0;--red:#ff4f79;--blue:#37a8ff;--gold:#ffbd58}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#17114b 0,transparent 38%),var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer;color:var(--text);border:1px solid var(--line);background:#151b40;border-radius:10px;padding:10px 13px}button:hover{border-color:#8b5cff}button.primary{background:linear-gradient(135deg,var(--purple),var(--purple2));border-color:#8d61ff}button.active{background:#5421ce;border-color:#a78bfa}.wrap{max-width:1440px;margin:auto;padding:14px}.top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:8px 0 15px}.logo{display:flex;gap:10px;align-items:center;min-width:220px;flex:1}.mark{font-size:38px;line-height:1;font-weight:900;color:#a56bff}.brand{font-size:26px;font-weight:850;letter-spacing:2px}.sub{font-size:11px;color:#b7b4ff;letter-spacing:2px}.nav{display:flex;gap:6px;flex-wrap:wrap}.status{margin-left:auto;border:1px solid var(--line);padding:8px 11px;border-radius:10px;color:var(--muted);white-space:nowrap}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);margin-right:6px}.dot.ok{background:var(--green)}.toolbar{display:grid;grid-template-columns:1.2fr 1fr 1.4fr auto auto;gap:10px;align-items:end;margin:15px 0}.field label{display:block;color:var(--muted);font-size:12px;margin:0 0 6px 2px}.field select,.field input{width:100%;background:#11183a;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:11px;min-width:0}.seg{display:flex;gap:6px}.seg button{flex:1}.layout{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(280px,.82fr);gap:14px}.panel{background:linear-gradient(145deg,rgba(15,22,55,.97),rgba(7,13,34,.98));border:1px solid var(--line);border-radius:13px;padding:14px;min-width:0}.panel h2,.panel h3{margin:0 0 12px;font-size:15px}.chart-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.price{font-variant-numeric:tabular-nums;color:var(--green);font-weight:700}.chartbox{height:390px;position:relative;background:#060d23;border:1px solid #1d2a59;border-radius:9px;overflow:hidden}.chartbox canvas{width:100%;height:100%;display:block}.chart-foot{display:flex;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:12px;margin-top:8px}.tag{border:1px solid var(--line);border-radius:20px;padding:4px 9px;font-size:11px;color:#c6d0ff}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.kv{display:flex;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid #1c2853}.kv:last-child{border:0}.muted{color:var(--muted)}.bull{color:var(--green)}.bear{color:var(--red)}.purple{color:#b99aff}.signal{border:1px solid #24466a;background:#071e30;border-radius:10px;padding:12px;margin-bottom:12px}.signal.sell{border-color:#6b2844;background:#241021}.signal.wait{border-color:#5c4b2b;background:#211b12}.signal-title{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:7px}.pill{border-radius:20px;padding:5px 9px;font-size:11px;font-weight:750;background:#053f38;color:#6affd6}.pill.sell{background:#4b142a;color:#ff9bb5}.pill.wait{background:#493516;color:#ffd18a}.note{font-size:12px;color:var(--muted);line-height:1.5}.levels{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.level{background:#090f2a;border:1px solid #202d5c;border-radius:8px;padding:9px}.level small{display:block;color:var(--muted);margin-bottom:3px}.level b{font-variant-numeric:tabular-nums}.upload{display:block;border:1px dashed #7750e8;border-radius:10px;padding:15px;text-align:center;background:#100d2d}.upload input{width:100%;margin-top:9px}.preview{max-width:100%;max-height:260px;display:block;margin:12px auto 0;border-radius:8px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}.mini{background:#0b1230;border:1px solid var(--line);border-radius:12px;padding:13px}.mini h3{font-size:13px}.bar{height:7px;background:#1a2550;border-radius:10px;overflow:hidden;margin-top:8px}.bar span{height:100%;display:block;background:linear-gradient(90deg,#5725dc,#00d6a0)}.settings{display:none;margin:12px 0}.settings.show{display:block}.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.footer{color:#aab4df;text-align:center;font-size:11px;padding:16px 5px 8px}.hide{display:none!important}.smallbtn{padding:7px 10px;font-size:12px}.statusline{font-size:12px;color:var(--muted);margin-top:8px;min-height:18px}.disclaimer{border:1px solid #49327c;background:#160f35;color:#d2c6ff;padding:10px;border-radius:9px;font-size:12px;margin-top:12px}
-@media(max-width:900px){.toolbar{grid-template-columns:1fr 1fr}.toolbar .field:nth-child(3){grid-column:1/-1}.layout{grid-template-columns:1fr}.chartbox{height:330px}.cards{grid-template-columns:1fr 1fr}.status{margin-left:0}.logo{flex:1 1 100%}.nav{order:3}.top{gap:10px}}
-@media(max-width:520px){.wrap{padding:9px}.brand{font-size:22px}.toolbar{grid-template-columns:1fr 1fr;gap:8px}.toolbar button{width:100%}.panel{padding:11px}.chartbox{height:270px}.grid2,.cards,.settings-grid{grid-template-columns:1fr}.levels{grid-template-columns:1fr 1fr}.nav{width:100%}.nav button{flex:1;padding:9px 7px;font-size:12px}.status{font-size:12px}.chart-head{align-items:flex-start}.logo{min-width:0}}
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+  --bg:#10111a;
+  --panel:#191b28;
+  --panel2:#222536;
+  --text:#ffffff;
+  --muted:#aeb4c7;
+  --accent:#8b5cf6;
+  --accent2:#a78bfa;
+  --danger:#ef4444;
+  --green:#22c55e;
+  --border:#34384d;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  overflow-x:hidden;
+}
+
+button,input,textarea,select{
+  font:inherit;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+}
+
+.app{
+  min-height:100vh;
+}
+
+/* HEADER */
+
+.header{
+  height:64px;
+  background:#151621;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 14px;
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-weight:800;
+  font-size:18px;
+}
+
+.logo-icon{
+  width:36px;
+  height:36px;
+  border-radius:10px;
+  background:linear-gradient(135deg,#8b5cf6,#c084fc);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+}
+
+.header-actions{
+  display:flex;
+  gap:7px;
+}
+
+.icon-btn{
+  background:var(--panel2);
+  color:white;
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:9px 11px;
+}
+
+.icon-btn:hover{
+  background:#303449;
+}
+
+/* MAIN */
+
+.workspace{
+  display:flex;
+  min-height:calc(100vh - 64px);
+}
+
+/* LEFT */
+
+.sidebar{
+  width:230px;
+  background:var(--panel);
+  border-right:1px solid var(--border);
+  padding:12px;
+  flex-shrink:0;
+}
+
+.section-title{
+  color:var(--muted);
+  font-size:11px;
+  font-weight:bold;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin:12px 5px 7px;
+}
+
+.tool{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:11px;
+  color:white;
+  background:transparent;
+  border-radius:9px;
+  text-align:left;
+  margin-bottom:4px;
+}
+
+.tool:hover,
+.tool.active{
+  background:#2b2e43;
+}
+
+.tool-icon{
+  width:28px;
+  text-align:center;
+}
+
+/* CENTER */
+
+.editor{
+  flex:1;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  background:#0d0e15;
+}
+
+.topbar{
+  min-height:50px;
+  background:#151621;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:8px 12px;
+  gap:8px;
+}
+
+.scene-name{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.scene-name input{
+  background:#222536;
+  border:1px solid var(--border);
+  color:white;
+  border-radius:7px;
+  padding:7px 9px;
+  width:160px;
+  outline:none;
+}
+
+.top-controls{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  background:#292d40;
+  color:white;
+  border:1px solid var(--border);
+  padding:8px 11px;
+  border-radius:8px;
+}
+
+.btn:hover{
+  background:#363b52;
+}
+
+.btn.primary{
+  background:var(--accent);
+  border-color:var(--accent);
+}
+
+.btn.primary:hover{
+  background:#7c3aed;
+}
+
+.btn.green{
+  background:#166534;
+  border-color:#16a34a;
+}
+
+.btn.red{
+  background:#7f1d1d;
+  border-color:#ef4444;
+}
+
+/* CANVAS */
+
+.canvas-area{
+  flex:1;
+  padding:16px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:430px;
+  overflow:auto;
+}
+
+.stage{
+  position:relative;
+  width:min(900px,94vw);
+  aspect-ratio:16/9;
+  background:#87ceeb;
+  border:2px solid #34384d;
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 15px 50px rgba(0,0,0,.35);
+  touch-action:none;
+}
+
+.sky{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(#72c9ff 0%,#bdeaff 68%,#dff7ff 100%);
+}
+
+.sun{
+  position:absolute;
+  width:70px;
+  height:70px;
+  background:#ffd54a;
+  border-radius:50%;
+  top:10%;
+  right:9%;
+  box-shadow:0 0 35px rgba(255,213,74,.65);
+}
+
+.ground{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:28%;
+  background:#63bd59;
+  border-top:4px solid #41913d;
+}
+
+.stage-text{
+  position:absolute;
+  top:7%;
+  left:5%;
+  color:#17324d;
+  font-size:clamp(13px,2vw,22px);
+  font-weight:bold;
+  text-shadow:0 1px 2px rgba(255,255,255,.5);
+}
+
+/* CHARACTERS */
+
+.character{
+  position:absolute;
+  width:90px;
+  height:145px;
+  cursor:grab;
+  user-select:none;
+  touch-action:none;
+  transform-origin:center bottom;
+}
+
+.character.selected{
+  outline:2px dashed white;
+  outline-offset:5px;
+}
+
+.head{
+  position:absolute;
+  width:65px;
+  height:65px;
+  left:12px;
+  top:0;
+  background:#f2b28e;
+  border-radius:50%;
+  border:3px solid #6b3c2c;
+}
+
+.hair{
+  position:absolute;
+  width:67px;
+  height:30px;
+  left:11px;
+  top:-2px;
+  background:#302016;
+  border-radius:40px 40px 10px 10px;
+  z-index:2;
+}
+
+.eye{
+  position:absolute;
+  width:7px;
+  height:9px;
+  background:#111;
+  border-radius:50%;
+  top:27px;
+  z-index:3;
+}
+
+.eye.left{
+  left:28px;
+}
+
+.eye.right{
+  left:49px;
+}
+
+.mouth{
+  position:absolute;
+  width:20px;
+  height:9px;
+  border-bottom:3px solid #7b2d26;
+  border-radius:50%;
+  left:34px;
+  top:44px;
+  z-index:3;
+}
+
+.body{
+  position:absolute;
+  width:55px;
+  height:65px;
+  left:18px;
+  top:61px;
+  background:#7656d8;
+  border-radius:17px 17px 8px 8px;
+}
+
+.arm{
+  position:absolute;
+  width:14px;
+  height:52px;
+  background:#f2b28e;
+  border:2px solid #6b3c2c;
+  border-radius:12px;
+  top:68px;
+  z-index:-1;
+}
+
+.arm.left{
+  left:8px;
+  transform:rotate(15deg);
+}
+
+.arm.right{
+  right:8px;
+  transform:rotate(-15deg);
+}
+
+.leg{
+  position:absolute;
+  width:17px;
+  height:48px;
+  background:#27304b;
+  border-radius:9px;
+  top:119px;
+  z-index:-1;
+}
+
+.leg.left{
+  left:28px;
+}
+
+.leg.right{
+  left:53px;
+}
+
+.character-name{
+  position:absolute;
+  top:-25px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(0,0,0,.65);
+  color:#fff;
+  padding:3px 7px;
+  border-radius:5px;
+  font-size:11px;
+  white-space:nowrap;
+}
+
+/* PROPS */
+
+.cloud{
+  position:absolute;
+  width:120px;
+  height:35px;
+  background:white;
+  border-radius:30px;
+  opacity:.85;
+}
+
+.cloud:before,
+.cloud:after{
+  content:"";
+  position:absolute;
+  background:white;
+  border-radius:50%;
+}
+
+.cloud:before{
+  width:50px;
+  height:50px;
+  left:20px;
+  bottom:0;
+}
+
+.cloud:after{
+  width:60px;
+  height:60px;
+  right:15px;
+  bottom:0;
+}
+
+/* DIALOGUE */
+
+.dialogue-box{
+  position:absolute;
+  left:5%;
+  right:5%;
+  bottom:5%;
+  min-height:58px;
+  background:rgba(0,0,0,.78);
+  border:2px solid rgba(255,255,255,.8);
+  border-radius:14px;
+  padding:12px 15px;
+  color:white;
+  font-size:clamp(12px,2vw,19px);
+  display:none;
+}
+
+.dialogue-box.show{
+  display:block;
+}
+
+.dialogue-name{
+  color:#c4b5fd;
+  font-weight:bold;
+  font-size:12px;
+  margin-bottom:3px;
+}
+
+/* RIGHT PANEL */
+
+.properties{
+  width:270px;
+  background:var(--panel);
+  border-left:1px solid var(--border);
+  padding:12px;
+  overflow-y:auto;
+  flex-shrink:0;
+}
+
+.property-group{
+  background:#202333;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:11px;
+  margin-bottom:10px;
+}
+
+.property-group h3{
+  margin:0 0 10px;
+  font-size:13px;
+}
+
+.field{
+  margin-bottom:9px;
+}
+
+.field label{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-bottom:4px;
+}
+
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+  background:#11131d;
+  color:white;
+  border:1px solid var(--border);
+  border-radius:7px;
+  padding:8px;
+  outline:none;
+}
+
+.field textarea{
+  resize:vertical;
+  min-height:65px;
+}
+
+.row{
+  display:flex;
+  gap:7px;
+}
+
+.row .field{
+  flex:1;
+}
+
+.color-input{
+  height:38px;
+  padding:3px!important;
+}
+
+/* TIMELINE */
+
+.timeline{
+  height:190px;
+  background:#151621;
+  border-top:1px solid var(--border);
+  flex-shrink:0;
+  display:flex;
+  flex-direction:column;
+}
+
+.timeline-header{
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 12px;
+  border-bottom:1px solid var(--border);
+}
+
+.timeline-controls{
+  display:flex;
+  gap:6px;
+}
+
+.timeline-body{
+  display:flex;
+  overflow-x:auto;
+  flex:1;
+}
+
+.track-labels{
+  width:100px;
+  flex-shrink:0;
+  background:#191b28;
+  border-right:1px solid var(--border);
+}
+
+.track-label{
+  height:48px;
+  border-bottom:1px solid var(--border);
+  padding:15px 8px;
+  font-size:11px;
+  color:var(--muted);
+}
+
+.frames{
+  min-width:900px;
+  position:relative;
+}
+
+.ruler{
+  height:36px;
+  display:flex;
+  border-bottom:1px solid var(--border);
+}
+
+.tick{
+  width:60px;
+  flex-shrink:0;
+  border-right:1px solid #303449;
+  color:#8f95aa;
+  font-size:10px;
+  padding:7px 4px;
+}
+
+.track{
+  height:48px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  position:relative;
+}
+
+.keyframe{
+  width:15px;
+  height:15px;
+  background:#a78bfa;
+  transform:rotate(45deg);
+  position:absolute;
+  border-radius:2px;
+  cursor:pointer;
+}
+
+.playhead{
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:2px;
+  background:#ef4444;
+  left:0;
+  z-index:10;
+  pointer-events:none;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.72);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+  padding:15px;
+}
+
+.modal.open{
+  display:flex;
+}
+
+.modal-card{
+  width:min(500px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#1a1c29;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:18px;
+  box-shadow:0 20px 70px rgba(0,0,0,.6);
+}
+
+.modal-card h2{
+  margin-top:0;
+}
+
+.modal-actions{
+  display:flex;
+  gap:8px;
+  justify-content:flex-end;
+  margin-top:15px;
+}
+
+/* MOBILE */
+
+.mobile-tools{
+  display:none;
+}
+
+@media(max-width:900px){
+
+  .sidebar{
+    width:70px;
+    padding:7px;
+  }
+
+  .tool{
+    justify-content:center;
+    padding:11px 4px;
+  }
+
+  .tool span:last-child{
+    display:none;
+  }
+
+  .section-title{
+    display:none;
+  }
+
+  .properties{
+    width:220px;
+  }
+
+  .stage{
+    width:96vw;
+  }
+}
+
+@media(max-width:650px){
+
+  .header{
+    height:58px;
+  }
+
+  .logo span{
+    display:none;
+  }
+
+  .workspace{
+    display:block;
+  }
+
+  .sidebar{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    width:100%;
+    height:62px;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    background:#181a27;
+    border-right:0;
+    border-top:1px solid var(--border);
+    z-index:60;
+    padding:4px;
+  }
+
+  .tool{
+    width:auto;
+    margin:0;
+    padding:7px 10px;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    font-size:9px;
+  }
+
+  .tool span:last-child{
+    display:block;
+  }
+
+  .editor{
+    padding-bottom:62px;
+  }
+
+  .properties{
+    width:100%;
+    border-left:0;
+    border-top:1px solid var(--border);
+    max-height:none;
+  }
+
+  .canvas-area{
+    padding:7px;
+    min-height:250px;
+  }
+
+  .stage{
+    width:98vw;
+    border-radius:5px;
+  }
+
+  .topbar{
+    flex-wrap:wrap;
+  }
+
+  .scene-name input{
+    width:130px;
+  }
+
+  .timeline{
+    height:155px;
+  }
+
+  .frames{
+    min-width:720px;
+  }
+
+  .header-actions .icon-btn:nth-child(1),
+  .header-actions .icon-btn:nth-child(2){
+    display:none;
+  }
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:80px;
+  transform:translateX(-50%) translateY(20px);
+  background:#272b3d;
+  color:white;
+  border:1px solid var(--border);
+  padding:10px 15px;
+  border-radius:9px;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  z-index:200;
+  font-size:13px;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
 </style>
 </head>
+
 <body>
-<div class="wrap">
-<header class="top">
-  <div class="logo"><div class="mark">N</div><div><div class="brand">NEXORA</div><div class="sub">FOREX ANALYZER · PRICE ACTION</div></div></div>
-  <nav class="nav"><button class="active" data-tab="analyzer">Analyzer</button><button data-tab="screenshot">Screenshot</button><button data-tab="settings">Settings</button></nav>
-  <div class="status"><span id="statusDot" class="dot"></span><span id="connectionText">Connecting to market feed…</span></div>
+
+<div class="app">
+
+<header class="header">
+
+  <div class="logo">
+    <div class="logo-icon">🎬</div>
+    <span>Cartoon Studio</span>
+  </div>
+
+  <div class="header-actions">
+    <button class="icon-btn" onclick="newProject()">＋ New</button>
+    <button class="icon-btn" onclick="saveProject()">💾 Save</button>
+    <button class="icon-btn" onclick="loadProject()">📂 Load</button>
+  </div>
+
 </header>
 
-<section class="toolbar">
-  <div class="field"><label for="market">Market</label><select id="market"><option value="frxEURUSD">🇪🇺 EUR/USD</option><option value="frxGBPUSD">🇬🇧 GBP/USD</option><option value="frxUSDJPY">🇯🇵 USD/JPY</option><option value="frxAUDUSD">🇦🇺 AUD/USD</option><option value="frxUSDCHF">🇨🇭 USD/CHF</option><option value="frxUSDCAD">🇨🇦 USD/CAD</option><option value="frxXAUUSD">🥇 Gold (XAU/USD)</option></select></div>
-  <div class="field"><label>Timeframe</label><div class="seg"><button class="active" id="tf1">1m</button><button id="tf5">5m</button></div></div>
-  <div class="field"><label>Strategy</label><select id="strategy"><option value="combined">SMC + Price Action</option><option value="smc">SMC structure focus</option><option value="pa">Candlesticks + key levels</option></select></div>
-  <button class="primary" id="refreshBtn">↻ Refresh</button><button id="openUpload">↑ Screenshot</button>
-</section>
+<div class="workspace">
 
-<section id="settingsPanel" class="panel settings">
-  <h2>Settings & data sources</h2>
-  <div class="settings-grid">
-    <div class="field"><label>Deriv App ID (public market data)</label><input id="appId" value="1089" inputmode="numeric" placeholder="Your Deriv app ID"></div>
-    <div class="field"><label>Optional screenshot AI backend URL</label><input id="aiEndpoint" placeholder="https://your-secure-backend.example/analyze"></div>
-  </div>
-  <p class="note">Live prices use Deriv's public WebSocket market feed and do not need a trading token for public ticks. Availability and symbol names can vary by account/region. This page never places trades.</p>
-  <p class="note">For genuine AI screenshot interpretation, connect a server-side endpoint that accepts an image and returns analysis. Keep OpenAI or other provider API keys on that backend, never inside this HTML or a public GitHub repository. This standalone version can preview screenshots and guide a structured manual review, but does not pretend to run a vision model locally.</p>
-  <button class="primary" id="saveSettings">Save settings & reconnect</button>
-  <div id="settingsStatus" class="statusline"></div>
-</section>
+<!-- LEFT TOOLBAR -->
 
-<main id="analyzerTab">
-<div class="layout">
-  <div>
-    <section class="panel">
-      <div class="chart-head"><div><b id="chartTitle">EUR/USD · 1m</b> <span class="tag" id="feedTag">Waiting for ticks</span><div class="note" id="ohlc">O — H — L — C —</div></div><div class="price" id="lastPrice">—</div></div>
-      <div class="chartbox"><canvas id="chart"></canvas></div>
-      <div class="chart-foot"><span class="tag">Candles: live feed</span><span class="tag">SMC zones: heuristic</span><span class="tag" id="lastUpdate">Waiting for market data</span></div>
-      <div id="feedMessage" class="statusline">Connecting to Deriv public market data. If this market is unavailable, choose another pair or check your connection.</div>
-    </section>
-    <div class="grid2">
-      <section class="panel"><h3>Market overview</h3>
-        <div class="kv"><span class="muted">Pair</span><b id="overviewPair">EUR/USD</b></div>
-        <div class="kv"><span class="muted">Last price</span><b id="overviewPrice">—</b></div>
-        <div class="kv"><span class="muted">1m direction</span><b id="trend1">Gathering candles…</b></div>
-        <div class="kv"><span class="muted">5m direction</span><b id="trend5">Gathering candles…</b></div>
-        <div class="kv"><span class="muted">Recent range</span><b id="range">—</b></div>
-      </section>
-      <section class="panel"><h3>Key levels (recent candles)</h3>
-        <div class="kv"><span class="muted">Support estimate</span><b id="support">—</b></div>
-        <div class="kv"><span class="muted">Resistance estimate</span><b id="resistance">—</b></div>
-        <div class="kv"><span class="muted">Recent swing</span><b id="swing">—</b></div>
-        <div class="kv"><span class="muted">FVG / OB</span><b id="zones">Waiting…</b></div>
-      </section>
+<aside class="sidebar">
+
+  <div class="section-title">Create</div>
+
+  <button class="tool active" onclick="selectTool(this,'select')">
+    <span class="tool-icon">🖱️</span>
+    <span>Select</span>
+  </button>
+
+  <button class="tool" onclick="addCharacter()">
+    <span class="tool-icon">🧍</span>
+    <span>Character</span>
+  </button>
+
+  <button class="tool" onclick="addCloud()">
+    <span class="tool-icon">☁️</span>
+    <span>Prop</span>
+  </button>
+
+  <button class="tool" onclick="openBackgrounds()">
+    <span class="tool-icon">🌄</span>
+    <span>Background</span>
+  </button>
+
+  <button class="tool" onclick="addDialogue()">
+    <span class="tool-icon">💬</span>
+    <span>Dialogue</span>
+  </button>
+
+  <div class="section-title">Scene</div>
+
+  <button class="tool" onclick="duplicateScene()">
+    <span class="tool-icon">📋</span>
+    <span>Duplicate</span>
+  </button>
+
+  <button class="tool" onclick="clearStage()">
+    <span class="tool-icon">🗑️</span>
+    <span>Clear</span>
+  </button>
+
+  <button class="tool" onclick="previewAnimation()">
+    <span class="tool-icon">▶️</span>
+    <span>Preview</span>
+  </button>
+
+</aside>
+
+<!-- EDITOR -->
+
+<main class="editor">
+
+  <div class="topbar">
+
+    <div class="scene-name">
+      <span>🎞️</span>
+      <input id="sceneName" value="Scene 1">
     </div>
+
+    <div class="top-controls">
+      <button class="btn" onclick="undo()">↶</button>
+      <button class="btn" onclick="redo()">↷</button>
+      <button class="btn" onclick="addScene()">＋ Scene</button>
+      <button class="btn primary" onclick="exportProject()">📤 Export</button>
+    </div>
+
   </div>
-  <aside>
-    <section class="panel"><h2>Analysis & trade setup</h2>
-      <div id="signalCard" class="signal wait">
-        <div class="signal-title"><b id="signalTitle">WAIT — data loading</b><span id="signalPill" class="pill wait">NO SETUP</span></div>
-        <div id="signalReason" class="note">The analyzer needs enough candles before it can assess trend, recent structure and candle momentum.</div>
-        <div class="levels">
-          <div class="level"><small>Possible entry</small><b id="entry">—</b></div>
-          <div class="level"><small>Stop loss</small><b id="sl">—</b></div>
-          <div class="level"><small>Take profit 1</small><b id="tp1">—</b></div>
-          <div class="level"><small>Take profit 2</small><b id="tp2">—</b></div>
-        </div>
-        <div class="kv"><span class="muted">Risk : reward (TP1)</span><b id="rr">—</b></div>
+
+  <div class="canvas-area">
+
+    <div class="stage" id="stage">
+
+      <div class="sky" id="sky"></div>
+
+      <div class="sun" id="sun"></div>
+
+      <div class="cloud" style="left:12%;top:14%;"></div>
+      <div class="cloud" style="left:42%;top:9%;transform:scale(.7);"></div>
+
+      <div class="ground"></div>
+
+      <div class="stage-text" id="stageText">
+        My Cartoon Episode
       </div>
-      <h3>SMC + price-action checklist</h3>
-      <div class="kv"><span class="muted">Market structure</span><b id="structure">Not enough data</b></div>
-      <div class="kv"><span class="muted">Candle momentum</span><b id="momentum">—</b></div>
-      <div class="kv"><span class="muted">Liquidity sweep</span><b id="liquidity">Not confirmed</b></div>
-      <div class="kv"><span class="muted">Setup quality</span><b id="quality">Insufficient data</b></div>
-      <div class="disclaimer">Educational analysis only, not a guarantee of profit. Confirm the setup yourself, check spreads/news, and risk only what you can afford to lose.</div>
-    </section>
-    <section class="panel" style="margin-top:12px"><h3>Screenshot analysis</h3>
-      <p class="note">Upload a chart to preview it and follow the structured review checklist. Full automatic image interpretation needs a secure AI backend.</p>
-      <button class="primary" id="uploadFromSide" style="width:100%">Choose chart screenshot</button>
-      <input type="file" id="imageInputSide" accept="image/*" class="hide">
-      <div id="sideImageInfo" class="note" style="margin-top:8px">No screenshot selected.</div>
-    </section>
-  </aside>
-</div>
-<section class="cards">
-  <div class="mini"><h3>Trend alignment</h3><b id="alignment">Waiting for candles</b><div class="bar"><span id="alignBar" style="width:12%"></span></div><p class="note">Compares short-term candle direction; not a prediction.</p></div>
-  <div class="mini"><h3>Volatility</h3><b id="volatility">—</b><div class="bar"><span id="volBar" style="width:20%"></span></div><p class="note">Estimated from the recent candle ranges.</p></div>
-  <div class="mini"><h3>Analyzer state</h3><b id="stateText">Initializing</b><p class="note" id="stateNote">No orders are placed by this tool.</p></div>
-</section>
+
+      <div class="dialogue-box" id="dialogueBox">
+        <div class="dialogue-name" id="dialogueName">Character</div>
+        <div id="dialogueText">Hello! Welcome to my cartoon!</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- PROPERTIES -->
+
+  <section class="properties">
+
+    <div class="property-group">
+
+      <h3>🎬 Scene Settings</h3>
+
+      <div class="field">
+        <label>Scene title</label>
+        <input id="sceneTitle" value="My Cartoon Episode"
+          oninput="updateSceneTitle(this.value)">
+      </div>
+
+      <div class="field">
+        <label>Duration (seconds)</label>
+        <input id="duration" type="number" min="1" max="120" value="10"
+          onchange="updateDuration(this.value)">
+      </div>
+
+    </div>
+
+    <div class="property-group">
+
+      <h3>🧍 Selected Character</h3>
+
+      <div class="field">
+        <label>Name</label>
+        <input id="charName" value="Character"
+          oninput="updateCharacterName(this.value)">
+      </div>
+
+      <div class="row">
+
+        <div class="field">
+          <label>X</label>
+          <input id="charX" type="number" onchange="updateCharacterPosition()">
+        </div>
+
+        <div class="field">
+          <label>Y</label>
+          <input id="charY" type="number" onchange="updateCharacterPosition()">
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="field">
+          <label>Scale</label>
+          <input id="charScale" type="number" step=".1" min=".3" max="3"
+            value="1" onchange="updateCharacterScale()">
+        </div>
+
+        <div class="field">
+          <label>Rotation</label>
+          <input id="charRotation" type="number"
+            value="0" onchange="updateCharacterRotation()">
+        </div>
+
+      </div>
+
+      <div class="field">
+        <label>Body color</label>
+        <input id="bodyColor" class="color-input" type="color"
+          value="#7656d8" onchange="updateBodyColor()">
+      </div>
+
+      <button class="btn red" style="width:100%"
+        onclick="deleteSelected()">Delete Character</button>
+
+    </div>
+
+    <div class="property-group">
+
+      <h3>💬 Dialogue</h3>
+
+      <div class="field">
+        <label>Character</label>
+        <input id="dialogueCharacter" value="Character"
+          oninput="updateDialogue()">
+      </div>
+
+      <div class="field">
+        <label>Text</label>
+        <textarea id="dialogueInput"
+          oninput="updateDialogue()">Hello! Welcome to my cartoon!</textarea>
+      </div>
+
+      <button class="btn primary" style="width:100%"
+        onclick="toggleDialogue()">Show / Hide Dialogue</button>
+
+    </div>
+
+  </section>
+
+  <!-- TIMELINE -->
+
+  <section class="timeline">
+
+    <div class="timeline-header">
+
+      <strong>🎞️ Timeline</strong>
+
+      <div class="timeline-controls">
+        <button class="btn" onclick="timelinePlay()">▶</button>
+        <button class="btn" onclick="timelinePause()">⏸</button>
+        <button class="btn" onclick="addKeyframe()">◆ Keyframe</button>
+      </div>
+
+    </div>
+
+    <div class="timeline-body">
+
+      <div class="track-labels">
+
+        <div class="track-label">Time</div>
+        <div class="track-label">Characters</div>
+        <div class="track-label">Dialogue</div>
+
+      </div>
+
+      <div class="frames">
+
+        <div class="ruler">
+
+          <div class="tick">0s</div>
+          <div class="tick">1s</div>
+          <div class="tick">2s</div>
+          <div class="tick">3s</div>
+          <div class="tick">4s</div>
+          <div class="tick">5s</div>
+          <div class="tick">6s</div>
+          <div class="tick">7s</div>
+          <div class="tick">8s</div>
+          <div class="tick">9s</div>
+          <div class="tick">10s</div>
+
+        </div>
+
+        <div class="track" id="characterTrack"></div>
+
+        <div class="track" id="dialogueTrack"></div>
+
+        <div class="playhead" id="playhead"></div>
+
+      </div>
+
+    </div>
+
+  </section>
+
 </main>
 
-<section id="screenshotTab" class="hide">
- <div class="layout">
-  <section class="panel">
-   <h2>Upload a forex chart screenshot</h2>
-   <label class="upload">Choose an image from your phone<input type="file" id="imageInput" accept="image/*"></label>
-   <img id="imagePreview" class="preview hide" alt="Uploaded chart preview">
-   <div class="statusline" id="imageStatus">Select a screenshot from your gallery.</div>
-   <div class="field" style="margin-top:12px"><label for="manualDirection">What does the visible structure look like?</label><select id="manualDirection"><option value="unknown">Not sure</option><option value="bull">Higher highs and higher lows (bullish)</option><option value="bear">Lower highs and lower lows (bearish)</option><option value="range">Sideways / ranging</option></select></div>
-   <div class="field" style="margin-top:12px"><label for="manualPattern">Visible price-action clue</label><select id="manualPattern"><option value="unknown">Not sure</option><option value="engulf">Engulfing candle</option><option value="pin">Pin bar / rejection wick</option><option value="break">Break of structure (BOS)</option><option value="choch">Change of character (CHOCH)</option><option value="fvg">Fair value gap (FVG)</option><option value="ob">Order block</option><option value="none">No clear clue</option></select></div>
-   <button class="primary" id="reviewScreenshot" style="width:100%;margin-top:12px">Create structured review</button>
-  </section>
-  <section class="panel"><h2>Screenshot review</h2><div id="screenshotReview" class="note">Your review will appear here after you select an image and complete the checklist.</div><div class="disclaimer">This review is based on your selections, not automated visual recognition. Do not treat it as a verified BUY/SELL signal.</div></section>
- </div>
-</section>
-
-<div class="footer">NEXORA Forex Analyzer · Built by NESTER · Educational tool only · No trade execution</div>
 </div>
+
+</div>
+
+<!-- BACKGROUND MODAL -->
+
+<div class="modal" id="backgroundModal">
+
+  <div class="modal-card">
+
+    <h2>🌄 Choose Background</h2>
+
+    <div class="row">
+
+      <button class="btn" onclick="setBackground('day')">
+        ☀️ Day
+      </button>
+
+      <button class="btn" onclick="setBackground('sunset')">
+        🌅 Sunset
+      </button>
+
+      <button class="btn" onclick="setBackground('night')">
+        🌙 Night
+      </button>
+
+    </div>
+
+    <div class="row" style="margin-top:10px">
+
+      <button class="btn" onclick="setBackground('forest')">
+        🌲 Forest
+      </button>
+
+      <button class="btn" onclick="setBackground('city')">
+        🏙️ City
+      </button>
+
+      <button class="btn" onclick="setBackground('space')">
+        🚀 Space
+      </button>
+
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn" onclick="closeBackgrounds()">Close</button>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- EXPORT MODAL -->
+
+<div class="modal" id="exportModal">
+
+  <div class="modal-card">
+
+    <h2>📤 Export Cartoon</h2>
+
+    <p style="color:#aeb4c7">
+      Version 1 saves your cartoon project and prepares it for
+      future video export.
+    </p>
+
+    <div class="field">
+      <label>Episode title</label>
+      <input id="exportTitle" value="My Cartoon Episode">
+    </div>
+
+    <div class="field">
+      <label>Description</label>
+      <textarea id="exportDescription"
+        placeholder="Write your YouTube description..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Format</label>
+      <select id="exportFormat">
+        <option>16:9 YouTube</option>
+        <option>9:16 YouTube Shorts</option>
+        <option>1:1 Square</option>
+      </select>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn" onclick="closeExport()">Cancel</button>
+      <button class="btn primary" onclick="finishExport()">Prepare Export</button>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
 <script>
-(() => {
-'use strict';
-const $ = id => document.getElementById(id);
-const state = {ws:null, req:0, symbol:'frxEURUSD', tf:60, candles:[], ticks:[], connected:false, currentPrice:null, appId:'1089', history5:[], imageUrl:null};
-const symbols = {frxEURUSD:'EUR/USD',frxGBPUSD:'GBP/USD',frxUSDJPY:'USD/JPY',frxAUDUSD:'AUD/USD',frxUSDCHF:'USD/CHF',frxUSDCAD:'USD/CAD',frxXAUUSD:'XAU/USD'};
-function fmt(n){if(!Number.isFinite(Number(n)))return '—'; let v=Number(n);return v.toFixed(v>100?3:v>10?4:5)}
-function setConnection(ok,msg){state.connected=ok;$('statusDot').className='dot'+(ok?' ok':'');$('connectionText').textContent=msg;$('feedTag').textContent=ok?'Live feed':'Feed disconnected';}
-function wsUrl(){return 'wss://ws.derivws.com/websockets/v3?app_id='+encodeURIComponent(state.appId||'1089')}
-function send(o){if(state.ws&&state.ws.readyState===WebSocket.OPEN)state.ws.send(JSON.stringify(o))}
-function connect(){
-  if(state.ws){try{state.ws.onclose=null;state.ws.close()}catch(e){}}
-  state.candles=[];state.ticks=[];state.history5=[];state.currentPrice=null;
-  setConnection(false,'Connecting…');$('feedMessage').textContent='Opening public market-data connection…';
-  try{state.ws=new WebSocket(wsUrl())}catch(e){setConnection(false,'Connection failed');$('feedMessage').textContent='Could not create WebSocket: '+e.message;return}
-  state.ws.onopen=()=>{setConnection(true,'Connected');$('feedMessage').textContent='Connected. Requesting recent candles and live ticks…';requestHistory();send({ticks:state.symbol,subscribe:1});};
-  state.ws.onmessage=ev=>{let d;try{d=JSON.parse(ev.data)}catch(e){return}
-    if(d.error){$('feedMessage').textContent='Market feed: '+d.error.message;return}
-    if(d.msg_type==='candles'&&d.candles){state.candles=d.candles.map(c=>({epoch:+c.epoch,open:+c.open,high:+c.high,low:+c.low,close:+c.close}));renderAll();}
-    if(d.msg_type==='history'&&d.candles){state.candles=d.candles.map(c=>({epoch:+c.epoch,open:+c.open,high:+c.high,low:+c.low,close:+c.close}));renderAll();}
-    if(d.msg_type==='tick'&&d.tick){let t=d.tick;state.currentPrice=+t.quote;state.ticks.push({epoch:+t.epoch,price:+t.quote});if(state.ticks.length>800)state.ticks.shift();updatePrice();if(!state.candles.length)makeCandlesFromTicks();else updateLiveCandle(+t.epoch,+t.quote);renderAll();}
+
+/* =========================================================
+   CARTOON STUDIO
+   Version 1
+   ========================================================= */
+
+let selectedCharacter = null;
+let characterCounter = 0;
+let keyframes = [];
+let isPlaying = false;
+let playTimer = null;
+let currentTime = 0;
+let history = [];
+let historyIndex = -1;
+
+/* =========================================================
+   BASIC UI
+   ========================================================= */
+
+function toast(message){
+
+  const el = document.getElementById("toast");
+
+  el.textContent = message;
+  el.classList.add("show");
+
+  setTimeout(()=>{
+    el.classList.remove("show");
+  },2200);
+}
+
+function selectTool(button,tool){
+
+  document.querySelectorAll(".tool").forEach(x=>{
+    x.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+}
+
+/* =========================================================
+   CHARACTERS
+   ========================================================= */
+
+function addCharacter(){
+
+  characterCounter++;
+
+  const char=document.createElement("div");
+
+  char.className="character";
+
+  char.dataset.id="character-"+characterCounter;
+
+  char.style.left=(15 + characterCounter*8)+"%";
+  char.style.bottom="23%";
+
+  char.innerHTML=`
+
+    <div class="character-name">
+      Character ${characterCounter}
+    </div>
+
+    <div class="hair"></div>
+
+    <div class="head">
+
+      <div class="eye left"></div>
+      <div class="eye right"></div>
+
+      <div class="mouth"></div>
+
+    </div>
+
+    <div class="body"></div>
+
+    <div class="arm left"></div>
+    <div class="arm right"></div>
+
+    <div class="leg left"></div>
+    <div class="leg right"></div>
+
+  `;
+
+  document.getElementById("stage").appendChild(char);
+
+  makeDraggable(char);
+
+  selectCharacter(char);
+
+  saveHistory();
+
+  toast("Character added");
+
+}
+
+function selectCharacter(char){
+
+  document.querySelectorAll(".character").forEach(c=>{
+    c.classList.remove("selected");
+  });
+
+  char.classList.add("selected");
+
+  selectedCharacter=char;
+
+  updateCharacterPanel();
+
+}
+
+function makeDraggable(element){
+
+  let dragging=false;
+  let startX=0;
+  let startY=0;
+  let originalLeft=0;
+  let originalTop=0;
+
+  function start(e){
+
+    e.preventDefault();
+
+    selectCharacter(element);
+
+    dragging=true;
+
+    const point=e.touches ? e.touches[0] : e;
+
+    startX=point.clientX;
+    startY=point.clientY;
+
+    originalLeft=element.offsetLeft;
+    originalTop=element.offsetTop;
+
+    document.addEventListener("mousemove",move);
+    document.addEventListener("mouseup",end);
+
+    document.addEventListener("touchmove",move,{passive:false});
+    document.addEventListener("touchend",end);
+
+  }
+
+  function move(e){
+
+    if(!dragging)return;
+
+    e.preventDefault();
+
+    const point=e.touches ? e.touches[0] : e;
+
+    const stage=document.getElementById("stage");
+
+    let x=originalLeft+(point.clientX-startX);
+    let y=originalTop+(point.clientY-startY);
+
+    x=Math.max(0,Math.min(stage.clientWidth-element.offsetWidth,x));
+    y=Math.max(0,Math.min(stage.clientHeight-element.offsetHeight,y));
+
+    element.style.left=x+"px";
+    element.style.top=y+"px";
+    element.style.bottom="auto";
+
+    updateCharacterPanel();
+
+  }
+
+  function end(){
+
+    if(!dragging)return;
+
+    dragging=false;
+
+    document.removeEventListener("mousemove",move);
+    document.removeEventListener("mouseup",end);
+
+    document.removeEventListener("touchmove",move);
+    document.removeEventListener("touchend",end);
+
+    saveHistory();
+
+  }
+
+  element.addEventListener("mousedown",start);
+  element.addEventListener("touchstart",start,{passive:false});
+
+}
+
+function updateCharacterPanel(){
+
+  if(!selectedCharacter)return;
+
+  const c=selectedCharacter;
+
+  document.getElementById("charName").value=
+    c.querySelector(".character-name")?.textContent || "Character";
+
+  document.getElementById("charX").value=
+    Math.round(c.offsetLeft);
+
+  document.getElementById("charY").value=
+    Math.round(c.offsetTop);
+
+  const transform=c.style.transform || "";
+
+  const scaleMatch=transform.match(/scale\(([^)]+)\)/);
+  const rotateMatch=transform.match(/rotate\(([^)]+)deg\)/);
+
+  document.getElementById("charScale").value=
+    scaleMatch ? scaleMatch[1] : 1;
+
+  document.getElementById("charRotation").value=
+    rotateMatch ? rotateMatch[1] : 0;
+
+}
+
+function updateCharacterName(value){
+
+  if(!selectedCharacter)return;
+
+  selectedCharacter.querySelector(".character-name").textContent=value;
+
+  saveHistory();
+
+}
+
+function updateCharacterPosition(){
+
+  if(!selectedCharacter)return;
+
+  selectedCharacter.style.left=
+    document.getElementById("charX").value+"px";
+
+  selectedCharacter.style.top=
+    document.getElementById("charY").value+"px";
+
+  selectedCharacter.style.bottom="auto";
+
+  saveHistory();
+
+}
+
+function updateCharacterScale(){
+
+  if(!selectedCharacter)return;
+
+  const scale=document.getElementById("charScale").value || 1;
+
+  const rotation=document.getElementById("charRotation").value || 0;
+
+  selectedCharacter.style.transform=
+    `scale(${scale}) rotate(${rotation}deg)`;
+
+  saveHistory();
+
+}
+
+function updateCharacterRotation(){
+
+  updateCharacterScale();
+
+}
+
+function updateBodyColor(){
+
+  if(!selectedCharacter)return;
+
+  const color=document.getElementById("bodyColor").value;
+
+  selectedCharacter.querySelector(".body").style.background=color;
+
+  saveHistory();
+
+}
+
+function deleteSelected(){
+
+  if(!selectedCharacter){
+
+    toast("Select a character first");
+    return;
+
+  }
+
+  selectedCharacter.remove();
+
+  selectedCharacter=null;
+
+  saveHistory();
+
+  toast("Character deleted");
+
+}
+
+/* =========================================================
+   PROPS
+   ========================================================= */
+
+function addCloud(){
+
+  const cloud=document.createElement("div");
+
+  cloud.className="cloud";
+
+  cloud.style.left="30%";
+  cloud.style.top="20%";
+
+  document.getElementById("stage").appendChild(cloud);
+
+  toast("Cloud added");
+
+}
+
+function clearStage(){
+
+  document.querySelectorAll(".character,.cloud").forEach(el=>{
+    el.remove();
+  });
+
+  selectedCharacter=null;
+
+  document.getElementById("dialogueBox").classList.remove("show");
+
+  saveHistory();
+
+  toast("Scene cleared");
+
+}
+
+/* =========================================================
+   BACKGROUNDS
+   ========================================================= */
+
+function openBackgrounds(){
+
+  document.getElementById("backgroundModal").classList.add("open");
+
+}
+
+function closeBackgrounds(){
+
+  document.getElementById("backgroundModal").classList.remove("open");
+
+}
+
+function setBackground(type){
+
+  const sky=document.getElementById("sky");
+  const ground=document.querySelector(".ground");
+  const sun=document.getElementById("sun");
+
+  if(type==="day"){
+
+    sky.style.background=
+      "linear-gradient(#72c9ff,#dff7ff)";
+
+    ground.style.background="#63bd59";
+
+    sun.style.display="block";
+
+  }
+
+  if(type==="sunset"){
+
+    sky.style.background=
+      "linear-gradient(#ff7e79,#ffc76b 55%,#8d7cc7)";
+
+    ground.style.background="#43553f";
+
+    sun.style.display="block";
+
+  }
+
+  if(type==="night"){
+
+    sky.style.background=
+      "linear-gradient(#08122f,#16234e,#263c66)";
+
+    ground.style.background="#16251c";
+
+    sun.style.display="none";
+
+  }
+
+  if(type==="forest"){
+
+    sky.style.background=
+      "linear-gradient(#78c9ee,#d4f1df)";
+
+    ground.style.background="#2f8d45";
+
+    sun.style.display="block";
+
+  }
+
+  if(type==="city"){
+
+    sky.style.background=
+      "linear-gradient(#7898bd,#d6d9df)";
+
+    ground.style.background="#555";
+
+    sun.style.display="none";
+
+  }
+
+  if(type==="space"){
+
+    sky.style.background=
+      "radial-gradient(circle at 30% 30%,#38468c,#080a18 65%)";
+
+    ground.style.display="none";
+
+    sun.style.display="none";
+
+  }else{
+
+    ground.style.display="block";
+
+  }
+
+  closeBackgrounds();
+
+  saveHistory();
+
+  toast(type+" background selected");
+
+}
+
+/* =========================================================
+   DIALOGUE
+   ========================================================= */
+
+function addDialogue(){
+
+  document.getElementById("dialogueBox").classList.add("show");
+
+  toast("Dialogue added");
+
+}
+
+function toggleDialogue(){
+
+  document.getElementById("dialogueBox")
+    .classList.toggle("show");
+
+}
+
+function updateDialogue(){
+
+  document.getElementById("dialogueName").textContent=
+    document.getElementById("dialogueCharacter").value;
+
+  document.getElementById("dialogueText").textContent=
+    document.getElementById("dialogueInput").value;
+
+}
+
+/* =========================================================
+   SCENE
+   ========================================================= */
+
+function updateSceneTitle(value){
+
+  document.getElementById("stageText").textContent=value;
+
+}
+
+function updateDuration(value){
+
+  if(value<1)value=1;
+  if(value>120)value=120;
+
+  document.getElementById("duration").value=value;
+
+}
+
+function addScene(){
+
+  const sceneCount=
+    document.querySelectorAll(".scene-item").length+1;
+
+  toast("Scene "+sceneCount+" created");
+
+}
+
+function duplicateScene(){
+
+  const chars=
+    [...document.querySelectorAll(".character")];
+
+  chars.forEach(old=>{
+
+    const clone=old.cloneNode(true);
+
+    clone.style.left=
+      (old.offsetLeft+30)+"px";
+
+    clone.style.top=
+      (old.offsetTop-20)+"px";
+
+    document.getElementById("stage").appendChild(clone);
+
+    makeDraggable(clone);
+
+  });
+
+  toast("Scene duplicated");
+
+}
+
+/* =========================================================
+   TIMELINE
+   ========================================================= */
+
+function addKeyframe(){
+
+  const track=document.getElementById("characterTrack");
+
+  const key=document.createElement("div");
+
+  key.className="keyframe";
+
+  key.style.left=(currentTime*60)+"px";
+
+  track.appendChild(key);
+
+  keyframes.push({
+    time:currentTime
+  });
+
+  toast("Keyframe added");
+
+}
+
+function timelinePlay(){
+
+  if(isPlaying)return;
+
+  isPlaying=true;
+
+  const duration=
+    Number(document.getElementById("duration").value)||10;
+
+  playTimer=setInterval(()=>{
+
+    currentTime+=0.1;
+
+    if(currentTime>duration){
+
+      currentTime=0;
+
+    }
+
+    document.getElementById("playhead").style.left=
+      (currentTime*60)+"px";
+
+  },100);
+
+}
+
+function timelinePause(){
+
+  isPlaying=false;
+
+  clearInterval(playTimer);
+
+}
+
+function previewAnimation(){
+
+  timelinePause();
+
+  currentTime=0;
+
+  document.getElementById("playhead").style.left="0px";
+
+  timelinePlay();
+
+  toast("Preview playing");
+
+}
+
+/* =========================================================
+   SAVE / LOAD
+   ========================================================= */
+
+function getProjectData(){
+
+  return {
+
+    name:document.getElementById("sceneName").value,
+
+    title:document.getElementById("sceneTitle").value,
+
+    duration:document.getElementById("duration").value,
+
+    dialogue:{
+
+      character:document.getElementById("dialogueCharacter").value,
+
+      text:document.getElementById("dialogueInput").value,
+
+      visible:
+        document.getElementById("dialogueBox")
+        .classList.contains("show")
+
+    },
+
+    stage:document.getElementById("stage").innerHTML
+
   };
-  state.ws.onerror=()=>{$('feedMessage').textContent='WebSocket error. Check your internet, app ID, or whether Deriv is reachable.'};
-  state.ws.onclose=()=>{setConnection(false,'Disconnected');};
+
 }
-function requestHistory(){send({ticks_history:state.symbol,adjust_start_time:1,count:180,end:'latest',style:'candles',granularity:state.tf});}
-function updateLiveCandle(epoch,price){let bucket=Math.floor(epoch/state.tf)*state.tf;let last=state.candles[state.candles.length-1];if(!last||last.epoch<bucket){state.candles.push({epoch:bucket,open:last?last.close:price,high:price,low:price,close:price});if(state.candles.length>220)state.candles.shift()}else if(last.epoch===bucket){last.high=Math.max(last.high,price);last.low=Math.min(last.low,price);last.close=price;}else{requestHistory()}}
-function makeCandlesFromTicks(){if(state.ticks.length<2)return;let m=new Map();state.ticks.forEach(t=>{let e=Math.floor(t.epoch/state.tf)*state.tf;if(!m.has(e))m.set(e,{epoch:e,open:t.price,high:t.price,low:t.price,close:t.price});let c=m.get(e);c.high=Math.max(c.high,t.price);c.low=Math.min(c.low,t.price);c.close=t.price});state.candles=[...m.values()].slice(-180);renderAll()}
-function updatePrice(){let p=state.currentPrice;$('lastPrice').textContent=fmt(p);$('overviewPrice').textContent=fmt(p);$('lastUpdate').textContent='Updated '+new Date().toLocaleTimeString();$('chartTitle').textContent=symbols[state.symbol]+' · '+(state.tf===60?'1m':'5m');$('overviewPair').textContent=symbols[state.symbol]||state.symbol}
-function canvasDraw(){
- const cv=$('chart'),box=cv.getBoundingClientRect(),dpr=window.devicePixelRatio||1;cv.width=Math.max(1,Math.floor(box.width*dpr));cv.height=Math.max(1,Math.floor(box.height*dpr));const ctx=cv.getContext('2d');ctx.scale(dpr,dpr);const w=box.width,h=box.height;ctx.fillStyle='#060d23';ctx.fillRect(0,0,w,h);
- const data=state.candles.slice(-70);if(data.length<2){ctx.fillStyle='#9ca9d8';ctx.font='13px system-ui';ctx.fillText('Waiting for candle history…',16,28);return}
- let min=Math.min(...data.map(c=>c.low)),max=Math.max(...data.map(c=>c.high));if(max===min){max+=.001;min-=.001}let pad=(max-min)*.08;min-=pad;max+=pad;let left=12,right=58,top=18,bottom=24,plotW=w-left-right,plotH=h-top-bottom;
- const y=v=>top+(max-v)/(max-min)*plotH;const x=i=>left+(i+.5)*plotW/data.length;
- ctx.strokeStyle='#17244c';ctx.lineWidth=1;for(let i=0;i<=5;i++){let yy=top+plotH*i/5;ctx.beginPath();ctx.moveTo(left,yy);ctx.lineTo(w-right,yy);ctx.stroke();let val=max-(max-min)*i/5;ctx.fillStyle='#9ca9d8';ctx.font='10px system-ui';ctx.fillText(fmt(val),w-right+5,yy+3)}
- for(let i=0;i<=6;i++){let xx=left+plotW*i/6;ctx.beginPath();ctx.moveTo(xx,top);ctx.lineTo(xx,top+plotH);ctx.stroke()}
- let cw=Math.max(2,Math.min(9,plotW/data.length*.58));
- data.forEach((c,i)=>{let xx=x(i),yo=y(c.open),yc=y(c.close),yh=y(c.high),yl=y(c.low),up=c.close>=c.open;ctx.strokeStyle=up?'#00d6a0':'#ff4f79';ctx.fillStyle=ctx.strokeStyle;ctx.beginPath();ctx.moveTo(xx,yh);ctx.lineTo(xx,yl);ctx.stroke();let bh=Math.max(1,Math.abs(yc-yo));ctx.fillRect(xx-cw/2,Math.min(yo,yc),cw,bh)});
- const p=state.currentPrice;if(Number.isFinite(p)){let yy=y(p);ctx.setLineDash([4,4]);ctx.strokeStyle='#00d6a0';ctx.beginPath();ctx.moveTo(left,yy);ctx.lineTo(w-right,yy);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#00a982';ctx.fillRect(w-right,yy-9,right,18);ctx.fillStyle='#fff';ctx.font='10px system-ui';ctx.fillText(fmt(p),w-right+4,yy+3)}
- ctx.fillStyle='#9ca9d8';ctx.font='10px system-ui';ctx.fillText(new Date(data[0].epoch*1000).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}),left,h-7);ctx.fillText(new Date(data[data.length-1].epoch*1000).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}),Math.max(left,w-right-48),h-7);
+
+function saveProject(){
+
+  const data=getProjectData();
+
+  localStorage.setItem(
+    "cartoonStudioProject",
+    JSON.stringify(data)
+  );
+
+  toast("Project saved on this phone");
+
 }
-function direction(data){if(data.length<6)return 'Gathering candles…';let d=data.slice(-6),first=d[0].close,last=d[d.length-1].close;let higher=d[d.length-1].high>d[0].high&&d[d.length-1].low>d[0].low,lower=d[d.length-1].high<d[0].high&&d[d.length-1].low<d[0].low;if(higher&&last>first)return '↑ Uptrend';if(lower&&last<first)return '↓ Downtrend';if(last>first)return 'Leaning up';if(last<first)return 'Leaning down';return 'Sideways'}
-function analyze(){
- let d=state.candles;if(d.length<12){$('signalTitle').textContent='WAIT — collecting candles';$('signalReason').textContent='Need at least 12 candles for a basic structure check. A signal may not be available for every market.';return}
- let recent=d.slice(-30),last=d[d.length-1],prev=d[d.length-2],prior=d[d.length-3];let hi=Math.max(...recent.slice(0,-2).map(c=>c.high)),lo=Math.min(...recent.slice(0,-2).map(c=>c.low));let up=last.close>last.open,down=last.close<last.open;let range=last.high-last.low,body=Math.abs(last.close-last.open),bullEngulf=up&&prev.close<prev.open&&last.close>prev.open&&last.open<prev.close,bearEngulf=down&&prev.close>prev.open&&last.close<prev.open&&last.open>prev.close;let bullBreak=last.close>hi,bearBreak=last.close<lo;let trend=direction(d),bias=trend.includes('Up')||trend.includes('up')?'bull':trend.includes('Down')||trend.includes('down')?'bear':'range';
- let buy=(bias==='bull'&&(up||bullEngulf||bullBreak))||(bullEngulf&&last.close>prev.high),sell=(bias==='bear'&&(down||bearEngulf||bearBreak))||(bearEngulf&&last.close<prev.low);
- let type=buy&&!sell?'buy':sell&&!buy?'sell':'wait';if(bullBreak&&up)type='buy';if(bearBreak&&down)type='sell';
- let avgRange=recent.reduce((a,c)=>a+c.high-c.low,0)/recent.length;let entry=state.currentPrice||last.close,buffer=Math.max(avgRange*.35,Math.abs(entry)*.00015);let stop=type==='buy'?Math.min(lo,last.low)-buffer:type==='sell'?Math.max(hi,last.high)+buffer:null;let risk=stop===null?null:Math.abs(entry-stop),t1=type==='buy'?entry+risk*1.5:type==='sell'?entry-risk*1.5:null,t2=type==='buy'?entry+risk*2:type==='sell'?entry-risk*2:null;
- $('signalCard').className='signal'+(type==='sell'?' sell':type==='wait'?' wait':'');$('signalPill').className='pill'+(type==='sell'?' sell':type==='wait'?' wait':'');$('signalPill').textContent=type==='buy'?'POTENTIAL BUY':type==='sell'?'POTENTIAL SELL':'NO SETUP';$('signalTitle').textContent=type==='buy'?'Potential bullish setup':type==='sell'?'Potential bearish setup':'WAIT — no clear alignment';
- $('signalReason').textContent=type==='buy'?'Recent candles lean bullish. Check whether the breakout/retest is valid, and confirm spread and news before considering a trade.':type==='sell'?'Recent candles lean bearish. Check whether the breakdown/retest is valid, and confirm spread and news before considering a trade.':'Trend and candle evidence are mixed or sideways. Waiting is preferable to forcing a setup.';
- $('entry').textContent=type==='wait'?'—':fmt(entry);$('sl').textContent=stop===null?'—':fmt(stop);$('tp1').textContent=t1===null?'—':fmt(t1);$('tp2').textContent=t2===null?'—':fmt(t2);$('rr').textContent=type==='wait'?'—':'1 : 1.5 (TP1)';
- $('structure').textContent=bullBreak?'Bullish BOS candidate':bearBreak?'Bearish BOS candidate':trend;$('momentum').textContent=bullEngulf?'Bullish engulfing candidate':bearEngulf?'Bearish engulfing candidate':up?'Last candle bullish':down?'Last candle bearish':'Neutral candle';$('liquidity').textContent=(last.high>hi&&last.close<hi)?'Possible high sweep':(last.low<lo&&last.close>lo)?'Possible low sweep':'Not confirmed';$('quality').textContent=type==='wait'?'No aligned setup':(bullBreak||bearBreak)?'Structure break candidate':'Early / unconfirmed';
- $('support').textContent=fmt(lo);$('resistance').textContent=fmt(hi);$('swing').textContent=fmt(lo)+' – '+fmt(hi);$('zones').textContent=(bullBreak||bearBreak)?'Structure break candidate':'No clear gap / block';$('range').textContent=fmt(Math.max(...recent.map(c=>c.high))-Math.min(...recent.map(c=>c.low)));$('trend1').textContent=state.tf===60?trend:'Use 1m tab';$('trend5').textContent=state.tf===300?trend:'Use 5m tab';
- let avg=avgRange,ratio=avg/(Math.abs(entry)*.001||1);$('volatility').textContent=ratio>1.2?'Higher recent range':ratio<.35?'Low recent range':'Moderate recent range';$('volBar').style.width=Math.max(10,Math.min(100,ratio*45))+'%';$('alignment').textContent=type==='wait'?'Not aligned':type==='buy'?'Bullish evidence':'Bearish evidence';$('alignBar').style.width=type==='wait'?'28%':'68%';$('stateText').textContent=state.connected?'Analyzing public prices':'Offline';$('stateNote').textContent='No trades are sent. Setup labels are heuristic, not a trained AI model.';
- $('ohlc').textContent='O '+fmt(last.open)+'  H '+fmt(last.high)+'  L '+fmt(last.low)+'  C '+fmt(last.close)+'  · '+new Date(last.epoch*1000).toLocaleTimeString();
+
+function loadProject(){
+
+  const raw=
+    localStorage.getItem("cartoonStudioProject");
+
+  if(!raw){
+
+    toast("No saved project found");
+    return;
+
+  }
+
+  const data=JSON.parse(raw);
+
+  document.getElementById("sceneName").value=data.name;
+  document.getElementById("sceneTitle").value=data.title;
+  document.getElementById("duration").value=data.duration;
+
+  document.getElementById("stage").innerHTML=data.stage;
+
+  document.getElementById("dialogueCharacter").value=
+    data.dialogue.character;
+
+  document.getElementById("dialogueInput").value=
+    data.dialogue.text;
+
+  document.getElementById("dialogueName").textContent=
+    data.dialogue.character;
+
+  document.getElementById("dialogueText").textContent=
+    data.dialogue.text;
+
+  if(data.dialogue.visible){
+
+    document.getElementById("dialogueBox")
+      .classList.add("show");
+
+  }
+
+  document.querySelectorAll(".character").forEach(c=>{
+    makeDraggable(c);
+  });
+
+  toast("Project loaded");
+
 }
-function renderAll(){updatePrice();canvasDraw();analyze();if(state.candles.length)$('feedMessage').textContent='Loaded '+state.candles.length+' candles. Analysis is rule-based and should be independently verified.'}
-function changeSymbol(){state.symbol=$('market').value;connect()}
-function setTf(tf){state.tf=tf;$('tf1').classList.toggle('active',tf===60);$('tf5').classList.toggle('active',tf===300);connect()}
-function showTab(tab){document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));$('analyzerTab').classList.toggle('hide',tab!=='analyzer');$('screenshotTab').classList.toggle('hide',tab!=='screenshot');$('settingsPanel').classList.toggle('show',tab==='settings');if(tab==='analyzer')setTimeout(canvasDraw,60)}
-function loadImage(file,previewId,infoId){if(!file)return;if(!file.type.startsWith('image/')){alert('Please choose an image file.');return}if(state.imageUrl)URL.revokeObjectURL(state.imageUrl);state.imageUrl=URL.createObjectURL(file);let img=$(previewId);if(img){img.src=state.imageUrl;img.classList.remove('hide')}if(infoId)$(infoId).textContent=file.name+' · '+Math.round(file.size/1024)+' KB selected.';$('imageStatus').textContent='Image loaded. The standalone page can preview it; automated vision requires a secure AI backend.'}
-$('market').addEventListener('change',changeSymbol);$('tf1').addEventListener('click',()=>setTf(60));$('tf5').addEventListener('click',()=>setTf(300));$('refreshBtn').addEventListener('click',()=>{if(state.connected)requestHistory();else connect()});$('openUpload').addEventListener('click',()=>showTab('screenshot'));$('uploadFromSide').addEventListener('click',()=>$('imageInputSide').click());$('imageInputSide').addEventListener('change',e=>loadImage(e.target.files[0],null,'sideImageInfo'));$('imageInput').addEventListener('change',e=>loadImage(e.target.files[0],'imagePreview',null));document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
-$('saveSettings').addEventListener('click',()=>{state.appId=$('appId').value.trim()||'1089';$('settingsStatus').textContent='Settings saved for this page session. Reconnecting…';connect()});
-$('reviewScreenshot').addEventListener('click',()=>{if(!$('imageInput').files[0]){$('screenshotReview').textContent='Please select a screenshot first.';return}let dir=$('manualDirection').value,pat=$('manualPattern').value;let d={bull:'You selected bullish structure (higher highs and higher lows).',bear:'You selected bearish structure (lower highs and lower lows).',range:'You selected a sideways/ranging structure.',unknown:'Trend direction has not been identified.'}[dir];let p={engulf:'Check the engulfing candle close and whether it appears at a meaningful level.',pin:'Check whether the rejection wick forms at support/resistance or a liquidity area.',break:'Verify a candle closed beyond the prior swing; a wick alone is not a confirmed BOS.',choch:'Verify a meaningful break against the previous short-term structure before calling CHOCH.',fvg:'Check that the three-candle imbalance is clear and has not already been fully filled.',ob:'Check the last opposing candle before the displacement and confirm the zone is still relevant.',none:'No clear price-action clue was selected.',unknown:'The pattern has not been identified.'}[pat];let compatible=(dir==='bull'&&['engulf','break','fvg','ob'].includes(pat))||(dir==='bear'&&['engulf','break','choch','fvg','ob'].includes(pat));$('screenshotReview').innerHTML='<b>Structured review — not an automated AI read</b><br><br>'+d+'<br>'+p+'<br><br><b>Next checks</b><br>1. Mark the most recent swing high and swing low.<br>2. Check if price broke and closed beyond structure or only wicked through it.<br>3. Identify nearby liquidity and support/resistance.<br>4. Wait for a retracement/confirmation instead of chasing a candle.<br>5. If a valid setup forms, define the stop beyond invalidation and calculate position size before entry.<br><br><b>Alignment:</b> '+(compatible?'Some selected clues may align, but confirmation is still required.':'The selected items do not establish a confirmed trade setup.')+'<br><br>For true image-based interpretation, configure a secure AI backend endpoint.'});
-window.addEventListener('resize',()=>canvasDraw());connect();
-})();
+
+function newProject(){
+
+  if(!confirm("Start a new project? Unsaved changes may be lost.")){
+    return;
+  }
+
+  document.getElementById("sceneName").value="Scene 1";
+  document.getElementById("sceneTitle").value="My Cartoon Episode";
+  document.getElementById("duration").value=10;
+
+  document.getElementById("stageText").textContent=
+    "My Cartoon Episode";
+
+  clearStage();
+
+  toast("New project created");
+
+}
+
+/* =========================================================
+   HISTORY
+   ========================================================= */
+
+function saveHistory(){
+
+  try{
+
+    const state=JSON.stringify(getProjectData());
+
+    history=history.slice(0,historyIndex+1);
+
+    history.push(state);
+
+    if(history.length>30){
+      history.shift();
+    }
+
+    historyIndex=history.length-1;
+
+  }catch(e){}
+
+}
+
+function undo(){
+
+  if(historyIndex<=0){
+
+    toast("Nothing to undo");
+    return;
+
+  }
+
+  historyIndex--;
+
+  restoreHistory(history[historyIndex]);
+
+  toast("Undo");
+
+}
+
+function redo(){
+
+  if(historyIndex>=history.length-1){
+
+    toast("Nothing to redo");
+    return;
+
+  }
+
+  historyIndex++;
+
+  restoreHistory(history[historyIndex]);
+
+  toast("Redo");
+
+}
+
+function restoreHistory(raw){
+
+  const data=JSON.parse(raw);
+
+  document.getElementById("sceneName").value=data.name;
+  document.getElementById("sceneTitle").value=data.title;
+  document.getElementById("duration").value=data.duration;
+
+  document.getElementById("stage").innerHTML=data.stage;
+
+  document.getElementById("dialogueCharacter").value=
+    data.dialogue.character;
+
+  document.getElementById("dialogueInput").value=
+    data.dialogue.text;
+
+  document.getElementById("dialogueName").textContent=
+    data.dialogue.character;
+
+  document.getElementById("dialogueText").textContent=
+    data.dialogue.text;
+
+  document.querySelectorAll(".character").forEach(c=>{
+    makeDraggable(c);
+  });
+
+}
+
+/* =========================================================
+   EXPORT
+   ========================================================= */
+
+function exportProject(){
+
+  document.getElementById("exportTitle").value=
+    document.getElementById("sceneTitle").value;
+
+  document.getElementById("exportModal").classList.add("open");
+
+}
+
+function closeExport(){
+
+  document.getElementById("exportModal")
+    .classList.remove("open");
+
+}
+
+function finishExport(){
+
+  const title=
+    document.getElementById("exportTitle").value;
+
+  const description=
+    document.getElementById("exportDescription").value;
+
+  const format=
+    document.getElementById("exportFormat").value;
+
+  const exportData={
+    title,
+    description,
+    format,
+    project:getProjectData()
+  };
+
+  const blob=new Blob(
+    [JSON.stringify(exportData,null,2)],
+    {type:"application/json"}
+  );
+
+  const url=URL.createObjectURL(blob);
+
+  const a=document.createElement("a");
+
+  a.href=url;
+
+  a.download=
+    title.replace(/[^a-z0-9]/gi,"_")+
+    "_cartoon_project.json";
+
+  a.click();
+
+  URL.revokeObjectURL(url);
+
+  closeExport();
+
+  toast("Project export downloaded");
+
+}
+
+/* =========================================================
+   STARTUP
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+  updateDialogue();
+
+  saveHistory();
+
+  /* Allow clicking the stage to deselect */
+
+  document.getElementById("stage")
+    .addEventListener("click",function(e){
+
+      if(e.target===this ||
+         e.target.classList.contains("sky") ||
+         e.target.classList.contains("ground")){
+
+        document.querySelectorAll(".character")
+          .forEach(c=>c.classList.remove("selected"));
+
+        selectedCharacter=null;
+
+      }
+
+    });
+
+});
+
+/* Keyboard shortcuts */
+
+document.addEventListener("keydown",e=>{
+
+  if(e.ctrlKey && e.key==="s"){
+
+    e.preventDefault();
+    saveProject();
+
+  }
+
+  if(e.ctrlKey && e.key==="z"){
+
+    e.preventDefault();
+    undo();
+
+  }
+
+  if(e.ctrlKey && e.key==="y"){
+
+    e.preventDefault();
+    redo();
+
+  }
+
+});
+
 </script>
+
 </body>
   </html>
